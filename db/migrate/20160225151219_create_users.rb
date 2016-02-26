@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :contact_number
-      t.array :roles
+      t.string :roles, array: true, default: []
 
       t.timestamps null: false
     end
