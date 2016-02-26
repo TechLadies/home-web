@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20160226135533) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "cases", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.string   "case_type"
+    t.string   "status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
