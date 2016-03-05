@@ -1,4 +1,30 @@
 Rails.application.routes.draw do
+
+  resources :sessions, only: [:new, :create, :destroy]
+
+  resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
+
+    put :close, on: :member
+
+    resources :people, only: [:new, :create]
+    resources :actions, only: [:new, :create]
+    resources :documents, only: [:new, :create]
+
+  end
+
+  resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :members, only: [:new, :create]
+  end
+
+  resources :people, only: [:index, :show, :new, :create, :edit, :update]
+
+  namespace :admin do
+
+    resources :users, only: [:index, :show, :new, :create, :edit, :update]
+    resources :tags, only: [:index, :new, :create, :edit, :update]
+
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
