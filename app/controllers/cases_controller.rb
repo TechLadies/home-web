@@ -1,9 +1,9 @@
 class CasesController < ApplicationController
-  
+
+#work in progress#  
   def close
   	:status
   end
-#review close#
 
   def index
     @cases = Case.all
@@ -15,7 +15,6 @@ class CasesController < ApplicationController
 
   def create
   end
-#do create#
 
   def show
   	@case = Case.find(params[:id])
@@ -24,7 +23,6 @@ class CasesController < ApplicationController
   def edit
   	@case = Case.find(params[:id])
   end
-#check edit#
 
   def update
   end
