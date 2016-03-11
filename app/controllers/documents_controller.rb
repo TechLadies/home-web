@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
     if @document.save
       redirect_to @document
-      flash
+      flash[:success] = "New Document Uploaded!"
 #?how to redirect to the case associated with the new document?#
     else
       render 'new'
