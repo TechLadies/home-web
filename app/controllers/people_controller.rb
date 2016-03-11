@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
 
 	def index
-    @person = Person.all.order(created_at: :desc)
+    @people = Person.all.order(created_at: :desc)
 	end
 
   def show
@@ -34,11 +34,12 @@ class PeopleController < ApplicationController
     else
       render 'edit'
    end
+  end
 
   private
 
-  def people_params
-    params.require(:person).permit(:name)
-  end
+    def person_params
+      params.require(:person).permit(:name, :date_of_birth, :phone, :email, :address, :gender)
+    end
 
 end
