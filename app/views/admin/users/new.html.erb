@@ -1,8 +1,16 @@
-<%= form_for [:admin, @user] do |f| %>
-  Name: <%= f.text_field :name %><br />
-  Email : <%= f.text_field :email%><br />
-  Contact: <%= f.text_area :contact_number %><br />
-  Roles: <%= f.text_area :roles %><br />
+<div class='container'>
 
-  <%= f.submit %>
-<% end %>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <%= form_for [:admin, @user] do |f| %>
+        Name: <%= f.text_field :name %><br />
+        Email : <%= f.text_field :email%><br />
+        Contact: <%= f.text_area :contact_number %><br />
+        Roles: <%= f.text_area :roles %><br />
+
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
