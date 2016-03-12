@@ -1,0 +1,24 @@
+<table class="table">
+ <th>Name</th>
+ <th>Email</th>
+ <th>Contact number</th>
+ <th>Roles</th>
+
+
+<% @users.each do |user| %>
+<td><%= user.name %> </td>
+<td><%= user.email %> </td>
+<td><%= user.contact_number %></td>
+<td><%= user.roles %></td>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+</table>
