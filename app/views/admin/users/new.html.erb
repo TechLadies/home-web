@@ -1,7 +1,7 @@
-<%= form_for :user do |f| %>
+<%= form_for [:admin, @user] do |f| %>
   Name: <%= f.text_field :name %><br />
   Email : <%= f.text_field :email%><br />
-  Contact: <%= f.text_area :contact %><br />
+  Contact: <%= f.text_area :contact_number %><br />
   Roles: <%= f.text_area :roles %><br />
 
   <%= f.submit %>

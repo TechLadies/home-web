@@ -1,6 +1,6 @@
 class Admin::UsersController< ActionController::Base
 
-  before_action :prepare_user
+  before_action :prepare_user, only: [:show, :edit, :update]
 
   def index
     @users = User.all
