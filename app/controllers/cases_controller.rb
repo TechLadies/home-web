@@ -1,52 +1,54 @@
 class CasesController < ApplicationController
 
-  def close
-  	@case = Case.find(params[:id])
-    @case.update(status: "Closed")
-    flash[:success] = "Case Closed!"
-    redirect_to @case
-  end
+  before_action :prepare_case, only: [:show, :edit, :update, :close]
 
   def index
     @cases = Case.all
   end
 
+  def show
+  end
+
   def new
-  	@case = Case.new
+  	@case = current_user.cases.build
   end
 
   def create
-  	@case = Case.new(case_params)
+    @case = current_user.cases.build(case_params)
   	if @case.save
       flash[:success] = "New Case Saved!"
   	  redirect_to @case
   	else
-  	  render 'new'
+  	  render :new
   	end
   end
 
-  def show
-  	@case = Case.find(params[:id])
-  end
-
   def edit
-  	@case = Case.find(params[:id])
   end
 
   def update
-  	@case = Case.find(params[:id])
     if @case.update_attributes(case_params)
       flash[:success] = "Case Updated!"
       redirect_to @case      	
     else
-      render 'edit'
+      render :edit
     end
+  end
+
+  def close
+    @case.update(status: "Closed")
+    flash[:success] = "Case Closed!"
+    redirect_to @case
   end
 
   private
 
-    def case_params
-      params.require(:case).permit(:user_id, :organization_id, :case_type, :status)
-    end   
+  def case_params
+    params.require(:case).permit(:organization_id, :case_type, :status)
+  end
+
+  def prepare_case
+    @case = Case.find(params[:id])
+  end
 
 end
