@@ -1,23 +1,30 @@
 class ActionsController < ApplicationController
 
+  before_action :prepare_case
+
   def new
-    @action = Action.new
+    @action = @case.actions.build
   end
 
   def create
-    @action = Action.new(action_params)
+    @action = @case.actions.build(action_params) do |action|
+      action.user = current_user
+    end
     if @action.save
       redirect_to @action
-#?how to redirect to the case associated with the new action?#
     else
-      render 'new'
+      render :new
     end
   end
 
-private
+  private
+
+  def prepare_case
+    @case = Case.find(params[:case_id])
+  end
 
   def action_params
-    params.require(:action).permit(:case_id, :user_id, :description, :status)
+    params.require(:action).permit(:description)
   end
 
 end
