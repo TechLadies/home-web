@@ -1,11 +1,12 @@
 class PeopleController < ApplicationController
 
+  before_action :prepare_person
+
 	def index
     @people = Person.all.order(created_at: :desc)
 	end
 
   def show
-    @person = Person.find(params[:id])
   end
 
 	def new
@@ -14,32 +15,32 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
-   
     if @person.save
       redirect_to @person
     else
-      render 'new'
+      render :new
     end
   end	
 	  
 	def edit
-    @person = Person.find(params[:id])
 	end
 	  
   def update
-    @person = Person.find(params[:id])
-   
-    if @person.update(person_params)
+    if @person.update_attributes(person_params)
       redirect_to @person
     else
-      render 'edit'
+      render :edit
    end
   end
 
   private
 
-    def person_params
-      params.require(:person).permit(:name, :date_of_birth, :phone, :email, :address, :gender)
-    end
+  def person_params
+    params.require(:person).permit(:name, :date_of_birth, :phone, :email, :address, :gender)
+  end
+
+  def prepare_person
+    @person = Person.find(params[:id])
+  end
 
 end
