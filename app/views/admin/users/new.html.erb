@@ -8,13 +8,11 @@
 
   <div class='row'>
     <div class='col-xs-12'>
-      <%= form_for [:admin, @user] do |f| %>
-        Name: <%= f.text_field :name %><br />
-        Email : <%= f.text_field :email%><br />
-        Contact: <%= f.text_area :contact_number %><br />
-        Roles: <%= f.text_area :roles %><br />
-
-        <%= f.submit %>
+      <%= simple_form_for [:admin, @user], html: { class: 'form' } do |f| %>
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :contact_number %>
+        <%= f.submit 'Create User', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
