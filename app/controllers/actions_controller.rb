@@ -11,7 +11,7 @@ class ActionsController < ApplicationController
       action.user = current_user
     end
     if @action.save
-      redirect_to @action
+      redirect_to @case
     else
       render :new
     end

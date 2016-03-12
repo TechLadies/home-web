@@ -1,24 +1,29 @@
 class DocumentsController < ApplicationController
 
+  before_action :prepare_case
+
   def new
-    @document = Document.new
+    @document = @case.documents.build
   end
 
   def create
-    @document = Document.new(document_params)
+    @document = @case.documents.build(document_params)
     if @document.save
-      redirect_to @document
       flash[:success] = "New Document Uploaded!"
-#?how to redirect to the case associated with the new document?#
+      redirect_to @case
     else
-      render 'new'
+      render :new
     end
   end
 
-private
+  private
+
+  def prepare_case
+    @case = Case.find(params[:case_id])
+  end
 
   def document_params
-    params.require(:document).permit(:case_id, :file_url)
+    params.require(:document).permit(:file_url)
   end
 
 end
