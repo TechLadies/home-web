@@ -1,0 +1,30 @@
+<% @people.each do |person| %>
+
+  <%= link_to(person_path(person)) do %>
+    <h2>      
+      Name: <%= person.name %>
+    </h2>         
+  <% end %>
+
+  <p>
+    Birthday: <%= person.date_of_birth %>
+  </p>
+
+  <p>
+    Phone: <%= person.phone %>
+  </p>
+
+  <p>
+    Email: <%= person.email %>
+  </p>
+  <p>
+    Address: <%= person.address %>
+  </p>
+
+  <p>
+    Gender: <%= person.gender %>
+  </p>
+        
+  <p>Posted on: <%= person.created_at.strftime('%Y-%m-%d') %></p>
+  <hr>
+<% end %>
