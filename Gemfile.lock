@@ -37,12 +37,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-<<<<<<< 9a9c0132f9fc5d10290e2a3da26d2f12a1936215
     autoprefixer-rails (6.3.3.1)
       execjs
-=======
     bcrypt (3.1.11)
->>>>>>> add sorcery gem
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.6)
@@ -137,16 +134,13 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-<<<<<<< 9a9c0132f9fc5d10290e2a3da26d2f12a1936215
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-=======
     sorcery (0.9.1)
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
       oauth2 (>= 0.8.0)
->>>>>>> add sorcery gem
     spring (1.6.3)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -186,11 +180,8 @@ DEPENDENCIES
   rails (= 4.2.5.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-<<<<<<< 9a9c0132f9fc5d10290e2a3da26d2f12a1936215
   simple_form
-=======
   sorcery
->>>>>>> add sorcery gem
   spring
   sqlite3
   turbolinks
