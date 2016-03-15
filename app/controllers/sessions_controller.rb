@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
 
   def new
     @form = LoginForm.new
-
   end
 
   def create
