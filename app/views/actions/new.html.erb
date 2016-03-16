@@ -14,15 +14,16 @@
 
     <h1>New Case Update</h1>
  
-    <%= simple_form_for @action, url: {action: "new"} do |f| %>
-	  <p>Case Number: <%= @action.case_id %></p>
-	  <p>Created by: <%= @action.user %></p>
-	  <%= f.input :description %>
-	  <%= f.input :status, collection: [:Pending, :Closed] %>
-	  <p><em>*</em> required fields</p>
-	  <%= f.button :button, "Submit Update" %>
-<!--to link to create?-->
-	<% end %>
+    <%= simple_form_for [@case, @action], as: :act do |f| %>
+	    <p>Case Number: <%= @action.case_id %></p>
+	    <p>Created by: <%= current_user.name %></p>
+	    <%= f.input :description %>
+	    <%= f.input :status, collection: [:Pending, :Closed] %>
+	    <p><em>*</em> required fields</p>
+	    <%= f.submit "Update Case" %>
+  	<% end %>
+
+    <%= link_to 'Back to Case', case_path(@case)%>
 
   </body>
 </html>

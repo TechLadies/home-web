@@ -7,9 +7,9 @@ class ActionsController < ApplicationController
   end
 
   def create
-    @action = @case.actions.build(action_params) do |action|
-      @action.user = current_user
-    end
+    @action = @case.actions.build(action_params) 
+    @action.user = current_user
+    
     if @action.save
       redirect_to @case
     else
@@ -24,7 +24,7 @@ class ActionsController < ApplicationController
   end
 
   def action_params
-    params.require(:action).permit(:description)
+    params.require(:act).permit(:description)
   end
 
 end
