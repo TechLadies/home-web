@@ -14,12 +14,12 @@
 
     <h1>New Case Update</h1>
  
-    <%= simple_form_for [@case, @action], as: :act do |f| %>
-	    <p>Case Number: <%= @action.case_id %></p>
-	    <p>Created by: <%= current_user.name %></p>
+    <%= simple_form_for @action, as: :act do |f| %>
+	    <p><strong>Case Number:</strong> <%= @action.case_id %></p>
+	    <p><strong>Created by:</strong> <%= current_user.name %></p>
 	    <%= f.input :description %>
 	    <%= f.input :status, collection: [:Pending, :Closed] %>
-	    <p><em>*</em> required fields</p>
+	    <p><strong>*</strong> required fields</p>
 	    <%= f.submit "Update Case" %>
   	<% end %>
 
