@@ -8,7 +8,7 @@ class ActionsController < ApplicationController
 
   def create
     @action = @case.actions.build(action_params) do |action|
-      action.user = current_user
+      @action.user = current_user
     end
     if @action.save
       redirect_to @case
