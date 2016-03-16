@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @form = LoginForm.new(login_form_params) { |email, password| login(email, password) }
+    @form = LoginForm.new(login_form_params)
     if @form.save
       redirect_to organizations_path, notice: 'Login Successful'
     else
