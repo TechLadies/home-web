@@ -7,23 +7,40 @@
 
   <body>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 
-    <h1>New Case Update</h1>
- 
-    <%= simple_form_for @action, as: :act do |f| %>
-	    <p><strong>Case Number:</strong> <%= @action.case_id %></p>
-	    <p><strong>Created by:</strong> <%= current_user.name %></p>
-	    <%= f.input :description %>
-	    <%= f.input :status, collection: [:Pending, :Closed] %>
-	    <p><strong>*</strong> required fields</p>
-	    <%= f.submit "Update Case" %>
-  	<% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>New Case Update</h1>
+        </div>
+      </div>
 
-    <%= link_to 'Back to Case', case_path(@case)%>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= simple_form_for [@case, @action], as: :act do |f| %>
+      	    <p><strong>Case Number:</strong> <%= @action.case_id %></p>
+      	    <p><strong>Created by:</strong> <%= current_user.name %></p>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-sm-9">
+      	    <%= f.input :description %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+      	    <%= f.input :status, collection: ["Closed", "Pending"]%>
+      	    <p><strong>*</strong> required fields</p>
+      	    <%= f.submit "Update Case" %>
+        	<% end %>
+          <p><%= link_to 'Go Back to Case', case_path(@case)%></p>
+        </div>
+      </div>
+
+    </div>
   </body>
 </html>
