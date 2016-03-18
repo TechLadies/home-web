@@ -9,12 +9,13 @@ class ActionsController < ApplicationController
   def create
     @action = @case.actions.build(action_params) 
     @action.user = current_user
-    
+
     if @action.save
       redirect_to @case
     else
       render :new
     end
+  
   end
 
   private
