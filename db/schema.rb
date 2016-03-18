@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 20160311153841) do
     t.string   "name"
     t.string   "email"
     t.string   "contact_number"
-    t.string   "roles",          default: [],              array: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "roles",          default: "--- []\n"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
 end
