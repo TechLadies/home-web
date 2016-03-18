@@ -1,16 +1,17 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login
 
-  before_action :redirect_if_logged_in, except: :destroy
+  # before_action :redirect_if_logged_in, except: :destroy
 
   def new
-    @form = LoginForm.new
+    @form = LoginForm.new(self)
   end
 
   def create
-    @form = LoginForm.new(login_form_params)
+    @form = LoginForm.new(self, login_form_params)
     if @form.save
-      redirect_to organizations_path, notice: 'Login Successful'
+      flash[:notice] = "Login successfully"
+      redirect_to cases_path
     else
       flash.now[:alert] = @form.errors.full_messages.join(', ')
       render :new
@@ -19,7 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(organizations_path, notice: 'Logged out!')
+    redirect_to(cases_path, notice: 'Logged out!')
   end
 
   private
@@ -29,7 +30,7 @@ class SessionsController < ApplicationController
   end
 
   def redirect_if_logged_in
-    redirect_to organizations_path if current_user
+    redirect_to cases_path if current_user
   end
 
 end
