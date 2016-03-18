@@ -1,17 +1,25 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+        <div>
+            <p>
+                Name: <%= @organization.name %>
+            </p>
 
-<div>
-    <p>
-        Name: <%= @organization.name %>
-    </p>
+            <p>
+                Phone: <%= @organization.phone %>
+            </p>
 
-    <p>
-        Phone: <%= @organization.phone %>
-    </p>
+            <p>
+                Address: <%= @organization.address %>
+            </p>
+            <p>
+                Industry: <%= @organization.industry %>
+            </p>
 
-    <p>
-        Address: <%= @organization.address %>
-    </p>
-    <p>
-        Industry: <%= @organization.industry %>
-    </p>
+         <%= link_to :Edit, edit_organization_path(@organization) %>
+
+        </div>
+      </div>
+   </div>
 </div>

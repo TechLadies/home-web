@@ -1,22 +1,29 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+        <div>
+            <p>
+                Name: <%= @person.name %>
+            </p>
+            <p>
+                Birthday: <%= @person.date_of_birth %>
+            </p>
+            <p>
+                Phone: <%= @person.phone %>
+            </p>
+            <p>
+                Email: <%= @person.email %>
+            </p>
+            <p>
+                Address: <%= @person.address %>
+            </p>
+            <p>
+                Gender: <%= @person.gender %>
+            </p>
 
-<div>
-    <p>
-        Name: <%= @person.name %>
-    </p>
-    <p>
-        Birthday: <%= @person.date_of_birth %>
-    </p>
-    <p>
-        Phone: <%= @person.phone %>
-    </p>
-    <p>
-        Email: <%= @person.email %>
-    </p>
-    <p>
-        Address: <%= @person.address %>
-    </p>
-    <p>
-        Gender: <%= @person.gender %>
-    </p>
+         <%= link_to :Edit, edit_person_path(@person) %>
+        </div>
+      </div>
+   </div>
 </div>
 

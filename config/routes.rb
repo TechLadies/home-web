@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  #resources :sessions, only: [:new, :create, :destroy]
+  resource :session, only: [:new, :create, :destroy]
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
     put :close, on: :member
 
-    # resources :people, only: [:new, :create]
+    resources :people, only: [:new, :create]
     resources :actions, only: [:new, :create]
     resources :documents, only: [:new, :create]
 
   end
 
-  # resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
-   # resources :members, only: [:new, :create]
-  # end
+  resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :members, only: [:new, :create]
+  end
 
   resources :people, only: [:index, :show, :new, :create, :edit, :update]
 

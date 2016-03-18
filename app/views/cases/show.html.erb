@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <div>
+            <p>
+             Case_type: <%= @case.case_type %>
+            </p>
+
+            <p>
+              Status: <%= @status.status %>
+            </p>
+
+         <%= link_to :Edit, edit_case_path(@case) %>
+        </div>
+     </div>
+   </div>
+</div>

@@ -1,4 +1,4 @@
-class OrgnizationsController < ApplicationController
+class OrganizationsController < ApplicationController
 
   before_action :prepare_organization, only: [:show, :edit, :update]
 
@@ -26,7 +26,7 @@ class OrgnizationsController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(organization_params)
+    if @organization.update_attributes(organization_params)
       redirect_to @organization
     else
       render :edit
@@ -36,7 +36,7 @@ class OrgnizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:orgnization).permit(:name, :phone, :address, :industry)
+    params.require(:organization).permit(:name, :phone, :address, :industry)
   end
 
   def prepare_organization

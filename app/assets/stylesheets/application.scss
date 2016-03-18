@@ -10,6 +10,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #f4ebe6;
+  border-top: 8px solid #e8b53c; // #b25f2e
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.page-header {
+  @include gradient-radial(#310834, #0a042b);
+  margin: 0 0 25px;
+  padding: 50px 0 25px;
+  color: white;
+}

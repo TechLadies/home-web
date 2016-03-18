@@ -1,0 +1,28 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+
+      <h2>Edit Case</h2>
+       
+      <%= form_for :cases, url: case_path(@person), method: :patch do |f| %>
+       
+        <p>
+          <%= f.label :case_type %><br>
+          <%= f.text_field :case_type %>
+        </p>
+       
+        <p>
+          <%= f.label :status %><br>
+          <%= f.text_field :status %>
+        </p>
+
+        <p>
+          <%= f.submit 'Save', class: 'btn btn-primary' %>
+        </p>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+ 
