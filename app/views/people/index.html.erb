@@ -22,7 +22,7 @@
       <%- @people.each do |person| %>
         <tr>
           <td><%= link_to person.name, person %> </td>
-          <td><%= person.contact_number %></td>
+          <td><%= person.phone %></td>
           <td><%= person.email %> </td>
           <td><%= person.address %></td>
           <td><%= person.date_of_birth %></td>
@@ -30,6 +30,6 @@
         </tr>
       <% end %>
     </tbody>
-  
+
   </table>
 </div>
