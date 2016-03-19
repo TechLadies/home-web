@@ -17,13 +17,13 @@
         </div>
       </div>
 
-      <%= simple_form_for [@case, @action], as: :act do |f| %>
+      <%= simple_form_for [@case, @followup], as: :entry do |f| %>
       <div class="row">
         <div class="col-sm-2">  
       	    <strong>Case Number:</strong>
         </div>
         <div class="col-sm-4">
-            <%= @action.case_id %>
+            <%= @followup.case_id %>
         </div>
       </div>
 
