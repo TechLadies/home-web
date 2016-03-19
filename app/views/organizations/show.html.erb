@@ -1,25 +1,55 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1><%= @organization.name %></h1>
+      <div>
+      <%= link_to 'edit', edit_organization_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>
+
+
 <div class='container'>
   <div class='row'>
     <div class='col-xs-12'>
         <div>
             <p>
-                Name: <%= @organization.name %>
-            </p>
-
-            <p>
-                Phone: <%= @organization.phone %>
-            </p>
-
-            <p>
-                Address: <%= @organization.address %>
-            </p>
-            <p>
                 Industry: <%= @organization.industry %>
             </p>
 
-         <%= link_to :Edit, edit_organization_path(@organization) %>
+            <p> Phone: <%= @organization.phone %>
+            </p>
+            <p>
+                Address: <%= @organization.address %>
+            </p>
 
         </div>
+      </div>
+   </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+        <h2>Case History</h2>
+          <table class='table table-responsive table-striped'>
+
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Type</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                  <td><a href="javascript:void(0)">12345</a></td>
+                  <td>green</td>
+                  <td>dunno</td>
+                </tr>
+            </tbody>
+      </table>
+
       </div>
    </div>
 </div>
