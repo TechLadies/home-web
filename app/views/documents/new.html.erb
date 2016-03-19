@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Add Document to Case</h1>
+        </div>
+      </div>
+
+      <%= simple_form_for [@case, @document], as: :document do |f| %>
+      <div class="row">
+        <div class="col-sm-2">  
+      	    <strong>Case Number:</strong>
+        </div>
+        <div class="col-sm-4">
+            <%= @document.case_id %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+      	  <strong>Uploaded by:</strong> 
+        </div>
+        <div class="col-sm-4">
+          <p><%= current_user.name %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-9">
+      	    <p><%= f.input :file_url, as: :file, label: :Document, wrapper: :vertical_file_input %></p>
+        </div>
+      </div>
+<!-- how to link file_url to database? -->
+
+      <div class="row">
+        <div class="col-sm-2">
+      	    <p><strong>*</strong> required fields</p>
+      	    <%= f.button :submit, 'Add Document' %>
+        	<% end %>
+          <p style="padding-top: 10px"><%= link_to 'Go Back to Case', case_path(@case)%></p>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

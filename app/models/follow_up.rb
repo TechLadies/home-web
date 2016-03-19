@@ -1,4 +1,4 @@
-class Action < ActiveRecord::Base
+class FollowUp < ActiveRecord::Base
 
   belongs_to :case
   belongs_to :user
