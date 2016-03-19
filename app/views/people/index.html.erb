@@ -1,37 +1,35 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col-xs-12'>
-
-      <% @people.each do |person| %>
-
-        <%= link_to(person_path(person)) do %>
-          <h2>      
-            Name: <%= person.name %>
-          </h2>         
-        <% end %>
-
-        <p>
-          Birthday: <%= person.date_of_birth %>
-        </p>
-
-        <p>
-          Phone: <%= person.phone %>
-        </p>
-
-        <p>
-          Email: <%= person.email %>
-        </p>
-        <p>
-          Address: <%= person.address %>
-        </p>
-
-        <p>
-          Gender: <%= person.gender %>
-        </p>
-              
-        <p>Posted on: <%= person.created_at.strftime('%Y-%m-%d') %></p>
-        <hr>
-      <% end %>
-    </div>
+<div class='page-header'>
+  <div class='container'>
+    <h1>People</h1>
   </div>
+</div>
+
+<div class='container'>
+  <table class='table table-responsive'>
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Contact number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Date of birth</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @people.each do |person| %>
+        <tr>
+          <td><%= link_to person.name, person %> </td>
+          <td><%= person.contact_number %></td>
+          <td><%= person.email %> </td>
+          <td><%= person.address %></td>
+          <td><%= person.date_of_birth %></td>
+          <td><%= person.gender %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  
+  </table>
 </div>

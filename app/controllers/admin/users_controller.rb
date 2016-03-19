@@ -2,8 +2,6 @@ class Admin::UsersController < ApplicationController
 
   before_action :prepare_user, only: [:show, :edit, :update]
 
-  before_action :prepare_user, only: [:show, :edit, :update]
-
   def index
     @users = User.all
   end

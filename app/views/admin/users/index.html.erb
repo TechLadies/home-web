@@ -1,53 +1,51 @@
-<div class="container">
-  <div class="page-header">
-    <div class="row">
-      <div class="col-md-6">
+<div class='page-header'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-6'>
         <h1> Users </h1>
-      <div class="col-md-3">
-      <div class="pull-left">
-        <%= link_to 'New User', new_admin_user_path, class: 'btn btn-primary' %>
       </div>
+      <div class='col-md-6'>
+        <div class='pull-right'>
+          <%= link_to 'New User', new_admin_user_path, class: 'btn btn-primary' %>
+        </div>
       </div>
+    </div>
   </div>
-  </div>
-  </div>
-
-
-
-<div class="table-responsive">
-<table class="table">
-
-
-
-
-<thead>
-
- <th>Name</th>
- <th>Email</th>
- <th>Contact number</th>
- <th>Roles</th>
- </thead>
-
-
-<tbody>
-<% @users.each do |user| %>
-<td><%= user.name %> </td>
-<td><%= user.email %> </td>
-<td><%= user.contact_number %></td>
-<td><%= user.roles %></td>
-
-</tbody>
-<% end %>
-</table>
-</div>
 </div>
 
+<div class='container'>
 
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h2>Hello</h2>
+    </div>
+    <div class='panel-body'>
+      <table class='table table-responsive table-striped'>
 
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact number</th>
+            <th>Roles</th>
+          </tr>
+        </thead>
 
-
-
-
-
-
-
+        <tbody>
+          <%- @users.each do |user| %>
+            <tr>
+              <td><%= user.name %> </td>
+              <td><%= user.email %> </td>
+              <td><%= user.contact_number %></td>
+              <td><%= user.roles.join(', ') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      
+      </table>
+    </div>
+    <div class='panel-footer'>
+      Total <%= @users.count %> users.
+    </div>
+  </div>
+</div>
