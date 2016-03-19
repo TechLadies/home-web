@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'sessions#new'
+
   resource :session, only: [:new, :create, :destroy]
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do

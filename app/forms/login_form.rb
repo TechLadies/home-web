@@ -4,9 +4,9 @@ class LoginForm < BaseForm
 
   validates :email, :password, presence: true
 
-  def initialize(params={}, &block)
+  def initialize(controller, params={})
     super(params)
-    @authentication_method = block
+    @controller = controller
   end
 
   def save
@@ -19,7 +19,7 @@ class LoginForm < BaseForm
   private
 
   def login_successfully?
-    @authentication_method.call email, password
+    @controller.login(email, password)
   end
 
 end

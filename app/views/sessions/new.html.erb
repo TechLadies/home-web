@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="brand" "text-center">
+        <%= image_tag('favicon-194x194.png') %>
+      </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-md-6" "col-md-offset-3">
+  <div class="panel" "panel-default">
+    <div class="panel-heading">
+      <h1> Please login to access Home</h1>
+  <fieldset>
+    <%= simple_form_for(@form, :url => session_path) do |f| %>
+      <%= f.input :email %>
+      <%= f.input :password %>
+    <hr>
+
+    <div class="text-center">
+    <%= f.button :submit, 'Login', class:'btn btn-default', method: :post %>
+    </div>
+
+    </fieldset>
+    <% end %>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+

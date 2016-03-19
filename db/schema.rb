@@ -40,14 +40,6 @@ ActiveRecord::Schema.define(version: 20160318174357) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "followups", force: :cascade do |t|
-    t.integer  "case_id"
-    t.integer  "user_id"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "involvements", force: :cascade do |t|
     t.integer  "person_id"
     t.integer  "case_id"
@@ -85,13 +77,15 @@ ActiveRecord::Schema.define(version: 20160318174357) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "email"
+    t.string   "email",                         null: false
     t.string   "contact_number"
-    t.string   "roles",            default: "--- []\n"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "roles",            default: [],              array: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "crypted_password"
     t.string   "salt"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
