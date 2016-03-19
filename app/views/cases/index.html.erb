@@ -1,29 +1,42 @@
 <div class='page-header'>
   <div class='container'>
     <h1>Cases</h1>
+      <%= link_to 'New Case', new_case_path %>
   </div>
 </div>
 
 <div class='container'>
-  <div class='row'>
-    <div class='col-xs-12'>
-        <% @cases.each do |c| %>
 
-        <%= link_to(case_path(c)) do %>
-           <h2> CASE
-           </h2>   
+  <div class='panel panel-default'>
+
+    <div class='panel-heading'>
+      <h2>All Cases</h2>
+    </div>
+
+    <div class='panel-body'>
+      <table class='table table-responsive table-striped'>
+
+        <thead>
+          <tr>
+            <th>Case Number</th>
+            <th>Case Type</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%- @cases.each do |c| %>
+            <tr>
+              <td><%= link_to c.id, case_path(c) %> </td>
+              <td><%= c.case_type %> </td>
+              <td><%= c.status %></td>
+              <td><%= link_to 'Edit', edit_case_path(c) %></td>
+            </tr>
           <% end %>
-          <p>
-            Case_type: <%= c.case_type %>
-          </p>
-
-          <p>
-            Status: <%= status.status %>
-          </p>
-                
-          <p>Posted on: <%= c.created_at.strftime('%Y-%m-%d') %></p>
-          <hr>
-        <% end %>
+        </tbody>
+      
+      </table>
     </div>    
   </div>  
-</div>  
+
+</div>

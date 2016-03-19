@@ -1,7 +1,7 @@
 class Issue < ActiveRecord::Base
 
-  belongs_to :case
+  belongs_to :case_file, foreign_key: :case_id, inverse_of: :issues
 
-  validates :case, presence: true
+  validates :case_file, presence: true
 
 end

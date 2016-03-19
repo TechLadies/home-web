@@ -1,8 +1,8 @@
 class FollowUp < ActiveRecord::Base
 
-  belongs_to :case
+  belongs_to :case_file
   belongs_to :user
 
-  validates :case, :user, :description, presence: true
+  validates :case_file, :user, :description, presence: true
 
 end

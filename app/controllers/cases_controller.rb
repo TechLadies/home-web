@@ -1,23 +1,24 @@
 class CasesController < ApplicationController
 
-  before_action :prepare_case, only: [:show, :edit, :update, :close]
+  before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
-    @cases = Case.all
+    @cases = CaseFile.all
   end
 
   def show
   end
 
   def new
-  	@case = current_user.cases.build
+  	@case = current_user.case_files.build
+    @case.issues.build
   end
 
   def create
-    @case = current_user.cases.build(case_params)
+    @case = current_user.case_files.build(case_params)
   	if @case.save
       flash[:success] = "New Case Saved!"
-  	  redirect_to @case
+  	  redirect_to case_path(@case)
   	else
   	  render :new
   	end
@@ -44,11 +45,11 @@ class CasesController < ApplicationController
   private
 
   def case_params
-    params.require(:case).permit(:organization_id, :case_type, :status)
+    params.require(:case_file).permit(:case_type, issues_attributes: [:description])
   end
 
-  def prepare_case
-    @case = Case.find(params[:id])
+  def prepare_casefile
+    @case = CaseFile.find(params[:id])
   end
 
 end

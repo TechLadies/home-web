@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base
 
-  belongs_to :case
+  belongs_to :case_file
 
-  validates :case, :file_url, presence: true
+  validates :case_file, :file_url, presence: true
 
 end

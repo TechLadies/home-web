@@ -2,21 +2,18 @@
   <div class='row'>
     <div class='col-xs-12'>
 
-      <%= form_for :case, url: cases_path do |f| %>
+      <%= simple_form_for @case, url: cases_path do |f| %>
 
-        <p>
-          <%= f.label :case_type %><br>
-          <%= f.text_field :case_type %>
-        </p>
+        <%= f.input :case_type %>
+
+        <%= f.simple_fields_for :issues do |issue_fields| %>
+
+          <%= issue_fields.input :description %>
+
+        <% end %>
        
-        <p>
-          <%= f.label :status %><br>
-          <%= f.text_field :status %>
-        </p>
-       
-        <p>
-          <%= f.submit 'Save', class: 'btn btn-primary' %>
-        </p>
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+
       <% end %>
     </div>
   </div>

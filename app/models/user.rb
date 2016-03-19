@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
 
-  has_many :cases
+  has_many :case_files
 
   validates :name, :email, presence: true
 
