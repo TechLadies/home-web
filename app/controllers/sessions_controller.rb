@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
+
   skip_before_action :require_login
 
-  # before_action :redirect_if_logged_in, except: :destroy
+  before_action :redirect_if_logged_in, except: :destroy
 
   def new
     @form = LoginForm.new(self)
