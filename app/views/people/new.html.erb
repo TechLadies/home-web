@@ -1,43 +1,28 @@
+
+<div class='page-header'>
+  <div class='container'>
+    <h1>New Person</h1>
+  </div>
+</div>
 <div class='container'>
   <div class='row'>
     <div class='col-xs-12'>
 
-      <%= form_for :person, url: people_path do |f| %>
-        <p>
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
-        </p>
-       
-        <p>
-          <%= f.label :date_of_birth %><br>
-          <%= f.date_field :date_of_birth %>
-        </p>
-       
-        <p>
-          <%= f.label :phone %><br>
-          <%= f.text_area :phone %>
-        </p>
+      <div class='container'>
 
-        <p>
-          <%= f.label :email %><br>
-          <%= f.text_area :email %>
-        </p>
+  <%= simple_form_for (@people) do |f| %>
 
-        <p>
-          <%= f.label :address %><br>
-          <%= f.text_area :address %>
-        </p>
+    <%= f.input :name%>
+    <%= f.input :date_of_birth%>
+    <%= f.input :phone %>
+    <%= f.input :email %>
+    <%= f.input :address%>
+    <%= f.input :gender%>
 
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <%- end %>
 
-        <p>
-          <%= f.label :gender %><br>
-          <%= f.text_area :gender %>
-        </p>
-
-        <p>
-          <%= f.submit 'Save', class: 'btn btn-primary' %>
-        </p>
-      <% end %>
+</div>
     </div>
   </div>
 </div>
