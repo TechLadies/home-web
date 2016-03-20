@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
 
   has_many :case_files
 
-  validates :name, :email, presence: true
+  validates :name, :email, :password, presence: true
 
 end
