@@ -1,6 +1,6 @@
 class FollowUpsController < ApplicationController
 
-  before_action :prepare_case
+  before_action :prepare_casefile
 
   def new
     @followup = @case.follow_ups.build
@@ -20,8 +20,8 @@ class FollowUpsController < ApplicationController
 
   private
 
-  def prepare_case
-    @case = Case.find(params[:case_id])
+  def prepare_casefile
+    @case = CaseFile.find(params[:case_id])
   end
 
   def followup_params

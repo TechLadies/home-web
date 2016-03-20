@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
 
-  before_action :prepare_case
+  before_action :prepare_casefile
 
   def new
     @document = @case.documents.build
@@ -18,8 +18,8 @@ class DocumentsController < ApplicationController
 
   private
 
-  def prepare_case
-    @case = Case.find(params[:case_id])
+  def prepare_casefile
+    @case = CaseFile.find(params[:case_id])
   end
 
   def document_params
