@@ -85,11 +85,11 @@ ActiveRecord::Schema.define(version: 20160319093428) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "email",                         null: false
+    t.string   "email",                                 null: false
     t.string   "contact_number"
-    t.string   "roles",            default: [],              array: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "roles",            default: "--- []\n"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "crypted_password"
     t.string   "salt"
   end

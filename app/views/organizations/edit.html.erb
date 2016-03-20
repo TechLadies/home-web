@@ -1,39 +1,25 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Edit <%= @organization.name %></h1>
+  </div>
+</div>
+
 <div class='container'>
   <div class='row'>
     <div class='col-xs-12'>
 
-      <h2>Edit Organization</h2>
-       
-        <%= form_for :organization, url: organization_path(@organization), method: :patch do |f| %>
-       
-        <p>
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
-        </p>
-       
-        <p>
-          <%= f.label :phone %><br>
-          <%= f.text_area :phone %>
-        </p>
+      <div class='container'>
 
+  <%= simple_form_for (@organization), method: :patch do |f| %>
+    <%= f.input :name %>
+    <%= f.input :phone %>
+    <%= f.input :address %>
+    <%= f.label :industry %>
+    <%= f.select :industry, [['construction'],['domestic']]%>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <%- end %>
 
-        <p>
-          <%= f.label :address %><br>
-          <%= f.text_area :address %>
-        </p>
-
-
-        <p>
-          <%= f.label :industry %><br>
-          <%= f.text_area :industry %>
-        </p>
-       
-        <p>
-         <%= f.submit 'Save', class: 'btn btn-primary' %>
-        </p>
-       
-      <% end %>
-
+</div>
     </div>
   </div>
-</div> 
+</div>
