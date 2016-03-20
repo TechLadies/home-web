@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     put :close, on: :member
 
     resources :people, only: [:new, :create]
-    resources :actions, only: [:new, :create]
     resources :follow_ups, only: [:new, :create]
     resources :documents, only: [:new, :create]
 
