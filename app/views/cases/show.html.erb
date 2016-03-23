@@ -1,29 +1,29 @@
 <div class='page-header'>
   <div class='container'>
     <h1>
-      <div class="col-sm-3"> Case Number  
-      </div>
-      <div class="col-sm-4"> <%= @case.id%>
-      </div>
-
+      <div class="col-sm-3"> Case Number </div>
+      <div class="col-sm-3"> <%= @case.id%> </div>
     </h1>
   </div>
 </div>
 
 <div class='container'>
-  <div class='row'>
-    <div class='col-xs-12'>
-      <div>
-            <p>
-              Case Type: <%= @case.case_type %>
-            </p>
+  <div class="col-sm-6">
+    <table class='table table-responsive'>
+      <thead><h2>Case Information</h2></thead>
+      <tbody>
+        <tr>
+          <td>Case Type</td>
+          <td><%= @case.case_type %></td>
+        </tr>
 
-            <p>
-              Status: <%= @case.status %>
-            </p>
-
-         <%= link_to 'Edit Case', edit_case_path(@case) %>
-        </div>
-     </div>
-   </div>
+        <tr>
+          <td>Status</td>
+          <td><%= @case.status %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Edit Case', edit_case_path(@case) %>
+  </div>
 </div>
+

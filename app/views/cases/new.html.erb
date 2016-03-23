@@ -6,19 +6,36 @@
 
 <div class='container'>
   <div class='row'>
-    <div class='col-xs-12'>
+    <div class='col-xs-4'>
+        <p>
+          <strong>Case Number: </strong><%= CaseFile.last.id + 1 %>
+        </p>
 
       <%= simple_form_for @case, url: cases_path do |f| %>
 
-        <%= f.input :case_type %>
+        <%= f.input :case_type%>
+    </div>
+  </div>
 
-        <%= f.simple_fields_for :issues do |issue_fields| %>
+  <div class='row'>  
+    <div class='col-xs-6'>
+      <table class='table table-responsive table-striped'>
+        <thead>
+          <tr>
+            <th>Add Issue</th>
+          </tr>
+        </thead>
 
-          <%= issue_fields.input :description %>
-
-        <% end %>
-       
-        <%= f.submit 'Save', class: 'btn btn-primary' %>
+        <tbody>
+          <tr>
+            <%= f.simple_fields_for :issues do |i| %>
+              <td><%= i.input :description %></td>
+            <% end %>
+          </tr>
+        <tbody>
+      </table>
+     
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
 
       <% end %>
     </div>
