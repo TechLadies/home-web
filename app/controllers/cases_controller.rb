@@ -1,5 +1,4 @@
 class CasesController < ApplicationController
-
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
@@ -30,16 +29,17 @@ class CasesController < ApplicationController
   def update
     if @case.update_attributes(case_params)
       flash[:success] = "Case Updated!"
-      redirect_to @case      	
+      redirect_to case_path(@case)      	
     else
       render :edit
     end
   end
+#duplicate for issues when case#update (to resolve)
 
   def close
     @case.update(status: "Closed")
     flash[:success] = "Case Closed!"
-    redirect_to @case
+    redirect_to case_path(@case)
   end
 
   private

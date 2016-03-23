@@ -9,8 +9,10 @@
 
 <div class='container'>
   <div class="col-sm-6">
+    <%= link_to 'Edit Case', edit_case_path(@case) %>
+
     <table class='table table-responsive'>
-      <thead><h2>Case Information</h2></thead>
+      <thead><h3>Case Information</h3></thead>
       <tbody>
         <tr>
           <td>Case Type</td>
@@ -23,7 +25,12 @@
         </tr>
       </tbody>
     </table>
-    <%= link_to 'Edit Case', edit_case_path(@case) %>
+
+    <h3>Related Issues</h3>
+    <% @case.issues.each do |i| %>
+      <ul><%= i.description %></ul>
+    <% end %>
+
   </div>
 </div>
 
