@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318174357) do
+ActiveRecord::Schema.define(version: 20160323155138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 20160318174357) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "links", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "links", ["case_id"], name: "index_links_on_case_id", using: :btree
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
@@ -77,15 +86,16 @@ ActiveRecord::Schema.define(version: 20160318174357) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "email",                         null: false
+    t.string   "email",                                 null: false
     t.string   "contact_number"
-    t.string   "roles",            default: [],              array: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "roles",            default: "--- []\n"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "crypted_password"
     t.string   "salt"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "links", "cases"
 end

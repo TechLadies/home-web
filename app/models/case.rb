@@ -7,6 +7,7 @@ class Case < ActiveRecord::Base
   has_many :involvements
   has_many :people, through: :involvements
   has_many :documents
+  has_many :links
 
   validates :user, presence: true
 

@@ -2,16 +2,26 @@
   <div class='row'>
     <div class='col-xs-12'>
       <div>
-            <p>
-             Case_type: <%= @case.case_type %>
-            </p>
+        <p>
+          Case_type: <%= @case.case_type %>
+        </p>
 
-            <p>
-              Status: <%= @status.status %>
-            </p>
+        <p>
+          Status: <%= @case.status %>
+        </p>
 
-         <%= link_to :Edit, edit_case_path(@case) %>
-        </div>
+        <%= link_to :Edit, edit_case_path(@case) %>
+      </div>
+
+      <h2>Links</h2>
+      <ul id="links">
+        <%= render @case.links %>
+      </ul>
+      <%= form_for([@case, @case.links.build]) do |f| %>
+        <input id="caseId" type="hidden" data-case-id="<%= @case.id %>">
+        <input id="upload" type="button" value="Upload File">
+      <% end %>
+
      </div>
    </div>
 </div>

@@ -4,7 +4,7 @@
 
       <h2>Edit Case</h2>
        
-      <%= form_for :cases, url: case_path(@person), method: :patch do |f| %>
+      <%= form_for :case, url: case_path(@case), method: :patch do |f| %>
        
         <p>
           <%= f.label :case_type %><br>

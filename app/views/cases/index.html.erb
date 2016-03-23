@@ -2,17 +2,15 @@
   <div class='row'>
     <div class='col-xs-12'>
         <% @cases.each do |c| %>
-
-        <%= link_to(case_path(c)) do %>
-           <h2> CASE
-           </h2>   
+          <%= link_to(case_path(c)) do %>
+            <h2> CASE</h2>   
           <% end %>
           <p>
             Case_type: <%= c.case_type %>
           </p>
 
           <p>
-            Status: <%= status.status %>
+            Status: <%= c.status %>
           </p>
                 
           <p>Posted on: <%= c.created_at.strftime('%Y-%m-%d') %></p>
