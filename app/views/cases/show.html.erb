@@ -25,7 +25,9 @@
 
     <h3>Related Issues</h3>
     <% @case.issues.each do |i| %>
-      <li><%= i.description %></li>
+      <li>
+        <%= i.description %>
+      </li>
     <% end %>
 
   </div>

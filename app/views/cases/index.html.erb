@@ -25,7 +25,7 @@
         </thead>
 
         <tbody>
-          <%- @cases.each do |c| %>
+          <% @cases.each do |c| %>
             <tr>
               <td><%= link_to c.id, case_path(c) %> </td>
               <td><%= c.case_type %> </td>
