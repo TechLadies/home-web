@@ -6,19 +6,16 @@
 
 <div class='container'>
   <div class='row'>
-    <div class='col-xs-3'>
+    <div class='col-xs-6'>
         <p>
           <strong>Case Number: </strong><%= CaseFile.last.id + 1 %>
         </p>
 
       <%= simple_form_for @case, url: cases_path do |f| %>
 
-        <%= f.input :case_type, collection: CaseFile::TYPES%>
-    </div>
-  </div>
+        <%= f.input :case_type, label: 'Case Type', as: :radio_buttons, collection: CaseFile::TYPE%>
+        <%= f.input :status, as: :radio_buttons, collection: CaseFile::STATUS%>
 
-  <div class='row'>  
-    <div class='col-xs-6'>
       <table class='table table-responsive table-striped'>
         <thead>
           <tr>

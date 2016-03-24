@@ -9,23 +9,17 @@
 
 <div class='container'>
   <div class='row'>
-    <div class='col-xs-3'>
+    <div class='col-xs-6'>
       <%= simple_form_for @case, url: case_path(@case) do |f| %>
 
-        <%= f.label :case_type, 'Case Type' %>
-        <%= f.input :case_type, label: false, collection: CaseFile::TYPES %>
-    </div>
-  </div>
-  
-  <div class='row'>
-    <div class='col-xs-8'>
+        <%= f.input :case_type, label: 'Case Type', as: :radio_buttons, collection: CaseFile::TYPE%>
+        <%= f.input :status, as: :radio_buttons, collection: CaseFile::STATUS%>
 
         <%= f.simple_fields_for :issues do |issue_fields| %>
           <%= issue_fields.input :description %>
         <% end %>
        
-        <p><%= f.submit 'Save', class: 'btn btn-primary' %></p>
-
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
