@@ -2,7 +2,7 @@ class CasesController < ApplicationController
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
-    @cases = CaseFile.all
+    @cases = CaseFile.order('id DESC').all
   end
 
   def show
