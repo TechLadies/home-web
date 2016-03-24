@@ -45,7 +45,7 @@ class CasesController < ApplicationController
   private
 
   def case_params
-    params.require(:case_file).permit(:case_type, :status, issues_attributes: [:id, :description])
+    params.require(:case_file).permit(:case_type, :status, issues_attributes: [:id, :description, :_destroy])
   end
 
   def prepare_casefile
