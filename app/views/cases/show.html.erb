@@ -1,16 +1,13 @@
 <div class='page-header'>
   <div class='container'>
-    <h1>
-      <div class="col-sm-3"> Case Number </div>
-      <div class="col-sm-3"> <%= @case.id%> </div>
-    </h1>
+    <h1>Case Number <%= @case.id%></h1>
+
+    <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' %>
   </div>
 </div>
 
 <div class='container'>
   <div class="col-sm-6">
-    <%= link_to 'Edit Case', edit_case_path(@case) %>
-
     <table class='table table-responsive'>
       <thead><h3>Case Information</h3></thead>
       <tbody>

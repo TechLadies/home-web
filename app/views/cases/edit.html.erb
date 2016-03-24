@@ -1,9 +1,8 @@
 <div class='page-header'>
   <div class='container'>
-    <h1>
-      <div class="col-sm-3"> Edit Case </div>
-      <div class="col-sm-3"> <%= @case.id%> </div>
-    </h1>
+    <h1>Edit Case Number <%= @case.id%></h1>
+
+    <%= link_to 'Back to Case', case_path(@case), class: 'btn btn-default' %>
   </div>
 </div>
 
