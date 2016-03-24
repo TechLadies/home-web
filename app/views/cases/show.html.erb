@@ -1,27 +1,34 @@
 <div class='container'>
   <div class='row'>
     <div class='col-xs-12'>
-      <div>
-        <p>
-          Case_type: <%= @case.case_type %>
-        </p>
+      <p>
+        Case_type: <%= @case.case_type %>
+      </p>
 
-        <p>
-          Status: <%= @case.status %>
-        </p>
+      <p>
+        Status: <%= @case.status %>
+      </p>
 
-        <%= link_to :Edit, edit_case_path(@case) %>
-      </div>
+      <%= link_to :Edit, edit_case_path(@case) %>
+    </div>
+  </div>
 
-      <h3>Links</h3>
-      <ul id="links">
+  <div class='row'>
+    <div class='col-xs-12'>
+      <h3>Files</h3>
+      <div id='links'>
         <%= render @case.links %>
-      </ul>
-      <%= form_for([@case, @case.links.build]) do |f| %>
-        <input id="caseId" type="hidden" data-case-id="<%= @case.id %>">
-        <input id="upload" type="button" value="Upload File">
-      <% end %>
+      </div>
+    </div>
+  </div>
 
+  <br>
+  <div class='row'>
+    <div class='col-xs-12'>  
+      <%= form_for([@case, @case.links.build]) do |f| %>
+        <input id='caseId' type='hidden' data-case-id='<%= @case.id %>'>
+        <input id='upload' type='button' class='btn btn-primary' value='Upload New File'>
+      <% end %>
      </div>
    </div>
 </div>
