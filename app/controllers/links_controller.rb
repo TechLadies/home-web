@@ -10,6 +10,14 @@ class LinksController < ApplicationController
     end    
   end
 
+  def destroy
+    @case = Case.find(params[:case_id])
+    @link = @case.links.find(params[:id])
+    @link.destroy
+
+    redirect_to case_path(@case)
+  end
+
   private
     def link_params
       params.require(:link).permit(:url)

@@ -1,4 +1,6 @@
-<p>
+<div>
   <strong>URL: </strong>
   <%= link_to nil, link.url %>
-</p>
+  (<%= link_to 'Destroy', [link.case, link], method: :delete,
+        data: {confirm: 'Are you sure?'} %>)
+</div>

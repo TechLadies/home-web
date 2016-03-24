@@ -7,14 +7,9 @@ $(function() {
   //use ajax to create a new link based on the url
   $('#upload').click(function() {
 
-    var $form = $(this).parent();
-
-    //KIV: assumes parent of input is the form
-    //added hackish error checking
-    if (!$form.is('form')) {
-      alert('ERROR: CHECK NESTING OF #UPLOAD BUTTON');
-      return false;
-    };
+    var $form = $('form:has(#upload)'),
+      action = $form.attr('action'),
+      method = $form.attr('method');
 
     filepicker.pick(function(blob) {
       var caseId = $('#caseId').attr('data-case-id'),
@@ -23,10 +18,10 @@ $(function() {
       //blob.url stores the filestack url of saved file
       data.push({name: 'link[url]', value: blob.url});
       $.ajax({
-        url: '/cases/' + caseId + '/links',
-        type: 'POST',
+        url: action,
+        type: method,
         data: data
       });
-    })
+    });
   });
 });

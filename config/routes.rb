@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :actions, only: [:new, :create]
     resources :follow_ups, only: [:new, :create]
     resources :documents, only: [:new, :create]
-    resources :links, only: [:create]
+    resources :links, only: [:create, :destroy]
 
   end
 
