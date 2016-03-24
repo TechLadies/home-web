@@ -11,12 +11,15 @@ $(function() {
       action = $form.attr('action'),
       method = $form.attr('method');
 
+    //opens filepicker dialog
     filepicker.pick(function(blob) {
       var caseId = $('#caseId').attr('data-case-id'),
         data = $form.serializeArray();
 
       //blob.url stores the filestack url of saved file
       data.push({name: 'link[url]', value: blob.url});
+      data.push({name: 'link[filename]', value: blob.filename});
+
       $.ajax({
         url: action,
         type: method,
