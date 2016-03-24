@@ -5,13 +5,10 @@
         <h1> Users </h1>
 
       <div class="col-md-3">
-      <div class="pull-right">
-        <%= link_to 'New User', new_admin_user_path, class: 'btn btn-primary' %>
-      </div>
-      <div class='col-md-6'>
-        <div class='pull-right'>
+        <div class="pull-right">
           <%= link_to 'New User', new_admin_user_path, class: 'btn btn-primary' %>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -20,9 +17,6 @@
 <div class='container'>
 
   <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h2>Hello</h2>
-    </div>
     <div class='panel-body'>
       <table class='table table-responsive table-striped'>
 
@@ -38,7 +32,7 @@
         <tbody>
           <%- @users.each do |user| %>
             <tr>
-              <td><%= user.name %> </td>
+              <td><%= link_to user.name, admin_user_path(user) %> </td>
               <td><%= user.email %> </td>
               <td><%= user.contact_number %></td>
               <td><%= user.roles.join(', ') %></td>

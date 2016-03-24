@@ -10,7 +10,9 @@
     <%= f.input :name %>
     <%= f.input :email %>
     <%= f.input :contact_number %>
-    <%= f.input :roles %>
+    <%= f.input :roles, as: :check_boxes, collection: [['Admin', 1], ['Case Worker', 2]] %>
+    <%= render 'pwform', f: f %>
+    
     <%= f.submit 'Edit User', class: 'btn btn-primary' %>
   <% end %>
 

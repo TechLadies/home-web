@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
 
   before_action :prepare_user, only: [:show, :edit, :update]
+  before_action :check_admin, only: [:new, :create, :edit, :update]
 
   def index
-    @users = User.all
+    @users = User.order('id DESC').all
   end
 
   def show
@@ -36,11 +37,18 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :contact_number, roles: [])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :contact_number, roles: [])
   end
 
   def prepare_user
     @user = User.find(params[:id])
+  end
+
+  def check_admin
+    if current_user.roles.exclude? '2'
+      flash[:notice] = 'Sorry, you have to be the Admin to access this function'
+      redirect_to admin_users_path
+    end
   end
 
 end
