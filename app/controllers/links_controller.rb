@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   
   def create
-    @case = Case.find(params[:case_id])
+    @case = CaseFile.find(params[:case_id])
     @link = @case.links.create(link_params)
     
     respond_to do |format| 
@@ -11,7 +11,7 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @case = Case.find(params[:case_id])
+    @case = CaseFile.find(params[:case_id])
     @link = @case.links.find(params[:id])
     @link.destroy
 
