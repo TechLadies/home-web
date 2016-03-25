@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319093428) do
+ActiveRecord::Schema.define(version: 20160324153053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20160319093428) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "links", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "case_file_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "filename"
+  end
+
+  add_index "links", ["case_file_id"], name: "index_links_on_case_file_id", using: :btree
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
@@ -88,4 +98,5 @@ ActiveRecord::Schema.define(version: 20160319093428) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "links", "case_files"
 end

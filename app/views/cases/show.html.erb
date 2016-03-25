@@ -7,7 +7,9 @@
 </div>
 
 <div class='container'>
-  <div class="col-sm-6">
+
+  <div class='row'>
+
     <table class='table table-responsive'>
       <thead><h3>Case Information</h3></thead>
       <tbody>
@@ -22,14 +24,33 @@
         </tr>
       </tbody>
     </table>
+  </div>
 
-    <h3>Related Issues</h3>
+  <h3>Related Issues</h3>
     <% @case.issues.each do |i| %>
       <li>
         <%= i.description %>
       </li>
     <% end %>
 
+  <div class='row'>
+    <div class='col-xs-12'>
+      <h3>Files</h3>
+      <div id='links'>
+        <%= render @case.links %>
+      </div>
+    </div>
   </div>
-</div>
 
+  <br>
+
+  <div class='row'>
+    <div class='col-xs-12'>  
+      <%= form_for([@case, @case.links.build]) do |f| %>
+        <input id='caseId' type='hidden' data-case-id='<%= @case.id %>'>
+        <input id='upload' type='button' class='btn btn-primary' value='Upload New File'>
+      <% end %>
+     </div>
+   </div>
+
+</div>
