@@ -6,4 +6,13 @@ class ApplicationController < ActionController::Base
 
   before_action :require_login
 
+  protected
+
+  def require_admin_authorization
+    unless current_user.roles.include? "Admin"
+      flash[:alert] = "Access Denied. Kindly request access from Admin"
+      redirect_to cases_path
+    end
+  end
+
 end

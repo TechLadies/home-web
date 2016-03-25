@@ -1,0 +1,2 @@
+module My::AccountsHelper
+end

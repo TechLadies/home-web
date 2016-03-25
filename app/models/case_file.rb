@@ -15,4 +15,12 @@ class CaseFile < ActiveRecord::Base
   TYPE = ["Domestic", "Non-Domestic"]
   STATUS = ["Pending", "Closed"]
 
+  before_validation :default_status
+
+  protected
+
+  def default_status
+    self.status ||= "Pending"
+  end
+
 end

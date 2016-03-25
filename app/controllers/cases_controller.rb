@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
+
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
-  before_action :check_caseworker, only: [:new, :create, :edit, :update, :close]
 
   def index
     @cases = CaseFile.order('id DESC').all
@@ -45,18 +45,11 @@ class CasesController < ApplicationController
   private
 
   def case_params
-    params.require(:case_file).permit(:case_type, :status, issues_attributes: [:id, :description, :_destroy])
+    params.require(:case_file).permit(:case_type, issues_attributes: [:id, :description, :_destroy])
   end
 
   def prepare_casefile
     @case = CaseFile.find(params[:id])
-  end
-
-  def check_caseworker
-    unless current_user.roles.include? "Case Worker"
-      flash[:alert] = "Access Denied. Kindly request access from Admin"
-      redirect_to case_path(@case)
-    end
   end
 
 end

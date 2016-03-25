@@ -1,7 +1,6 @@
 <div class='page-header'>
   <div class='container'>
     <h1>Edit Case Number <%= @case.id%></h1>
-
     <%= link_to 'Back to Case', case_path(@case), class: 'btn btn-default' %>
   </div>
 </div>
@@ -13,7 +12,6 @@
       <%= simple_form_for @case, url: case_path(@case) do |f| %>
 
         <%= f.input :case_type, label: 'Case Type', as: :radio_buttons, collection: CaseFile::TYPE%>
-        <%= f.input :status, as: :radio_buttons, collection: CaseFile::STATUS%>
 
       <h3>Related Issues</h3>
 

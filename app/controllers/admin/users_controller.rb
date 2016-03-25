@@ -1,8 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   before_action :prepare_user, only: [:show, :edit, :update]
-  before_action :check_admin, only: [:new, :create]
-  before_action :check_user_or_admin, only: [:edit, :update]
+  before_action :require_admin_authorization
 
   def index
     @users = User.order('id DESC').all
@@ -45,20 +44,6 @@ class Admin::UsersController < ApplicationController
 
   def prepare_user
     @user = User.find(params[:id])
-  end
-
-  def check_admin
-    if current_user.roles.exclude? 'Admin'
-      flash[:alert] = 'Access Denied. You have to be the Admin to access this function'
-      redirect_to admin_users_path
-    end
-  end
-
-  def check_user_or_admin
-    unless (current_user.roles.include? 'Admin') || (current_user.name == @user.name)
-      flash[:alert] = 'Access Denied. You have to be the Admin/User to access this function'
-      redirect_to admin_users_path
-    end
   end
 
 end

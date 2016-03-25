@@ -1,11 +1,6 @@
 <div class="nested-fields">
   <p>
     <%= f.input :description, label: 'Issue' %>
-
-    <% if f.object._destroy %>
-      <%= hidden_field_tag("#{f.object_name}[_destroy]", '1') %>
-    <% else %>
-	  <%= link_to_remove_association "Remove Issue", f %>
-  	<% end %>
+    <%= link_to_remove_association "Remove Issue", f %>
   </p>
 </div>
