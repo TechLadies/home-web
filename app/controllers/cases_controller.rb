@@ -1,5 +1,6 @@
 class CasesController < ApplicationController
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
+  before_action :check_caseworker, only: [:new, :create, :edit, :update, :close]
 
   def index
     @cases = CaseFile.order('id DESC').all
@@ -34,7 +35,6 @@ class CasesController < ApplicationController
       render :edit
     end
   end
-#duplicate for issues when case#update (to resolve)
 
   def close
     @case.update(status: "Closed")
@@ -50,6 +50,13 @@ class CasesController < ApplicationController
 
   def prepare_casefile
     @case = CaseFile.find(params[:id])
+  end
+
+  def check_caseworker
+    unless current_user.roles.include? "Case Worker"
+      flash[:alert] = "Access Denied. Kindly request access from Admin"
+      redirect_to case_path(@case)
+    end
   end
 
 end

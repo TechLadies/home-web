@@ -19,6 +19,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to [:admin, @user]
+      flash[:notice] = 'New User Created'
     else
       render :new
     end
@@ -29,7 +30,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to [:admin, @user]
+      flash[:notice] = 'User Updated'
+      redirect_to [:admin, @user]      
     else
       render :edit
     end
@@ -47,14 +49,14 @@ class Admin::UsersController < ApplicationController
 
   def check_admin
     if current_user.roles.exclude? 'Admin'
-      flash[:notice] = 'Sorry, you have to be the Admin to access this function'
+      flash[:alert] = 'Access Denied. You have to be the Admin to access this function'
       redirect_to admin_users_path
     end
   end
 
   def check_user_or_admin
     unless (current_user.roles.include? 'Admin') || (current_user.name == @user.name)
-      flash[:notice] = 'Sorry, you have to be the Admin/User to access this function'
+      flash[:alert] = 'Access Denied. You have to be the Admin/User to access this function'
       redirect_to admin_users_path
     end
   end
