@@ -40,14 +40,6 @@ ActiveRecord::Schema.define(version: 20160319093428) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "followups", force: :cascade do |t|
-    t.integer  "case_id"
-    t.integer  "user_id"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "involvements", force: :cascade do |t|
     t.integer  "person_id"
     t.integer  "case_id"
