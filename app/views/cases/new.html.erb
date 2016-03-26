@@ -6,24 +6,36 @@
 </div>
 
 <div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= simple_form_for @case, url: cases_path do |f| %>
 
-  <%= simple_form_for @case, url: cases_path do |f| %>
+            <%= f.input :case_type, label: 'Case Type', as: :radio_buttons, collection: CaseFile::TYPE %>
 
-    <%= f.input :case_type, label: 'Case Type', as: :radio_buttons, collection: CaseFile::TYPE %>
-    
-    <h3>Related Issues</h3>
+          <hr />
+          People/Client Information
+        </div>
 
-    <div class='col-xs-6'>
-      <%= f.simple_fields_for :issues do |issue_fields| %>
-        <%= render 'issue_fields', f: issue_fields %>
-      <%- end %>
+        <div class='col-md-6'>
+          <h3>Related Issues</h3>
 
-      <p>
-        <%= link_to_add_association 'Add Issue', f, :issues, class: 'btn btn-default' %>
-      </p>
+          <%= f.simple_fields_for :issues do |issue_fields| %>
+            <%= render 'issue_fields', f: issue_fields %>
+          <%- end %>
 
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+          <p>
+            <%= link_to_add_association 'Add Issue', f, :issues, class: 'btn btn-default' %>
+          </p>
+        </div>
+      </div>
 
-    </div>
-  <% end %>
+      <div class='row'>
+          <%= f.submit 'Save', class: 'btn btn-primary' %>
+
+            <% end %>
+      </div>
+    </div>    
+  </div>    
 </div>

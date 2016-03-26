@@ -14,30 +14,66 @@
     </div>
 
     <div class='panel-body'>
-      <table class='table table-responsive table-striped'>
 
-        <thead>
-          <tr>
-            <th>Case Number</th>
-            <th>Case Type</th>
-            <th>Status</th>
-          </tr>
-        </thead>
+      <div>
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a></li>
+          <li role="presentation"><a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">Closed</a></li>
+        </ul>
+          
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane" id="pending">
 
-        <tbody>
-          <% @cases.each do |c| %>
-            <tr>
-              <td><%= link_to c.id, case_path(c) %> </td>
-              <td><%= c.case_type %> </td>
-              <td><%= c.status %></td>
-              <td><%= link_to 'Edit', edit_case_path(c) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      
-      </table>
+            <table class='table table-responsive table-striped'>
+              <thead>
+                <tr>
+                  <th>Case Number</th>
+                  <th>Case Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cases.where(status: "Pending").each do |c| %>
+                  <tr>
+                    <td><%= link_to c.id, case_path(c) %> </td>
+                    <td><%= c.case_type %> </td>
+                    <td><%= c.status %></td>
+                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
+                  </tr>
+                <% end %>
+              </tbody>            
+            </table>
+
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="closed">
+
+            <table class='table table-responsive table-striped'>
+              <thead>
+                <tr>
+                  <th>Case Number</th>
+                  <th>Case Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cases.where(status: "Closed").each do |c| %>
+                  <tr>
+                    <td><%= link_to c.id, case_path(c) %> </td>
+                    <td><%= c.case_type %> </td>
+                    <td><%= c.status %></td>
+                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
+                  </tr>
+                <% end %>
+              </tbody>            
+            </table>
+
+          </div>
+        </div>
+      </div>
     </div>    
-
   </div>  
 
-</div>
+
