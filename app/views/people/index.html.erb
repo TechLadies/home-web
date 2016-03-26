@@ -1,10 +1,19 @@
 <div class='page-header'>
   <div class='container'>
-    <h1>People</h1>
+      <h1>People</h1>
+    <div class='pull-left'>
+      <%= link_to 'New Person', new_person_path, class: 'btn btn-default' %>
+    </div>
   </div>
 </div>
 
 <div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h2>All People</h2>
+    </div>
+
+    <div class='panel-body'>
   <table class='table table-responsive'>
 
     <thead>
@@ -32,4 +41,6 @@
     </tbody>
 
   </table>
-</div>
+  </div>
+  </div>
+
