@@ -5,10 +5,14 @@
   </div>
 </div>
 <div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+        <h2>Details</h2>
+    </div>
+    <div class='panel-body'>
+
   <div class='row'>
     <div class='col-xs-12'>
-
-      <div class='container'>
 
   <%= simple_form_for (@person), method: :patch do |f| %>
     <%= f.input :date_of_birth%>
