@@ -11,9 +11,8 @@
     <%= f.input :email %>
     <%= f.input :contact_number %>
     <%= f.input :roles, as: :check_boxes, collection: ['Admin', 'Case Worker'] %>
-    <%= render 'pwform', f: f %>
-
-<!-- To add auth: pw form on demand only, roles editing by admin only -->
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
     
     <%= f.submit 'Save', class: 'btn btn-primary' %>
   <% end %>
