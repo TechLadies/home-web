@@ -37,9 +37,9 @@ class CasesController < ApplicationController
   end
 
   def close
-    @case.update(status: "Closed")
-    flash[:success] = "Case Closed!"
-    redirect_to case_path(@case)
+      @case.update(status: "Closed")
+      flash[:notice] = "Case Closed!"
+      redirect_to case_path(@case)
   end
 
   private
