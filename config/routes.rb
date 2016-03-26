@@ -29,7 +29,10 @@ Rails.application.routes.draw do
 
     # TODO: reassign cases
 
-    resources :users, only: [:index, :show, :new, :create, :edit, :update]
+    resources :users, only: [:index, :show, :new, :create, :edit, :update] do
+          put :deactivate, on: :member
+          put :activate, on: :member
+    end
     # resources :tags, only: [:index, :new, :create, :edit, :update]
 
   end

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def require_admin_authorization
-    unless current_user.roles.include? "Admin"
+    unless current_user.is_admin?
       flash[:alert] = "Access Denied. Kindly request access from Admin"
       redirect_to cases_path
     end

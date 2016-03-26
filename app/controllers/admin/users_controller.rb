@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
 
-  before_action :prepare_user, only: [:show, :edit, :update]
+  before_action :prepare_user, only: [:show, :edit, :update, :activate, :deactivate]
   before_action :require_admin_authorization
 
   def index
@@ -30,10 +30,20 @@ class Admin::UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:notice] = 'User Updated'
-      redirect_to [:admin, @user]      
+      redirect_to [:admin, @user]
     else
       render :edit
     end
+  end
+
+  def activate
+    @user.activate!
+    redirect_to admin_user_path(@user)
+  end
+
+  def deactivate
+    @user.deactivate!
+    redirect_to admin_user_path(@user)
   end
 
   private

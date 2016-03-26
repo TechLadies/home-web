@@ -6,6 +6,13 @@
   </div>
   </div>
      <%= link_to 'Edit User', edit_admin_user_path(@user), class: 'btn btn-primary' %>
+
+  <% if @user.inactive? %>
+     <%= link_to 'activate', activate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
+  <% else %>
+      <%= link_to 'deactivate', deactivate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
+  <% end %>
+
   </div>
   </div>
 
@@ -16,14 +23,12 @@
 	  <thead>
 	    <th>Email</th>
 	    <th>Contact number</th>
-	    <th>Roles</th>
 	  </thead>
 
 
 	  <tbody>
 	    <td><%= @user.email %> </td>
 	    <td><%= @user.contact_number %></td>
-	    <td><%= @user.roles.join(', ') %></td>
    	  </tbody>
 	</table>
   </div>

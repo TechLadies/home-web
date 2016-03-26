@@ -25,7 +25,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Contact number</th>
-            <th>Roles</th>
           </tr>
         </thead>
 
@@ -35,7 +34,6 @@
               <td><%= link_to user.name, admin_user_path(user) %> </td>
               <td><%= user.email %> </td>
               <td><%= user.contact_number %></td>
-              <td><%= user.roles.join(', ') %></td>
             </tr>
           <% end %>
         </tbody>

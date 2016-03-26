@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sorcery'
 gem 'simple_form'
+gem 'aasm'
 
 
 # Use ActiveModel has_secure_password
