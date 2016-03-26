@@ -3,6 +3,11 @@
     <h1>Case Number <%= @case.id%></h1>
 
     <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-primary' %>
+
+    <%- if @case.status == "Pending" %>
+      <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-primary' %>
+    <%- end %>
+
   </div>
 </div>
 
