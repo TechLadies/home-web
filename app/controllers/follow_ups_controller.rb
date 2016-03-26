@@ -11,7 +11,7 @@ class FollowUpsController < ApplicationController
     @followup.user = current_user
 
     if @followup.save
-      redirect_to @case
+      redirect_to case_path(@case)
     else
       render :new
     end

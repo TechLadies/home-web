@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <%= simple_form_for [@case, @followup], as: :entry do |f| %>
+      <%= simple_form_for [@case, @followup], as: :entry, url: case_follow_ups_path(@case) do |f| %>
       <div class="row">
         <div class="col-sm-2">  
       	    <strong>Case Number:</strong>
