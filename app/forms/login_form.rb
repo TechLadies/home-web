@@ -3,6 +3,7 @@ class LoginForm < BaseForm
   attr_accessor :email, :password
 
   validates :email, :password, presence: true
+  validate :user_account_is_active
 
   def initialize(controller, params={})
     super(params)
@@ -20,6 +21,10 @@ class LoginForm < BaseForm
 
   def login_successfully?
     @controller.login(email, password)
+  end
+
+  def user_account_is_active
+    errors.add(:base, 'Your account has been deactivated') if User.find_by_email(email).inactive?
   end
 
 end

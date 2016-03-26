@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :require_login
+  after_action :logout_deactivated_users
 
   protected
 
@@ -12,6 +13,13 @@ class ApplicationController < ActionController::Base
     unless current_user.is_admin?
       flash[:alert] = "Access Denied. Kindly request access from Admin"
       redirect_to cases_path
+    end
+  end
+
+  def logout_deactivated_users
+    if current_user && current_user.inactive?
+      flash[:alert] = "Your account has been deactivated."
+      logout and redirect_to new_session_path
     end
   end
 

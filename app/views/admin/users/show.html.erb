@@ -2,34 +2,31 @@
   <div class='container'>
     <div class="row">
       <div class="col-md-6">
-        <h1> <%= @user.name %> </h1>
-  </div>
-  </div>
-     <%= link_to 'Edit User', edit_admin_user_path(@user), class: 'btn btn-primary' %>
+        <h1><%= @user.name %></h1>
+      </div>
+    </div>
+    <%= link_to 'Edit User', edit_admin_user_path(@user), class: 'btn btn-primary' %>
 
-  <% if @user.inactive? %>
-     <%= link_to 'activate', activate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
-  <% else %>
+    <% if @user.inactive? %>
+      <%= link_to 'activate', activate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
+    <% else %>
       <%= link_to 'deactivate', deactivate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
-  <% end %>
+    <% end %>
 
   </div>
-  </div>
+</div>
 
 <div class='container'>
   <div class="table-responsive">
     <table class="table">
-
-	  <thead>
-	    <th>Email</th>
-	    <th>Contact number</th>
-	  </thead>
-
-
-	  <tbody>
-	    <td><%= @user.email %> </td>
-	    <td><%= @user.contact_number %></td>
-   	  </tbody>
-	</table>
+  	  <thead>
+  	    <th>Email</th>
+  	    <th>Contact number</th>
+  	  </thead>
+  	  <tbody>
+  	    <td><%= @user.email %> </td>
+  	    <td><%= @user.contact_number %></td>
+     	  </tbody>
+  	</table>
   </div>
 </div>
