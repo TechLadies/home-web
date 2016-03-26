@@ -31,6 +31,10 @@
                 <td>Status</td>
                 <td><%= @case.status %></td>
               </tr>
+              <tr>
+                <td>Assigned To</td>
+                <td><%= @case.user.name %></td>
+              </tr>
             </tbody>
           </table>
         </div>

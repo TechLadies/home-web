@@ -27,12 +27,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    # TODO: reassign cases
+    resources :cases, only: [:show] do
+      put :reassign, on: :member
+    end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
-          put :deactivate, on: :member
-          put :activate, on: :member
+      put :deactivate, on: :member
+      put :activate, on: :member
     end
+
     # resources :tags, only: [:index, :new, :create, :edit, :update]
 
   end
