@@ -1,0 +1,94 @@
+<div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <table class='table table-responsive table-striped'>
+        <thead>
+          <th>No.</th>
+          <th>Description</th>
+          <th>Sub-Category</th>
+          <th>Main Category</th>
+        </thead>
+
+        <tbody>
+            <%- @tags.each do |t| %>
+          <tr>
+              <td><%= t.id %></td>
+              <td><%= t.name %></td>
+
+              <%- if t.parent_tag_id.nil? %>
+                <td><%= "-" %></td>
+              <%- else %>
+                  <%- @tags.where(id: t.parent_tag_id).each do |u| %> 
+                    <%- if u.parent_tag_id.nil? %>
+                      <td><%= u.name %></td>                  
+                    <%- else %>         
+                      <td><%= u.name %></td>
+                      <%- if u.parent_tag_id.nil? %>
+                        <td><%= "-" %>
+                      <%- else %>
+                        <td>
+                          <%- @tags.where(id: u.parent_tag_id).each do |x| %>
+                            <%= x.name %>
+                          <%- end %>
+                        </td>                  
+                      <%- end %>
+                    <%- end %>         
+                  <%- end %>
+              <%- end %>
+
+            <%- end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- separator -->
+
+<div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <table class='table table-responsive table-striped'>
+        <thead>
+          <th>No.</th>
+          <th>Description</th>
+          <th>Sub-Category</th>
+          <th>Main Category</th>
+        </thead>
+
+        <tbody>
+            <%- @tags.each do |t| %>
+          <tr>
+              <td><%= t.id %></td>
+              <td><%= t.name %></td>
+
+              <%- if t.parent_tag_id.nil? %>
+                <td><%= "-" %></td>
+                <td><%= "-" %></td>
+              <%- else %>
+                  <%- @tags.where(id: t.parent_tag_id).each do |u| %> 
+                    <%- if u.parent_tag_id.nil? %>
+                      <td><%= u.name %></td>                  
+                      <td><%= "-" %></td>
+                    <%- else %>         
+                      <td><%= u.name %></td>
+                      <%- if u.parent_tag_id.nil? %>
+                        <td><%= "-" %>
+                      <%- else %>
+                        <td>
+                          <%- @tags.where(id: u.parent_tag_id).each do |x| %>
+                            <%= x.name %>
+                          <%- end %>
+                        </td>                  
+                      <%- end %>
+                    <%- end %>         
+                  <%- end %>
+              <%- end %>
+            <%- end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
