@@ -1,0 +1,27 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Tags</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h1>Create New Tag</h1> 
+    </div>
+
+    <div class='panel-body'>
+	  <div class="row">
+	    <div class="col-md-12">
+	      <%= simple_form_for [:admin, @tag] do |f| %>
+	      	<%= f.input :name %>
+	      	<%= f.input :description %>
+          <%= f.input :parent_tag_id, :label => true, as: :radio_buttons, :collection => Tag.where(parent_tag_id: nil).all %>
+
+  	  	  <%= f.button :submit, label='Save', class:'btn btn-primary'%>
+	      <%- end %>
+	    </div>
+	  </div>
+	</div>
+  </div>
+</div>

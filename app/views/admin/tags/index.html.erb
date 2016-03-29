@@ -1,26 +1,34 @@
-<div class='container'>
-  <%- @tags.where(parent_tag_id: nil).each do |f|%>
-    <div class="col-md-6">
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4>Tag Category: <%= f.name %></h4>
-        </div>
+<div class='page-header'>
+  <div class='container'>
+    <h1>Tags</h1>
+  </div>
+</div>
 
-        <div class='panel-body'>
-            <%- @tags.where(parent_tag_id: f.id).each do |g|%>
-              <ul style='font-size: 15px'>
-                <li><%= g.name %></li>
-                <%- @tags.where(parent_tag_id: g.id).each do |h|%>
-                  <ul>
-                    <li><%= h.name %></li>
-                  </ul>
-                <%- end %>
-              </ul>
-          <%- end %>
+<div class='container'>
+  <div class='row'>
+    <%- @tags.where(parent_tag_id: nil).each do |f|%>
+      <div class='col-md-6'>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h4>Category: <%= f.name %></h4>
+          </div>
+
+          <div class='panel-body'>
+              <%- @tags.where(parent_tag_id: f.id).each do |g|%>
+                <ul style='font-size: 15px'>
+                  <li><%= g.name %></li>
+                  <%- @tags.where(parent_tag_id: g.id).each do |h|%>
+                    <ul>
+                      <li><%= h.name %></li>
+                    </ul>
+                  <%- end %>
+                </ul>
+            <%- end %>
+          </div>
         </div>
       </div>
-    </div>
-  <%- end %>
+    <%- end %>
+  </div>
 </div>
 
 <!-- separator -->
