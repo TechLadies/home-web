@@ -1,0 +1,33 @@
+<div class='page-header'>
+  <div class='container'>
+    <div class="row">
+      <div class="col-md-6">
+        <h1> <%= current_user.name %> </h1>
+        </div>
+      </div>
+      <%= link_to 'Edit Profile', edit_my_account_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class='container'>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact number</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <td><%= current_user.name%></td>
+              <td><%= current_user.email%> </td>
+              <td><%= current_user.contact_number%></td>
+              <td><%= current_user.status%></td>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
