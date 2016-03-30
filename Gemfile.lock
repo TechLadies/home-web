@@ -37,8 +37,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    ancestry (2.1.0)
-      activerecord (>= 3.0.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.4)
       execjs
@@ -176,7 +174,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  ancestry
   bootstrap-sass (~> 3.3.6)
   byebug
   cocoon

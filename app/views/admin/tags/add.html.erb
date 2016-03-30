@@ -1,0 +1,31 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Create New Tag</h1>
+    <h4>Step 1: Select Parent Category</h4>
+  </div>
+</div>
+
+<div class='container'>
+  <%- @tags.where(parent_id: nil).each do |f|%>
+    <div class="col-md-6">
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4><strong>Tag Category: <%= link_to f.name, new_admin_tag_path(parent_id: f.id) %></strong></h4>
+        </div>
+
+        <div class='panel-body'>
+            <%- f.children.each do |g|%>
+              <ul>
+                <li><%= link_to g.name, new_admin_tag_path(parent_id: g.id) %></li>
+                <%- g.children.each do |h|%>
+                  <ul>
+                    <li><%= h.name %></li>
+                  </ul>
+                <%- end %>
+              </ul>
+          <%- end %>
+        </div>
+      </div>
+    </div>
+  <%- end %>
+</div>

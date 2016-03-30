@@ -36,7 +36,9 @@ Rails.application.routes.draw do
       put :activate, on: :member
     end
 
-    resources :tags, only: [:index, :new, :create, :edit, :update]
+    resources :tags, only: [:index, :new, :create, :edit, :update] do
+      get :add, on: :collection
+    end
 
   end
 
