@@ -1,7 +1,7 @@
 <div class='page-header'>
   <div class='container'>
-    <h1>Create New Tag</h1>
-    <h4>Step 1: Select Parent Category</h4>
+    <h1>Edit Tag <small> Step 1: Select Tag to Edit</small></h1>
+    <%= link_to 'Back to All Tags', admin_tags_path, class: 'btn btn-default' %>    
   </div>
 </div>
 
@@ -10,16 +10,16 @@
     <div class="col-md-6">
       <div class='panel panel-default'>
         <div class='panel-heading'>
-          <h4><strong>Tag Category: <%= link_to f.name, new_admin_tag_path(parent_id: f.id) %></strong></h4>
+          <h4><strong>Category: <%= link_to f.name, edit_admin_tag_path(id: f.id) %></strong></h4>
         </div>
 
         <div class='panel-body'>
             <%- f.children.each do |g|%>
               <ul>
-                <li><%= link_to g.name, new_admin_tag_path(parent_id: g.id) %></li>
+                <li><%= link_to g.name, edit_admin_tag_path(id: g.id) %></li>
                 <%- g.children.each do |h|%>
                   <ul>
-                    <li><%= h.name %></li>
+                    <li><%= link_to h.name, edit_admin_tag_path(id: h.id) %></li>
                   </ul>
                 <%- end %>
               </ul>

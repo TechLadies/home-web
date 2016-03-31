@@ -1,16 +1,13 @@
 class Admin::TagsController < ApplicationController
-  def index
-  	@tags = Tag.all
-  end
 
-  def add
-  	@tags = Tag.all
-  	@tag = Tag.new(:parent_id => params[:parent_id])
+  before_action :all_tags, only: [:index, :new, :select, :edit, :update]
+  before_action :prepare_tag, only: [:edit, :update]
+
+  def index
   end
 
   def new
   	@tag = Tag.new
-  	@tag.id = params[:parent_id]
   end
 
   def create
@@ -24,12 +21,33 @@ class Admin::TagsController < ApplicationController
     end
   end
 
-private
+  def select
+  end
+
+  def edit
+  end
+
+  def update
+    if @tag.update_attributes(tag_params)
+      flash[:success] = 'Tag Updated'
+      redirect_to admin_tags_path
+    else
+      render :edit
+    end
+  end
+
+  private
+  
+  def all_tags
+    @tags = Tag.order('id ASC').all    
+  end
 
   def tag_params
     params.require(:tag).permit(:name, :description, :parent_id)
   end
 
-end
+  def prepare_tag
+    @tag = Tag.find(params[:id])
+  end
 
-#     resources :tags, only: [:index, :new, :create, :edit, :update]
+end

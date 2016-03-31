@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
 
     resources :tags, only: [:index, :new, :create, :edit, :update] do
-      get :add, on: :collection
+      get :select, on: :collection
     end
 
   end

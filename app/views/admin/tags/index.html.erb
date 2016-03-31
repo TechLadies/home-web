@@ -1,7 +1,8 @@
 <div class='page-header'>    
   <div class="container">
-    <h1>Tags</h1>
-    <%= link_to 'Add Tag', add_admin_tags_path, class: 'btn btn-primary' %>
+    <h1>All Tags</h1>
+    <%= link_to 'New Tag', new_admin_tag_path, class: 'btn btn-primary' %>
+    <%= link_to 'Edit Tag', select_admin_tags_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
@@ -10,7 +11,7 @@
     <div class="col-md-6">
       <div class='panel panel-default'>
         <div class='panel-heading'>
-          <h4>Tag Category: <%= f.name %></h4>
+          <h4>Category: <%= f.name %></h4>
         </div>
 
         <div class='panel-body'>
