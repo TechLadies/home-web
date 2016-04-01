@@ -45,14 +45,25 @@
         <div class="panel-heading">
           <h3>Related Issues</h3>
         </div>
-        <ul class="list-group">
-          <% @case.issues.each do |i| %>
-            <li class="list-group-item">
-              <p><%= i.description %></p>
-            </li>
-          <% end %>
-        </ul>
+
+        <div class="table-responsive">
+          <table class="table table-default">
+            <thead>
+              <th>Description</th>
+              <th>Tagged To</th>
+            </thead>
+            <tbody>
+                <%- @issues.order('id ASC').each do |i| %>
+                <tr>
+                  <td class='col-md-7'><%= i.description %></td>
+                  <td class='col-md-5'><%= i.tag.name %></td>
+                </tr>
+                <%- end %>
+              </tbody>
+          </table>
+        </div>
       </div>
+
       <!-- END ISSUES -->
       <!-- BEGIN FOLLOW UP -->
       <div class="panel panel-default">
