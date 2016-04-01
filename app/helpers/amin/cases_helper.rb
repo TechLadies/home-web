@@ -1,0 +1,2 @@
+module Amin::CasesHelper
+end
