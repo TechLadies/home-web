@@ -33,16 +33,7 @@
 
   <body class="<%= "#{controller.controller_path.parameterize.gsub('-', '_')} #{controller.action_name}" %>">
 
-    <%- if flash.notice.present? %>
-      <div class="alert alert-success">
-      <%= flash.notice %>
-      </div>
-    <%- end %>
-    <%- if flash.alert.present? %>
-      <div class="alert alert-danger">
-      <%= flash.alert %>
-      </div>
-    <%- end %>
+    <%= render partial: 'layouts/flash_messages' %>
 
     <%= render partial: 'layouts/navigation' %>
 
