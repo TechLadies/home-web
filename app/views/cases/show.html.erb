@@ -5,7 +5,10 @@
 
     <%- if @case.status == "Pending" %>
       <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-primary' %>
-    <%- end %>
+    <%end%>
+    <% if current_user.is_admin? %>
+       <%= link_to 'Reassign Case', reassign_admin_case_path(@case), class: 'btn btn-primary' %>
+    <% end %>
 
   </div>
 </div>

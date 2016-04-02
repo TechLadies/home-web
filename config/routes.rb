@@ -28,8 +28,9 @@ Rails.application.routes.draw do
   namespace :admin do
 
     resources :cases, only: [:show] do
-      put :reassign, on: :member
-    end
+      get :reassign, on: :member
+      patch :update_assignment, on: :member
+  end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
       put :deactivate, on: :member
