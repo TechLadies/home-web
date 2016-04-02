@@ -28,6 +28,7 @@ gem 'sorcery'
 gem 'simple_form'
 gem 'aasm'
 gem 'cocoon'
+gem 'select2-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
