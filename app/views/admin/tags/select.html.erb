@@ -6,7 +6,7 @@
 </div>
 
 <div class='container'>
-  <%- @tags.where(parent_id: nil).each do |f|%>
+  <%- @tags.roots.each do |f|%>
     <div class="col-md-6">
       <div class='panel panel-default'>
         <div class='panel-heading'>

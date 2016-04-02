@@ -8,4 +8,6 @@ class Tag < ActiveRecord::Base
 
   validates :name, :description, presence: true
 
+  scope :roots, -> { where(parent_id: nil) }
+
 end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :people, only: [:index, :show, :new, :create, :edit, :update]
 
   namespace :my do
-    resource :account, only: [:show, :update]
+    resource :account, only: [:show, :edit, :update]
   end
 
   namespace :admin do
