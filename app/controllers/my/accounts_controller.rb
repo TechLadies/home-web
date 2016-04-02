@@ -3,6 +3,7 @@ class My::AccountsController < ApplicationController
   before_action :prepare_account
 
   def show
+    @cases = CaseFile.where(user: current_user.id).all
   end
 
   def edit
