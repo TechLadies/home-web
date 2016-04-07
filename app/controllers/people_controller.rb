@@ -4,6 +4,12 @@ class PeopleController < ApplicationController
 
 	def index
     @people = Person.all.order(created_at: :desc)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @people }
+
+     end
 	end
 
   def show

@@ -1,21 +1,16 @@
 <div class='page-header'>    
   <div class="container">
-    <h1>Case Number <%= @case.id%></h1>
-    <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-primary' %>
+ <%= simple_form_for @case, url: case_path(@case) do |f| %>
 
-    <%- if @case.status == "Pending" %>
-      <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-primary' %>
-    <%end%>
-    <% if current_user.is_admin? %>
-       <%= link_to 'Reassign Case', reassign_admin_case_path(@case), class: 'btn btn-primary' %>
-    <% end %>
+        <%= f.input :users, label: 'Reassign Case', as: :radio_buttons, collection: CaseFile::TYPE%>
+        <%end%>
 
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-
+    
     <!-- BEGIN LEFT COLUMN -->
     <div class="col-md-9">
       <!-- BEGIN CASE INFORMATION -->
@@ -57,20 +52,6 @@
         </ul>
       </div>
       <!-- END ISSUES -->
-      <!-- BEGIN RELATED PEOPLE -->
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>Related People</h3>
-        </div>
-        <ul class="list-group">
-          <% @case.people.each do |p| %>
-            <li class="list-group-item">
-              <p><%= p %></p>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <!-- END RELATED PEOPLE -->      
       <!-- BEGIN FOLLOW UP -->
       <div class="panel panel-default">
         <div class="panel-heading">

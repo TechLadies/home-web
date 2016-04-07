@@ -1,0 +1,19 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Reassign <%= @case.id%></h1>
+    <%= link_to 'Back to Case', case_path(@case), class: 'btn btn-default' %>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+
+    <div class='col-xs-6'>
+      <%= simple_form_for @case, url: case_path(@case) do |f| %>
+
+        <%= f.input :users, label: 'Reassign Case', as: :radio_buttons, collection: CaseFile::TYPE%>
+
+     <%end%>
+    </div>
+  </div>
+</div>   

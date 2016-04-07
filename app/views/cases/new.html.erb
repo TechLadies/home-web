@@ -28,6 +28,10 @@
               <%= link_to_add_association 'Add Issue', f, :issues, class: 'btn btn-default' %>
             </p>
 
+            <p>
+              <%= select('case_file', 'people_id', @people.collect {|p| [p.name, p.id] }, class: 'select-people') %>
+            </p>
+            
             <%= f.submit 'Save', class: 'btn btn-primary' %>
 
           <% end %>
