@@ -1,0 +1,20 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Edit Profile</h1>
+  </div>
+</div>
+
+<div class='container'>
+
+  <%= simple_form_for @account, url: my_account_path do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :contact_number %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', my_account_path, class: 'btn btn-default' %>
+  <% end %>
+
+</div>

@@ -24,7 +24,8 @@ class LoginForm < BaseForm
   end
 
   def user_account_is_active
-    errors.add(:base, 'Your account has been deactivated') if User.find_by_email(email).inactive?
+    @user = User.find_by_email(email)
+    errors.add(:base, 'Your account has been deactivated') if @user && @user.inactive?
   end
 
 end

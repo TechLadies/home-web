@@ -1,0 +1,59 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Create New Tag</h1>
+    <%= link_to 'Back to All Tags', admin_tags_path, class: 'btn btn-default' %>
+  </div>
+</div>
+
+<div class='container'>
+  <%= simple_form_for [:admin, @tag] do |f| %>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3>Tag Information</h3>
+      </div>
+
+      <div class='panel-body'>
+        <div class='row'>
+          <div class="col-md-8">
+            <%= f.input :name %>
+            <%= f.input :description %>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class="col-md-6">
+            <h4><strong>Select Parent Category (if any)</strong></h4>
+          </div>
+        </div>
+
+        <div class='row'>
+          <%- @tags.where(parent_id: nil).each do |x|%>
+            <div class="col-md-6">
+              <div class='panel panel-default'>
+                <div class='panel-heading'>
+                  <%= f.radio_button :parent_id, x.id %> 
+                  <%= f.label :parent_id, x.name, value: x.id %>
+                </div>
+
+                <div class='panel-body'>
+                  <%- x.children.each do |y|%>
+                    <ul>
+                      <%= f.radio_button :parent_id, y.id %>
+                      <%= f.label :parent_id, y.name, value: y.id %>
+                      <%- y.children.each do |z|%>
+                        <ul><%= z.name %></ul>
+                      <%- end %>
+                    </ul>
+                  <%- end %>
+                </div>    
+              </div>
+            </div>
+          <%- end %>
+        </div>
+
+      <%= f.submit 'Create Tag', class: 'btn btn-primary' %>
+
+      </div>
+    </div>
+  <%- end %>
+</div>

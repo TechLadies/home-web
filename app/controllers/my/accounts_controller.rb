@@ -5,6 +5,9 @@ class My::AccountsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def update
     if @account.update(account_params)
       redirect_to my_account_path

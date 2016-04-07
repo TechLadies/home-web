@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :people, only: [:index, :show, :new, :create, :edit, :update]
 
   namespace :my do
-    resource :account, only: [:show, :update]
+    resource :account, only: [:show, :edit, :update]
   end
 
   namespace :admin do
@@ -30,14 +30,20 @@ Rails.application.routes.draw do
     resources :cases, only: [:show] do
       get :reassign, on: :member
       patch :update_assignment, on: :member
+<<<<<<< HEAD
     end
+=======
+  end
+>>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
       put :deactivate, on: :member
       put :activate, on: :member
     end
 
-    # resources :tags, only: [:index, :new, :create, :edit, :update]
+    resources :tags, only: [:index, :new, :create, :edit, :update] do
+      get :select, on: :collection
+    end
 
   end
 

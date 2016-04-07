@@ -1,0 +1,83 @@
+<div class='page-header'>    
+  <div class="container">
+    <h1>All Tags</h1>
+    <%= link_to 'New Tag', new_admin_tag_path, class: 'btn btn-primary' %>
+    <%= link_to 'Edit Tag', select_admin_tags_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<div class='container'>
+  <%- @tags.where(parent_id: nil).each do |f|%>
+    <div class="col-md-6">
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4>Category: <%= f.name %></h4>
+        </div>
+
+        <div class='panel-body'>
+            <%- f.children.each do |g|%>
+              <ul>
+                <li><%= g.name %></li>
+                <%- g.children.each do |h|%>
+                  <ul>
+                    <li><%= h.name %></li>
+                  </ul>
+                <%- end %>
+              </ul>
+          <%- end %>
+        </div>
+      </div>
+    </div>
+  <%- end %>
+</div>
+
+<!-- separator -->
+<h1 style="text-align:center"> Attempt 1: In List Form </h1>
+<!-- separator -->
+
+<div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <table class='table table-responsive table-striped'>
+        <thead>
+          <th>No.</th>
+          <th>Description</th>
+          <th>Sub-Category</th>
+          <th>Main Category</th>
+        </thead>
+
+        <tbody>
+            <%- @tags.each do |t| %>
+          <tr>
+              <td><%= t.id %></td>
+              <td><%= t.name %></td>
+
+              <%- if t.parent_id.nil? %>
+                <td><%= "-" %></td>
+                <td><%= "-" %></td>
+              <%- else %>
+                  <%- @tags.where(id: t.parent_id).each do |u| %> 
+                    <%- if u.parent_id.nil? %>
+                      <td><%= u.name %></td>                  
+                      <td><%= "-" %></td>
+                    <%- else %>         
+                      <td><%= u.name %></td>
+                      <%- if u.parent_id.nil? %>
+                        <td><%= "-" %>
+                      <%- else %>
+                        <td>
+                          <%- @tags.where(id: u.parent_id).each do |x| %>
+                            <%= x.name %>
+                          <%- end %>
+                        </td>                  
+                      <%- end %>
+                    <%- end %>         
+                  <%- end %>
+              <%- end %>
+            <%- end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

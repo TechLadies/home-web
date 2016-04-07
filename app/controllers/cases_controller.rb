@@ -7,13 +7,18 @@ class CasesController < ApplicationController
   end
 
   def show
+    @issues = @case.issues.order('id ASC')
   end
 
   def new
   	@case = current_user.case_files.build
     @case.issues.build
+<<<<<<< HEAD
     @case.people.build
     @people = Person.all
+=======
+    @tags = Tag.order('id ASC').all
+>>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
   end
 
   def create
@@ -27,7 +32,11 @@ class CasesController < ApplicationController
   end
 
   def edit
+<<<<<<< HEAD
     @people = Person.all
+=======
+    @tags = Tag.order('id ASC').all
+>>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
   end
 
   def update
@@ -48,14 +57,21 @@ class CasesController < ApplicationController
 
   private
 
+<<<<<<< HEAD
   def case_params
     params.require(:case_file).permit(:case_type, :person_id, issues_attributes: [:id, :description, :_destroy])
   end
 
+=======
+>>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
   def prepare_casefile
     @case = CaseFile.find(params[:id])
     # puts @case.issues
     # puts @case.people
+  end
+
+  def case_params
+    params.require(:case_file).permit(:case_type, issues_attributes: [:id, :description, :_destroy, :tag_id])
   end
 
 end
