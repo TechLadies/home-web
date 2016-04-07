@@ -42,6 +42,10 @@
               </div>
             </div>
 
+            <p>
+              <%= select('case_file', 'people_id', @people.collect {|p| [p.name, p.id] }, {}, {class: 'select-people'}) %>
+            </p>
+            
             <%= f.submit 'Save', class: 'btn btn-primary' %>
 
           <% end %>

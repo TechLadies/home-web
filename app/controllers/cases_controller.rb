@@ -13,6 +13,8 @@ class CasesController < ApplicationController
   def new
   	@case = current_user.case_files.build
     @case.issues.build
+    @case.people.build
+    @people = Person.all    
     @tags = Tag.order('id ASC').all
   end
 
@@ -27,6 +29,7 @@ class CasesController < ApplicationController
   end
 
   def edit
+    @people = Person.all
     @tags = Tag.order('id ASC').all
   end
 
@@ -45,6 +48,16 @@ class CasesController < ApplicationController
       redirect_to case_path(@case)
   end
 
+  def update_people
+    @case = CaseFile.find(params[:id])
+    if @case.update_attributes(case_params)
+      redirect_to case_path(@case)
+    else
+      render :update_people 
+    end
+  end
+
+
   private
 
   def prepare_casefile
@@ -52,7 +65,7 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    params.require(:case_file).permit(:case_type, issues_attributes: [:id, :description, :_destroy, :tag_id])
+    params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id])
   end
 
 end

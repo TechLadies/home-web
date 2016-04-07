@@ -2,16 +2,22 @@ class PeopleController < ApplicationController
 
   before_action :prepare_person, only: [:show, :edit, :update]
 
-	def index
+  def index
     @people = Person.all.order(created_at: :desc)
-	end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @people }
+
+     end
+  end
 
   def show
   end
 
-	def new
-		@person = Person.new
-	end
+  def new
+    @person = Person.new
+  end
 
   def create
     @person = Person.new(person_params)
@@ -20,11 +26,11 @@ class PeopleController < ApplicationController
     else
       render :new
     end
-  end	
-	  
-	def edit
-	end
-	  
+  end 
+    
+  def edit
+  end
+    
   def update
     if @person.update_attributes(person_params)
       redirect_to @person

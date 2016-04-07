@@ -23,6 +23,12 @@ Rails.application.routes.draw do
 
   namespace :my do
     resource :account, only: [:show, :edit, :update]
+    
+    resources :cases, only: [:show] do
+    get :search_people, on: :member
+    patch :update_people, on: :member  
+
+    end
   end
 
   namespace :admin do
