@@ -5,6 +5,4 @@ class Issue < ActiveRecord::Base
   
   validates :case_file, presence: true
 
-  accepts_nested_attributes_for :tag  
-
 end
