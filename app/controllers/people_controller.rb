@@ -10,7 +10,7 @@ class PeopleController < ApplicationController
       format.json { render json: @people }
 
      end
-  end
+	end
 
   def show
   end

@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :cases, only: [:show] do
       get :reassign, on: :member
       patch :update_assignment, on: :member
-  end
+    end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
       put :deactivate, on: :member
