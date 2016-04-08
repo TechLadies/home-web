@@ -24,21 +24,21 @@ class CasesController < ApplicationController
       flash[:success] = "New Case Saved!"
   	  redirect_to case_path(@case)
   	else
-  	  render :new
+      @people = Person.all      
+      render :edit
   	end
   end
 
   def edit
     @people = Person.all
-    @tags = Tag.order('id ASC').all
   end
 
   def update
-    puts(case_params)
     if @case.update_attributes(case_params)
       flash[:success] = "Case Updated!"
       redirect_to case_path(@case)      	
     else
+      @people = Person.all
       render :edit
     end
   end
