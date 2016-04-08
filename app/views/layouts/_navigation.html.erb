@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'HOME', root_path, class: 'navbar-brand' %>
+    </div>
+
+    <%- if current_user %>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Cases', cases_path %></li>
+          <li><%= link_to 'People', people_path %></li>
+          <li><%= link_to 'Organizations', organizations_path %></li>
+          <li><%= link_to 'Users', admin_users_path %></li>
+          <li><%= link_to 'Tags', admin_tags_path %></li>
+          <li><%= link_to 'Audits', admin_audit_trails_path %></li>
+        </ul>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'My Profile', my_account_path %></li>
+          <li><%= link_to 'Logout', session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  <%- end %>
+
+</nav>

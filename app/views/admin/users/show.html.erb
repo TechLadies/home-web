@@ -5,28 +5,116 @@
         <h1><%= @user.name %></h1>
       </div>
     </div>
-    <%= link_to 'Edit User', edit_admin_user_path(@user), class: 'btn btn-primary' %>
-
     <% if @user.inactive? %>
-      <%= link_to 'activate', activate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
-    <% else %>
-      <%= link_to 'deactivate', deactivate_admin_user_path(@user), class: 'btn btn-default', method: :put %>
+      <%= link_to 'Activate', activate_admin_user_path(@user), class: 'btn btn-warning', method: :put %>
+    <% elsif @user.active? && (@user != current_user) %>
+      <%= link_to 'Deactivate', deactivate_admin_user_path(@user), class: 'btn btn-danger', method: :put %>
     <% end %>
 
   </div>
 </div>
 
+<!-- SHOW USER PROFILE -->
 <div class='container'>
-  <div class="table-responsive">
-    <table class="table">
-  	  <thead>
-  	    <th>Email</th>
-  	    <th>Contact number</th>
-  	  </thead>
-  	  <tbody>
-  	    <td><%= @user.email %> </td>
-  	    <td><%= @user.contact_number %></td>
-     	  </tbody>
-  	</table>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-1">
+          <h3>Profile</h3>
+        </div>
+        <div class="col-md-1 pull-bottom">
+          <%= link_to 'Edit', edit_admin_user_path(@user), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">      
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact number</th>
+            <th>Status</th>
+          </thead>
+          <tbody>
+            <td><%= @user.name%></td>
+            <td><%= @user.email%> </td>
+            <td><%= @user.contact_number%></td>
+            <td><%= @user.status.upcase%></td>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOW ASSIGNED CASES (Pending/Closed) -->
+<div class='container'>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Assigned Cases</h3>
+    </div>
+
+    <div class='panel-body'>
+      <div>
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a></li>
+          <li role="presentation"><a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">Closed</a></li>
+        </ul>
+          
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="pending">
+
+            <table class='table table-responsive table-striped'>
+              <thead>
+                <tr>
+                  <th>Case Number</th>
+                  <th>Case Type</th>
+                  <th>Assigned To</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cases.where(status: "Pending").each do |c| %>
+                  <tr>
+                    <td><%= link_to c.id, case_path(c) %> </td>
+                    <td><%= c.case_type %> </td>
+                    <td><%= c.user.name %></td>
+                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
+                  </tr>
+                <% end %>
+              </tbody>            
+            </table>
+
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="closed">
+
+            <table class='table table-responsive table-striped'>
+              <thead>
+                <tr>
+                  <th>Case Number</th>
+                  <th>Case Type</th>
+                  <th>Assigned To</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cases.where(status: "Closed").each do |c| %>
+                  <tr>
+                    <td><%= link_to c.id, case_path(c) %> </td>
+                    <td><%= c.case_type %> </td>
+                    <td><%= c.user.name %></td>
+                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
+                  </tr>
+                <% end %>
+              </tbody>            
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

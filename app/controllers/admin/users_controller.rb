@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @cases = CaseFile.where(user: @user.id).order('id DESC').all
   end
 
   def new

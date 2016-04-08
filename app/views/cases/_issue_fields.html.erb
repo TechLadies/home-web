@@ -1,60 +1,9 @@
 <tr class="nested-fields">
   <td class="col-md-1"><%= link_to_remove_association "Remove", f %></td>
-  <td class="col-md-5"><%= f.input :description, label: false %></td>
-  <%= f.input :tag_id, disabled: true, label: false, as: :hidden %>
-  <%= f.simple_fields_for :tag do |ff| %>
-    <td>
-      <%= ff.input :name, label: false, disabled: true %>
-    </td>
-  <%- end %>
-  <td class="col-md-2"><a data-toggle="modal" href="#myModal">Change Tag</a></td>
+  <td class="col-md-6"><%= f.input :description, label: false %></td>
+  <td class="col-md-5"><%= f.input :tag_id, label: false do %>
+	<%= f.select :tag_id, Tag.all.order(:id).map { |t| [t.name, t.id, {class: "test"}]}, include_blank: false %>
+  <% end %>
+  </td>
+
 </tr>
-
-  <!-- modal start: for changing :tag_id -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Select Tag for this Issue</h4>
-        </div>
-        <div class="modal-body">
-
-        <div class='row'>
-          <%- @tags.where(parent_id: nil).each do |x|%>
-            <div class="col-md-12">
-              <div class='panel panel-default'>
-                <div class='panel-heading'>
-                  <%= f.radio_button :tag_id, x.id %> 
-                  <%= f.label :tag_id, x.name, value: x.id %>
-                </div>
-
-                <div class='panel-body'>
-                  <%- x.children.each do |y|%>
-                    <ul>
-                      <%= f.radio_button :tag_id, y.id %>
-                      <%= f.label :tag_id, y.name, value: y.id %>
-                      <%- y.children.each do |z|%>
-                        <ul>
-                          <%= f.radio_button :tag_id, z.id %>
-                          <%= f.label :tag_id, z.name, value: z.id %>
-                        </ul>
-                      <%- end %>
-                    </ul>
-                  <%- end %>
-                </div>    
-              </div>
-            </div>
-          <%- end %>
-        </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- modal end-->
-
-</div>
