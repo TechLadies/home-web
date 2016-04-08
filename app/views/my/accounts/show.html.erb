@@ -61,7 +61,7 @@
               </thead>
 
               <tbody>
-                <% @cases.where(status: "Pending").each do |c| %>
+                <% @cases.where(status: "Pending").order('id DESC').each do |c| %>
                   <tr>
                     <td><%= link_to c.id, case_path(c) %> </td>
                     <td><%= c.case_type %> </td>
@@ -86,7 +86,7 @@
               </thead>
 
               <tbody>
-                <% @cases.where(status: "Closed").each do |c| %>
+                <% @cases.where(status: "Closed").order('id DESC').each do |c| %>
                   <tr>
                     <td><%= link_to c.id, case_path(c) %> </td>
                     <td><%= c.case_type %> </td>
