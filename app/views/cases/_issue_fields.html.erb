@@ -2,18 +2,8 @@
   <td class="col-md-1"><%= link_to_remove_association "Remove", f %></td>
   <td class="col-md-6"><%= f.input :description, label: false %></td>
   <td class="col-md-5"><%= f.input :tag_id, label: false do %>
-	<%= f.select :tag_id, Tag.all.order(:id).map { |t| [t.name, t.id]}, include_blank: false %>
+	<%= f.select :tag_id, Tag.all.order(:id).map { |t| [t.name, t.id, {class: "test"}]}, include_blank: false %>
   <% end %>
   </td>
 
 </tr>
-
-<!-- how to use select2
-
-<script type="text/javascript">
-$(document).ready(function() {
-  $(".js-example-basic-single").select2();
-});
-</script>
-
--->
