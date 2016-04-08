@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       get :select, on: :collection
     end
 
+    resources :audit_trails, only: [:index]
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

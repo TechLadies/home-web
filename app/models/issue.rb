@@ -7,4 +7,7 @@ class Issue < ActiveRecord::Base
 
   accepts_nested_attributes_for :tag  
 
+  has_paper_trail
+
 end
+
