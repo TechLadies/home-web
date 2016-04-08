@@ -22,15 +22,11 @@
           <li><%= link_to 'Tags', admin_tags_path %></li>
           <li><%= link_to 'Audits', admin_audit_trails_path %></li>
         </ul>
-        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to 'My Profile', my_account_path %></li>
           <li><%= link_to 'Logout', session_path, method: :delete %></li>
             </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  <%- end %>
-
+      <% end %>
+    </div>
+  </div>
 </nav>
