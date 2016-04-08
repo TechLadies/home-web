@@ -190,10 +190,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-<<<<<<< HEAD
-=======
   paper_trail
->>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981
   pg
   quiet_assets
   rails (= 4.2.5.1)

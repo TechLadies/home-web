@@ -39,11 +39,10 @@ gem 'aasm'
 
 gem 'select2-rails'
 gem 'cocoon'
-<<<<<<< HEAD
+
 gem 'select2-rails'
-=======
+
 gem 'paper_trail'
->>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

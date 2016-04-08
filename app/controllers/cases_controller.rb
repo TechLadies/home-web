@@ -14,11 +14,8 @@ class CasesController < ApplicationController
   	@case = current_user.case_files.build
     @case.issues.build
     @case.people.build
-<<<<<<< HEAD
-    @people = Person.all    
-=======
+
     @people = Person.all
->>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981
     @tags = Tag.order('id ASC').all
   end
 

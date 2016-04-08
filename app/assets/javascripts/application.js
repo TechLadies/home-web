@@ -18,9 +18,7 @@
 //= require cocoon
 //= require select2
 //= require_tree .
-<<<<<<< HEAD
-//= require select2
-=======
+
 
 apply_select_2 = function() {
 	$('.simple_form.edit_case_file select').select2({
@@ -45,4 +43,3 @@ ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
->>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981

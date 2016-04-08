@@ -1,11 +1,8 @@
 $(function() {
-<<<<<<< HEAD
+
   $('.select-people').select2({
     theme: 'bootstrap',
-=======
-  $('#case_file_people_id').select2({
-    theme: "bootstrap",
->>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981
+
     ajax: {
       url: "/people",
       dataType: 'json',
