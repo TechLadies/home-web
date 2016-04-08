@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     put :close, on: :member
 
-    resources :people, only: [:new, :create]
+    # resources :involvements, only: [:new, :create]
     resources :follow_ups, only: [:new, :create]
     resources :documents, only: [:new, :create]
     resources :links, only: [:create, :destroy]
@@ -16,10 +16,12 @@ Rails.application.routes.draw do
   end
 
   resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :members, only: [:new, :create]
+    # resources :members, only: [:new, :create]
   end
 
   resources :people, only: [:index, :show, :new, :create, :edit, :update]
+
+  resources :tags, only: [:index]
 
   namespace :my do
     resource :account, only: [:show, :edit, :update]
