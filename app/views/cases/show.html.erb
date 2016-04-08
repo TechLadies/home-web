@@ -7,11 +7,7 @@
       <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-primary' %>
     <%end%>
     <% if current_user.is_admin? %>
-<<<<<<< HEAD
-       <%= link_to 'Reassign Case', reassign_admin_case_path(@case), class: 'btn btn-primary' %>
-=======
        <%= link_to 'Reassign Case', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary' %>
->>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
     <% end %>
 
   </div>

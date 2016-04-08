@@ -34,17 +34,15 @@
               </table>
             </div>
 
-<<<<<<< HEAD
-        <p>
-          <%= select('case_file', 'person_id', @people.collect {|p| [p.name, p.id] }, class: 'select-people') %>
-        </p>
+            <p>
+              <%= select('case_file', 'person_id', @people.collect {|p| [p.name, p.id] }, class: 'select-people') %>
+            </p>
 
-=======
             <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "after", class: 'btn btn-default' %>
+
           </div>
         </div>
       
->>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
         <%= f.submit 'Save', class: 'btn btn-primary' %>
       <% end %>
     </div>
