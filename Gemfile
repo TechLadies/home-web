@@ -31,12 +31,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sorcery'
 gem 'simple_form'
 gem 'aasm'
-<<<<<<< HEAD
 
 gem 'select2-rails'
-=======
 gem 'cocoon'
->>>>>>> 010df0c28ceed06ce7bba8a4e15d53403bf5e4fd
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
