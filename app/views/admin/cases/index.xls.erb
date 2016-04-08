@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">User</Data></Cell>
+        <Cell><Data ss:Type="String">Case Type</Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Issues</Data></Cell>
+      </Row>
+    <% @cases.each do |casefile| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= casefile.user.name%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= casefile.case_type%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= casefile.status %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= casefile.issues.collect { |i| i.tag.name }.to_sentence %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
