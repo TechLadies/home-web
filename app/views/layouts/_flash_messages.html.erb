@@ -1,0 +1,24 @@
+<div id='flash-messages'>
+
+  <%- if flash.notice.present? %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= flash.notice %>
+    </div>
+  <%- end %>
+
+  <%- if flash.alert.present? %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= flash.alert %>
+    </div>
+  <%- end %>
+
+  <%- if flash.key? :error %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= flash.error %>
+    </div>
+  <%- end %>
+
+</div>

@@ -13,8 +13,36 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require jquery_ujs
 //= require cocoon
-//= require turbolinks
-//= require_tree .
 //= require select2
+//= require_tree .
+<<<<<<< HEAD
+//= require select2
+=======
+
+apply_select_2 = function() {
+	$('.simple_form.edit_case_file select').select2({
+	  ajax: {
+	    url: "/tags",
+	    dataType: 'json',
+	    delay: 250,
+	    cache: true
+	  }
+	});
+}
+
+ready = function() {
+
+	apply_select_2();
+
+	$('body').on('.simple_form.edit_case_file cocoon:after-insert', function(e, insertedItem) {
+		apply_select_2();
+	});
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+>>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981

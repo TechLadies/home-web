@@ -24,7 +24,6 @@
                   <th></th>
                   <th>Description</th>
                   <th>Tagged To</th>
-                  <th></th>
                 </thead>
                 <tbody>
                   <%= f.simple_fields_for :issues do |issue_fields| %>
@@ -34,7 +33,12 @@
               </table>
             </div>
 
-            <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "after", class: 'btn btn-default' %>
+            <p>
+              <%= select('case_file', 'person_id', @people.collect {|p| [p.name, p.id] }, class: 'select-people') %>
+            </p>
+
+            <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "append", class: 'btn btn-default' %>
+
           </div>
         </div>
 

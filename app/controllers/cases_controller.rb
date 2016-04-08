@@ -14,7 +14,11 @@ class CasesController < ApplicationController
   	@case = current_user.case_files.build
     @case.issues.build
     @case.people.build
+<<<<<<< HEAD
     @people = Person.all    
+=======
+    @people = Person.all
+>>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981
     @tags = Tag.order('id ASC').all
   end
 
@@ -34,6 +38,7 @@ class CasesController < ApplicationController
   end
 
   def update
+    puts(case_params)
     if @case.update_attributes(case_params)
       flash[:success] = "Case Updated!"
       redirect_to case_path(@case)      	
@@ -43,9 +48,9 @@ class CasesController < ApplicationController
   end
 
   def close
-      @case.update(status: "Closed")
-      flash[:notice] = "Case Closed!"
-      redirect_to case_path(@case)
+    @case.update(status: "Closed")
+    flash[:notice] = "Case Closed!"
+    redirect_to case_path(@case)
   end
 
   def update_people
@@ -59,6 +64,10 @@ class CasesController < ApplicationController
 
 
   private
+
+  def case_params
+    params.require(:case_file).permit(:case_type, :person_id, issues_attributes: [:id, :description, :_destroy])
+  end
 
   def prepare_casefile
     @case = CaseFile.find(params[:id])

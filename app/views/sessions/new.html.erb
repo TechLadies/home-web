@@ -12,23 +12,26 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
-        <div class="panel-heading">
 
-          <h1> Please login to access Home</h1>
+        <div class="panel-heading">
+          <h4 class="text-center"> Please login to access Home</h4>
+        </div>
+
+        <div class="panel-body">
           <fieldset>
             <%= simple_form_for(@form, :url => session_path) do |f| %>
               <%= f.input :email %>
               <%= f.input :password %>
-            <hr>
+              <hr>
 
-            <div class="text-center">
-              <%= f.button :submit, 'Login', class:'btn btn-default', method: :post %>
-            </div>
+              <div class="text-center">
+                <%= f.button :submit, 'Login', class:'btn btn-default', method: :post %>
+              </div>
+              <%- end %>
 
           </fieldset>
-          <% end %>
-
         </div>
+
       </div>
     </div>
   </div>

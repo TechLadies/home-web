@@ -29,7 +29,7 @@
                 <tr>
                   <th>Case Number</th>
                   <th>Case Type</th>
-                  <th>Status</th>
+                  <th>Assigned To</th>
                 </tr>
               </thead>
 
@@ -38,7 +38,7 @@
                   <tr>
                     <td><%= link_to c.id, case_path(c) %> </td>
                     <td><%= c.case_type %> </td>
-                    <td><%= c.status %></td>
+                    <td><%= c.user.name %></td>
                     <td><%= link_to 'Edit', edit_case_path(c) %></td>
                   </tr>
                 <% end %>
@@ -54,7 +54,7 @@
                 <tr>
                   <th>Case Number</th>
                   <th>Case Type</th>
-                  <th>Status</th>
+                  <th>Assigned To</th>
                 </tr>
               </thead>
 
@@ -63,7 +63,7 @@
                   <tr>
                     <td><%= link_to c.id, case_path(c) %> </td>
                     <td><%= c.case_type %> </td>
-                    <td><%= c.status %></td>
+                    <td><%= c.user.name %></td>
                     <td><%= link_to 'Edit', edit_case_path(c) %></td>
                   </tr>
                 <% end %>

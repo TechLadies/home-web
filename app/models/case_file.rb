@@ -9,6 +9,7 @@ class CaseFile < ActiveRecord::Base
   has_many :documents, foreign_key: :case_id, inverse_of: :case_file
   has_many :links
   has_many :people, through: :involvements
+  has_paper_trail
 
   accepts_nested_attributes_for :issues, reject_if: proc { |a| a['description'].blank? }, allow_destroy: true
 

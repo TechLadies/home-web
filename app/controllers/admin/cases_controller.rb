@@ -1,6 +1,6 @@
 class Admin::CasesController < ApplicationController
 
-before_action :require_admin_authorization
+  before_action :require_admin_authorization
 
   def reassign
     @case = CaseFile.find(params[:id])
@@ -17,7 +17,9 @@ before_action :require_admin_authorization
   end
 
   private
-    def case_params
-      params.require(:case_file).permit(:user_id)
-    end
+
+  def case_params
+    params.require(:case_file).permit(:user_id)
+  end
+
 end

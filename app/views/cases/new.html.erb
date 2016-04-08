@@ -43,7 +43,11 @@
             </div>
 
             <p>
+<<<<<<< HEAD
               <%= select('case_file', 'people_id', @people.collect {|p| [p.name, p.id] }, {}, {class: 'select-people'}) %>
+=======
+              <%= select('case_file', 'people_id', @people.collect {|p| [p.name, p.id] }, class: 'select-people') %>
+>>>>>>> 5a2a9b8b7d9d4fc724623846806490d7a7587981
             </p>
             
             <%= f.submit 'Save', class: 'btn btn-primary' %>
