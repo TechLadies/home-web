@@ -7,19 +7,27 @@
     </div>
     <% if @user.inactive? %>
       <%= link_to 'Activate', activate_admin_user_path(@user), class: 'btn btn-warning', method: :put %>
-    <% else %>
+    <% elsif @user.active? && (@user != current_user) %>
       <%= link_to 'Deactivate', deactivate_admin_user_path(@user), class: 'btn btn-danger', method: :put %>
     <% end %>
 
   </div>
 </div>
 
+<!-- SHOW USER PROFILE -->
 <div class='container'>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3>Profile</h3>
-      <%= link_to 'Edit', edit_admin_user_path(@user), class: 'btn btn-primary' %>
+      <div class="row">
+        <div class="col-md-1">
+          <h3>Profile</h3>
+        </div>
+        <div class="col-md-1 pull-bottom">
+          <%= link_to 'Edit', edit_admin_user_path(@user), class: 'btn btn-primary' %>
+        </div>
+      </div>
     </div>
+
     <div class="panel-body">      
       <div class="table-responsive">
         <table class="table">
@@ -33,7 +41,7 @@
             <td><%= @user.name%></td>
             <td><%= @user.email%> </td>
             <td><%= @user.contact_number%></td>
-            <td><%= @user.status%></td>
+            <td><%= @user.status.upcase%></td>
             </tbody>
         </table>
       </div>
@@ -41,6 +49,7 @@
   </div>
 </div>
 
+<!-- SHOW ASSIGNED CASES (Pending/Closed) -->
 <div class='container'>
   <div class="panel panel-default">
     <div class="panel-heading">

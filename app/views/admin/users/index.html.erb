@@ -25,6 +25,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Contact number</th>
+            <th>Status</th>
           </tr>
         </thead>
 
@@ -34,6 +35,7 @@
               <td><%= link_to user.name, admin_user_path(user) %> </td>
               <td><%= user.email %> </td>
               <td><%= user.contact_number %></td>
+              <td><%= user.status.upcase %></td>
             </tr>
           <% end %>
         </tbody>
