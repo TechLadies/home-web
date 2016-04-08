@@ -37,7 +37,7 @@
               <%= select('case_file', 'person_id', @people.collect {|p| [p.name, p.id] }, class: 'select-people') %>
             </p>
 
-            <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "after", class: 'btn btn-default' %>
+            <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "append", class: 'btn btn-default' %>
 
           </div>
         </div>

@@ -23,7 +23,7 @@
             <%= f.input :phone %>
             <%= f.input :email %>
             <%= f.input :address %>
-            <%= f.input :gender %>
+            <%= f.input :gender, collection: [:male, :female] %>
 
             <%= f.submit 'Submit', class: 'btn btn-primary' %>
 

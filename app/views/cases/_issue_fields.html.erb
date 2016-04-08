@@ -1,9 +1,11 @@
 <tr class="nested-fields">
+
   <td class="col-md-1"><%= link_to_remove_association "Remove", f %></td>
   <td class="col-md-6"><%= f.input :description, label: false %></td>
-  <td class="col-md-5"><%= f.input :tag_id, label: false do %>
-	<%= f.select :tag_id, Tag.all.order(:id).map { |t| [t.name, t.id, {class: "test"}]}, include_blank: false %>
-  <% end %>
+  <td class="col-md-5">
+  	<%= f.input :tag_id, label: false do %>
+		<%= f.select :tag_id, Tag.all.collect { |tag| [ tag.name, tag.id ] }, include_blank: false %>
+	  <% end %>
   </td>
 
 </tr>
