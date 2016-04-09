@@ -25,6 +25,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Contact number</th>
+            <th>Pending Cases</th>
+            <th>Closed Cases</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -35,7 +37,9 @@
               <td><%= link_to user.name, admin_user_path(user) %> </td>
               <td><%= user.email %> </td>
               <td><%= user.contact_number %></td>
-              <td><%= user.status.upcase %></td>
+              <td><%= user.case_files.pending.count %></td>
+              <td><%= user.case_files.closed.count %></td>
+              <td><%= user.status.titleize %></td>
             </tr>
           <% end %>
         </tbody>

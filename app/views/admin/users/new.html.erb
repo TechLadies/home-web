@@ -6,14 +6,21 @@
 
 <div class='container'>
 
-  <%= simple_form_for [:admin, @user] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :email %>
-    <%= f.input :contact_number %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-    
-    <%= f.submit 'Create User', class: 'btn btn-primary' %>
-  <%- end %>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h3>User Information</h3>
+    </div>
+    <div class='panel-body'>
+      <%= simple_form_for [:admin, @user] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :contact_number %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+
+        <%= f.submit 'Create User', class: 'btn btn-primary' %>
+      <%- end %>
+    </div>
+  </div>
 
 </div>

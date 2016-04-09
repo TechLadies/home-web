@@ -21,6 +21,9 @@ class CaseFile < ActiveRecord::Base
 
   before_validation :default_status
 
+  scope :pending, -> { where(status: 'Pending') }
+  scope :closed, -> { where(status: 'Closed') }
+
   protected
 
   def default_status
