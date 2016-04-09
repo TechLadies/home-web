@@ -30,4 +30,14 @@ class CaseFile < ActiveRecord::Base
     self.status ||= "Pending"
   end
 
+  def self.to_csv(options = {})
+  CSV.generate(options) do |csv|
+    csv << [:case_type,:status,:name,:issues]
+    p all
+    all.each do |casefile|
+      csv << [casefile.case_type, casefile.status, casefile.user.name,casefile.issues.collect { |i| i.tag.name }.to_sentence]
+    end
+  end
+end
+
 end

@@ -2,6 +2,15 @@ class Admin::CasesController < ApplicationController
 
   before_action :require_admin_authorization
 
+  def index
+    @cases = CaseFile.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @cases.to_csv }
+      format.xls
+    end
+  end
+
   def reassign
     @case = CaseFile.find(params[:id])
     @users = User.order('id DESC').all
@@ -12,7 +21,7 @@ class Admin::CasesController < ApplicationController
     if @case.update_attributes(case_params)
       redirect_to case_path(@case)
     else
-      render :reassign 
+      render :reassign
     end
   end
 

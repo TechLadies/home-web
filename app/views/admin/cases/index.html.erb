@@ -1,0 +1,41 @@
+<div class='page-header'>
+  <div class="container">
+    <h1>All Cases</h1>
+    <p>
+      Download:
+      <%= link_to "CSV", admin_cases_path(format:"csv") %>|
+      <%= link_to "Excel", admin_cases_path(format: "xls") %>
+    </p>
+  </div>
+</div>
+
+<div class='container'>
+
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <table class='table table-responsive table-striped'>
+
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Case Type</th>
+            <th>Status</th>
+            <th>Issues</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%- @cases.each do |casefile| %>
+            <tr>
+              <td><%= casefile.user.name %> </td>
+              <td><%= casefile.case_type%></td>
+              <td><%= casefile.status %></td>
+              <td><%= casefile.issues.collect { |i| i.tag.name }.to_sentence %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

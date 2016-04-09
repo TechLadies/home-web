@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    resources :cases, only: [:show] do
+    resources :cases, only: [:index, :show] do
       get :reassign, on: :member
       patch :update_assignment, on: :member
     end
