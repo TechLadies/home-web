@@ -44,8 +44,16 @@
     <div class='panel-body'>
       <div>
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a></li>
-          <li role="presentation"><a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">Closed</a></li>
+          <li role="presentation" class="active">
+            <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
+              <strong><%= @cases.where(status: "Pending").count %></strong> Pending
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
+              <strong><%= @cases.where(status: "Closed").count %></strong> Closed
+            </a>
+          </li>
         </ul>
           
         <div class="tab-content">
