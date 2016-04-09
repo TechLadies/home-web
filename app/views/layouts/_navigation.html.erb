@@ -19,14 +19,39 @@
           <li><%= link_to 'Cases', cases_path %></li>
           <li><%= link_to 'People', people_path %></li>
           <li><%= link_to 'Organizations', organizations_path %></li>
-          <li><%= link_to 'Users', admin_users_path %></li>
-          <li><%= link_to 'Tags', admin_tags_path %></li>
-          <li><%= link_to 'Audits', admin_audit_trails_path %></li>
         </ul>
+        
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'My Profile', my_account_path %></li>
-          <li><%= link_to 'Logout', session_path, method: :delete %></li>
+          <!-- Admin functions (end) -->
+          <li class="dropdown" style="margin: 8px">
+            <div class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Admin
+              <span class="caret"></span>
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to 'Users', admin_users_path %></li>
+              <li><%= link_to 'Tags', admin_tags_path %></li>
+              <li><%= link_to 'Audits', admin_audit_trails_path %></li>
+            </ul>
+          </li>
+          <!-- Admin functions (end) -->
+  
+          <!-- current_user options (start) -->
+          <li class="dropdown" style="margin: 8px">
+            <div class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <%= current_user.name %>
+              <span class="caret"></span>
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to 'My Profile', my_account_path %></li>
+              <li><%= link_to 'Account Settings', edit_my_account_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Logout', session_path, method: :delete %></li>
+            </ul>
+          </li>
+          <!-- current_user options (end) -->
         </ul>
+
       </div><!-- /.navbar-collapse -->
     <%- end %>
 
