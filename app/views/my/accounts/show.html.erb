@@ -44,8 +44,16 @@
     <div class='panel-body'>
       <div>
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a></li>
-          <li role="presentation"><a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">Closed</a></li>
+          <li role="presentation" class="active">
+            <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
+              <strong><%= @cases.where(status: "Pending").count %></strong> Pending
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
+              <strong><%= @cases.where(status: "Closed").count %></strong> Closed
+            </a>
+          </li>
         </ul>
           
         <div class="tab-content">
@@ -61,7 +69,7 @@
               </thead>
 
               <tbody>
-                <% @cases.where(status: "Pending").each do |c| %>
+                <% @cases.where(status: "Pending").order('id DESC').each do |c| %>
                   <tr>
                     <td><%= link_to c.id, case_path(c) %> </td>
                     <td><%= c.case_type %> </td>
@@ -86,7 +94,7 @@
               </thead>
 
               <tbody>
-                <% @cases.where(status: "Closed").each do |c| %>
+                <% @cases.where(status: "Closed").order('id DESC').each do |c| %>
                   <tr>
                     <td><%= link_to c.id, case_path(c) %> </td>
                     <td><%= c.case_type %> </td>

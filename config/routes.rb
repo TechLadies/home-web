@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'sessions#new'
+  root 'my/accounts#show'
 
   resource :session, only: [:new, :create, :destroy]
 

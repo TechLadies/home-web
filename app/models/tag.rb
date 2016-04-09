@@ -6,7 +6,7 @@ class Tag < ActiveRecord::Base
   has_many :issues
   has_many :case_files, through: :issues
 
-  validates :name, :description, presence: true
+  validates :name, presence: true
 
   scope :roots, -> { where(parent_id: nil) }
 

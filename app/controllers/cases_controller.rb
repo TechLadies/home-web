@@ -24,13 +24,13 @@ class CasesController < ApplicationController
       flash[:success] = "New Case Saved!"
       redirect_to case_path(@case)
     else
+      @people = Person.all
       render :new
     end
   end
 
   def edit
     @people = Person.all
-    @tags = Tag.order('id ASC').all
   end
 
   def update
@@ -38,6 +38,7 @@ class CasesController < ApplicationController
       flash[:success] = "Case Updated!"
       redirect_to case_path(@case)
     else
+      @people = Person.all
       render :edit
     end
   end

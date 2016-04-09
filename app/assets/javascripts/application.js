@@ -20,7 +20,7 @@
 //= require_tree .
 
 apply_select_2 = function() {
-	$('.simple_form.edit_case_file select').select2({
+	$('.simple_form.edit_case_file select, .simple_form.new_case_file select').select2({
 	  ajax: {
 	    url: "/tags",
 	    dataType: 'json',
@@ -34,7 +34,7 @@ ready = function() {
 
 	apply_select_2();
 
-	$('body').on('.simple_form.edit_case_file cocoon:after-insert', function(e, insertedItem) {
+	$('body').on('.simple_form.edit_case_file cocoon:after-insert, .simple_form.new_case_file cocoon:after-insert', function(e, insertedItem) {
 		apply_select_2();
 	});
 
