@@ -6,9 +6,6 @@
     <%- if @case.status == "Pending" %>
       <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-primary' %>
     <%end%>
-    <% if current_user.is_admin? %>
-       <%= link_to 'Reassign Case', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary' %>
-    <% end %>
 
   </div>
 </div>
@@ -36,7 +33,13 @@
               </tr>
               <tr>
                 <td>Assigned To</td>
-                <td id='assigned_user'><%= @case.user.name %></td>
+                <td id='assigned_user'>
+                  <%= @case.user.name %>
+                  &nbsp&nbsp&nbsp
+                  <% if current_user.is_admin? %>
+                    <%= link_to 'Reassign', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary' %>
+                  <% end %>
+                </td>
               </tr>
             </tbody>
           </table>
