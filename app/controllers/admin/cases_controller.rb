@@ -3,7 +3,8 @@ class Admin::CasesController < ApplicationController
   before_action :require_admin_authorization
 
   def index
-    @cases = CaseFile.all
+    @query = CaseSearchQuery.new(query_params)
+    @cases = @query.perform
     respond_to do |format|
       format.html
       format.csv { send_data @cases.to_csv }
@@ -26,6 +27,10 @@ class Admin::CasesController < ApplicationController
   end
 
   private
+
+  def query_params
+    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date) : Hash.new
+  end
 
   def case_params
     params.require(:case_file).permit(:user_id)

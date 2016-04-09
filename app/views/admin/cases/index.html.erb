@@ -3,14 +3,25 @@
     <h1>All Cases</h1>
     <p>
       Download:
-      <%= link_to "CSV", admin_cases_path(format:"csv") %>|
+      <%= link_to "CSV", admin_cases_path(query: params[:query], format:"csv") %>|
       <%= link_to "Excel", admin_cases_path(format: "xls") %>
     </p>
   </div>
 </div>
 
 <div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <%= simple_form_for @query, as: :query, url: admin_cases_path , method: :get do |form| %>
+        <%= form.input :start_date, class: 'form-control', type: 'text' %>
+        <%= form.input :end_date, class: 'form-control', type: 'text' %>
+        <%= form.submit 'Search', class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
+<div class='container'>
   <div class='panel panel-default'>
     <div class='panel-body'>
       <table class='table table-responsive table-striped'>
@@ -21,16 +32,18 @@
             <th>Case Type</th>
             <th>Status</th>
             <th>Issues</th>
+            <th>Reported at</th>
           </tr>
         </thead>
 
         <tbody>
-          <%- @cases.each do |casefile| %>
+          <%- @cases.each do |case_file| %>
             <tr>
-              <td><%= casefile.user.name %> </td>
-              <td><%= casefile.case_type%></td>
-              <td><%= casefile.status %></td>
-              <td><%= casefile.issues.collect { |i| i.tag.name }.to_sentence %></td>
+              <td><%= case_file.user.name %> </td>
+              <td><%= case_file.case_type%></td>
+              <td><%= case_file.status %></td>
+              <td><%= case_file.issues.collect { |i| i.tag.name }.to_sentence %></td>
+              <td><%= case_file.reported_at.to_date.to_s(:long) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -39,3 +52,11 @@
     </div>
   </div>
 </div>
+
+<script>
+
+  $(document).ready(function() {
+    $('#query_start_date').datepicker({ dateFormat: 'dd/mm/yy' });
+    $('#query_end_date').datepicker({ dateFormat: 'dd/mm/yy' });
+  });
+</script>
