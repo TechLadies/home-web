@@ -17,6 +17,7 @@ class CaseSearchQuery
 
   def perform
     if valid?
+
       CaseFile.where(reported_at: start_date..end_date)
     else
       CaseFile.none
@@ -26,13 +27,13 @@ class CaseSearchQuery
   private
 
   def start_date_is_a_date
-    self.start_date = self.start_date.is_a?(Date) ? self.start_date : Date.parse(self.start_date)
+    self.start_date = self.start_date.is_a?(Date) ? self.start_date : Date.strptime(self.start_date,"%d/%m/%Y")
   rescue ArgumentError
     errors.add(:start_date, 'is not a date')
   end
 
   def end_date_is_a_date
-    self.end_date = self.end_date.is_a?(Date) ? self.end_date : Date.parse(self.end_date)
+    self.end_date = self.end_date.is_a?(Date) ? self.end_date : Date.strptime(self.end_date,"%d/%m/%Y")
   rescue ArgumentError
     errors.add(:end_date, 'is not a date')
   end
