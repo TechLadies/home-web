@@ -32,13 +32,11 @@
                 </tbody>
               </table>
             </div>
-
-            <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "append", class: 'btn btn-default' %>
-
+            <%= link_to_add_association 'Add Issue', f, :issues, :"data-association-insertion-node" => "tbody", :"data-association-insertion-method" => "after", class: 'btn btn-default' %>
+            <%= f.submit 'Save', class: 'btn btn-primary' %>
           </div>
         </div>
-      
-        <%= f.submit 'Save', class: 'btn btn-primary' %>
+
       <% end %>
     </div>
   </div>

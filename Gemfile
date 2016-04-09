@@ -40,8 +40,6 @@ gem 'aasm'
 gem 'select2-rails'
 gem 'cocoon'
 
-gem 'select2-rails'
-
 gem 'paper_trail'
 
 # Use ActiveModel has_secure_password

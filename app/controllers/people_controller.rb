@@ -4,11 +4,9 @@ class PeopleController < ApplicationController
 
   def index
     @people = Person.all.order(created_at: :desc)
-
     respond_to do |format|
       format.html
       format.json { render json: @people }
-
      end
   end
 
@@ -41,12 +39,12 @@ class PeopleController < ApplicationController
 
   private
 
-    def person_params
-      params.require(:person).permit(:name, :date_of_birth, :phone, :email, :address, :gender)
-    end
+  def person_params
+    params.require(:person).permit(:name, :date_of_birth, :phone, :email, :address, :gender)
+  end
 
-    def prepare_person
-      @person = Person.find(params[:id])
-    end
+  def prepare_person
+    @person = Person.find(params[:id])
+  end
 
 end

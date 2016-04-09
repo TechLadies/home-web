@@ -56,4 +56,5 @@ $(function() {
   function formatRepoSelection (repo) {
     return repo.text;
   };
+
 });

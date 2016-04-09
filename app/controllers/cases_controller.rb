@@ -69,16 +69,13 @@ class CasesController < ApplicationController
   end
 
   private
-  #  def case_params
-  #   params.require(:case_file).permit(:case_type, :person_id, issues_attributes: [:id, :description, :_destroy])
-  #  end
 
-    def prepare_casefile
-      @case = CaseFile.find(params[:id])
-    end
+  def prepare_casefile
+    @case = CaseFile.find(params[:id])
+  end
 
-    def case_params
-       params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id])
-    end
+  def case_params
+    params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id])
+  end
 
 end
