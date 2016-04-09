@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery_ujs
+//= require jquery-ui
 //= require cocoon
 //= require select2
 //= require_tree .
