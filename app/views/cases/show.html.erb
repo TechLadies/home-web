@@ -49,21 +49,23 @@
           <h3>Related Issues</h3>
         </div>
 
-        <div class="table-responsive">
-          <table class="table table-default">
-            <thead>
-              <th>Description</th>
-              <th>Tagged To</th>
-            </thead>
-            <tbody>
-                <%- @issues.order('id ASC').each do |i| %>
-                <tr>
-                  <td class='col-md-7'><%= i.description %></td>
-                  <td class='col-md-5'><%= i.tag.name %></td>
-                </tr>
-                <%- end %>
-              </tbody>
-          </table>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-default">
+              <thead>
+                <th>Description</th>
+                <th>Tagged To</th>
+              </thead>
+              <tbody>
+                  <%- @issues.order('id ASC').each do |i| %>
+                  <tr>
+                    <td class='col-md-3'><%= i.description %></td>
+                    <td class='col-md-3'><%= i.tag.name %></td>
+                  </tr>
+                  <%- end %>
+                </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -83,18 +85,39 @@
       </div>
       <!-- END RELATED PEOPLE -->      
       <!-- BEGIN FOLLOW UP -->
+
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3>Follow Up</h3>
-          <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-primary' %>
+          <div class="row">
+            <div class="col-md-3">
+              <h3>Follow Ups</h3>
+            </div>            
+            <div class="col-md-2">
+              <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-primary' %>
+            </div>            
+          </div>
         </div>
-          <ul class="list-group">
-          <% @case.follow_ups.each do |i| %>
-            <li class="list-group-item">
-              <p><%= i.description %></p>
-            </li>
-          <% end %>
-        </ul>
+
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-default">
+              <thead>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Created By</th>
+              </thead>
+              <tbody>
+                  <%- @case.follow_ups.each do |fu| %>
+                  <tr>
+                    <td class='col-md-2'><%= fu.created_at.to_date.to_formatted_s(:rfc822)%></td>
+                    <td class='col-md-7'><%= fu.description %></td>
+                    <td class='col-md-3'><%= fu.user.name %></td>
+                  </tr>
+                  <%- end %>
+                </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <!-- END FOLLOW UP -->
     
