@@ -34,10 +34,9 @@ class CasesController < ApplicationController
   end
 
   def update
-    puts(case_params)
     if @case.update_attributes(case_params)
       flash[:success] = "Case Updated!"
-      redirect_to case_path(@case)        
+      redirect_to case_path(@case)
     else
       render :edit
     end
@@ -47,25 +46,6 @@ class CasesController < ApplicationController
     @case.update(status: "Closed")
     flash[:notice] = "Case Closed!"
     redirect_to case_path(@case)
-  end
-
-
-  def people
-    @case = CaseFile.find(params[:id])
-    puts params
-    puts "*****8"
-    @people = Person.all
-    render :update_people
-  end
-
-
-  def update_people
-    @case = CaseFile.find(params[:id])
-    if @case.update_attributes(case_params)
-      redirect_to case_path(@case)
-    else
-      render :update_people 
-    end
   end
 
   private

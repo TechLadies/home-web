@@ -1,0 +1,11 @@
+$('#modal .modal-title').html('Add People to Case');
+$('#modal .modal-body').html("<%= j render(partial: 'new')%>");
+$('#modal').modal('show');
+
+$('.select-people').select2({
+  ajax: {
+    url: "/people",
+    dataType: 'json',
+    delay: 250
+  }
+});

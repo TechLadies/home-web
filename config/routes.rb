@@ -6,11 +6,9 @@ Rails.application.routes.draw do
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
-    get :people, on: :member
-    patch :update_people, on: :member
     put :close, on: :member
     
-    # resources :involvements, only: [:new, :create]
+    resources :involvements, only: [:new, :create, :destroy]
     resources :follow_ups, only: [:new, :create]
     resources :documents, only: [:new, :create]
     resources :links, only: [:create, :destroy]
