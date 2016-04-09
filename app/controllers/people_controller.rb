@@ -9,10 +9,8 @@ class PeopleController < ApplicationController
       format.html
       format.json { render json: @people }
 
-    end
-
-	end
-
+     end
+  end
 
   def show
   end

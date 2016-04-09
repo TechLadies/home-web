@@ -11,22 +11,21 @@ class CasesController < ApplicationController
   end
 
   def new
-  	@case = current_user.case_files.build
+    @case = current_user.case_files.build
     @case.issues.build
     @case.people.build
-
     @people = Person.all
     @tags = Tag.order('id ASC').all
   end
 
   def create
     @case = current_user.case_files.build(case_params)
-  	if @case.save
+    if @case.save
       flash[:success] = "New Case Saved!"
-  	  redirect_to case_path(@case)
-  	else
-  	  render :new
-  	end
+      redirect_to case_path(@case)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -38,7 +37,7 @@ class CasesController < ApplicationController
     puts(case_params)
     if @case.update_attributes(case_params)
       flash[:success] = "Case Updated!"
-      redirect_to case_path(@case)      	
+      redirect_to case_path(@case)        
     else
       render :edit
     end
@@ -50,6 +49,16 @@ class CasesController < ApplicationController
     redirect_to case_path(@case)
   end
 
+
+  def people
+    @case = CaseFile.find(params[:id])
+    puts params
+    puts "*****8"
+    @people = Person.all
+    render :update_people
+  end
+
+
   def update_people
     @case = CaseFile.find(params[:id])
     if @case.update_attributes(case_params)
@@ -59,19 +68,17 @@ class CasesController < ApplicationController
     end
   end
 
-
   private
+  #  def case_params
+  #   params.require(:case_file).permit(:case_type, :person_id, issues_attributes: [:id, :description, :_destroy])
+  #  end
 
-  def case_params
-    params.require(:case_file).permit(:case_type, :person_id, issues_attributes: [:id, :description, :_destroy])
-  end
+    def prepare_casefile
+      @case = CaseFile.find(params[:id])
+    end
 
-  def prepare_casefile
-    @case = CaseFile.find(params[:id])
-  end
-
-  def case_params
-    params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id])
-  end
+    def case_params
+       params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id])
+    end
 
 end

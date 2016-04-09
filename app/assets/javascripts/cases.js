@@ -1,8 +1,6 @@
 $(function() {
-
   $('.select-people').select2({
-    theme: 'bootstrap',
-
+    theme: "bootstrap",
     ajax: {
       url: "/people",
       dataType: 'json',

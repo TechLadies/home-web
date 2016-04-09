@@ -19,7 +19,6 @@
 //= require select2
 //= require_tree .
 
-
 apply_select_2 = function() {
 	$('.simple_form.edit_case_file select').select2({
 	  ajax: {

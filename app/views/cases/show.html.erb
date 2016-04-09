@@ -9,7 +9,7 @@
     <% if current_user.is_admin? %>
        <%= link_to 'Reassign Case', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary' %>
     <% end %>
-
+    
   </div>
 </div>
 
@@ -80,6 +80,7 @@
             </li>
           <% end %>
         </ul>
+        <%= link_to 'Add Person', people_case_path(@case), class: 'btn btn-primary' %>
       </div>
       <!-- END RELATED PEOPLE -->      
       <!-- BEGIN FOLLOW UP -->
@@ -129,3 +130,4 @@
 
   </div>
 </div>
+

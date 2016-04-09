@@ -11,6 +11,7 @@ class CaseFile < ActiveRecord::Base
   has_many :people, through: :involvements
   has_paper_trail
 
+  accepts_nested_attributes_for :involvements
   accepts_nested_attributes_for :issues, reject_if: proc { |a| a['description'].blank? }, allow_destroy: true
 
   validates :user, :case_type, :status, presence: true
