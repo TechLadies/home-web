@@ -1,0 +1,48 @@
+.simple_form {
+
+  fieldset {
+    padding: 30px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  legend {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 15px 0;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .control-label {
+
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    color: #aaa;
+
+    abbr { display: none; }
+
+  }
+
+  .form-control.string, .form-control.password {
+
+    border-radius: 0;
+    border: 0;
+    border-bottom: 2px solid #e8b53c;
+    box-shadow: inset 0px 0px 0px 0px red;
+    background-color: transparent;
+
+    padding: 0;
+    height: 40px;
+    font-size: 16px;
+    line-height: 16px;
+
+  }
+
+  .has-error .form-control.string {
+    border-bottom: 2px solid #a94442;
+  }
+
+}

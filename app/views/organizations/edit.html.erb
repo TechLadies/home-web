@@ -6,23 +6,21 @@
 
 <div class='container'>
   <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h2>Details</h2>
-    </div>
-    <div class='panel-body'>
-      <div class='row'>
-        <div class='col-xs-12'>
+    <%= simple_form_for @organization do |f| %>
 
-          <%= simple_form_for (@organization), method: :patch do |f| %>
-            <%= f.input :name %>
-            <%= f.input :phone %>
-            <%= f.input :address %>
-            <%= f.label :industry %>
-            <%= f.select :industry, [['construction'],['domestic']]%>
-            <%= f.submit 'Submit', class: 'btn btn-primary' %>
-          <%- end %>
-        </div>
+      <div class='panel-heading'>
+        <h2>Details</h2>
       </div>
-    </div>
+
+      <div class='panel-body'>
+        <%= render partial: 'form', object: f %>
+      </div>
+
+      <div class='panel-footer'>
+        <%= link_to 'Cancel', organization_path(@organization), class: 'btn btn-default' %>
+        <%= f.submit 'Save Changes', class: 'btn btn-primary pull-right' %>
+      </div>
+
+    <%- end %>
   </div>
 </div>

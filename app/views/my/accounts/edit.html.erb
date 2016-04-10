@@ -6,15 +6,38 @@
 
 <div class='container'>
 
-  <%= simple_form_for @account, url: my_account_path do |f| %>
-    <%= f.input :name %>
-    <%= f.input :email %>
-    <%= f.input :contact_number %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
+  <div class='row'>
+    <div class='col-md-6 col-md-offset-3'>
 
-    <%= f.submit 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', my_account_path, class: 'btn btn-default' %>
-  <% end %>
+      <div class="panel panel-default">
+        <%= simple_form_for @account, url: my_account_path do |f| %>
+
+          <div class="panel-body">
+
+              <%= f.input :name %>
+              <div class='row'>
+                <%= f.input :email, wrapper_html: { class: 'col-md-6' } %>
+                <%= f.input :contact_number, wrapper_html: { class: 'col-md-6' } %>
+              </div>
+
+              <div class='row'>
+                <%= f.input :password, wrapper_html: { class: 'col-md-6' } %>
+                <%= f.input :password_confirmation, wrapper_html: { class: 'col-md-6' } %>
+              </div>
+
+          </div>
+
+          <div class="panel-footer">
+            <div class='buttons'>
+              <%= link_to 'Cancel', my_account_path, class: 'btn btn-default' %>
+              <%= f.submit 'Save Changes', class: 'btn btn-primary pull-right' %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
 
 </div>

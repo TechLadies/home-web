@@ -1,10 +1,10 @@
 <div class='page-header'>
   <div class="container">
     <h1>Case Number <%= @case.id%></h1>
-    <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-primary' %>
+    <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' %>
 
     <%- if @case.status == "Pending" %>
-      <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-primary' %>
+      <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger' %>
     <%end%>
 
   </div>
@@ -18,7 +18,7 @@
       <!-- BEGIN CASE INFORMATION -->
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3>Case Information</h3>
+          <h2>Case Information</h2>
         </div>
         <div class="table-responsive">
           <table class="table table-default">
@@ -48,35 +48,27 @@
       <!-- END CASE INFORMATION -->
       <!-- BEGIN ISSUES -->
       <div class="panel panel-default">
+
         <div class="panel-heading">
-          <h3>Related Issues</h3>
+          <h2>Related Issues</h2>
         </div>
 
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table class="table table-default">
-              <thead>
-                <th>Description</th>
-                <th>Tagged To</th>
-              </thead>
-              <tbody>
-                  <%- @issues.order('id ASC').each do |i| %>
-                  <tr>
-                    <td class='col-md-3'><%= i.description %></td>
-                    <td class='col-md-3'><%= i.tag.name %></td>
-                  </tr>
-                  <%- end %>
-                </tbody>
-            </table>
-          </div>
-        </div>
+        <ul class='list-group'>
+          <%- @issues.order('id ASC').each do |i| %>
+            <li class='list-group-item'>
+              <strong><%= i.tag.name %></strong>
+              <p><%= i.description %></p>
+            </li>
+          <%- end %>
+        </ul>
+
       </div>
 
       <!-- END ISSUES -->
       <!-- BEGIN RELATED PEOPLE -->
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3>Related People</h3>
+          <h2>Related People</h2>
         </div>
         <ul class="list-group">
           <% @case.people.each do |p| %>
@@ -94,7 +86,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-md-3">
-              <h3>Follow Ups</h3>
+              <h2>Follow Ups</h2>
             </div>            
             <div class="col-md-2">
               <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-primary' %>
@@ -132,7 +124,7 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3>Files</h3>
+          <h2>FILES</h2>
         </div>
 
         <ul id='links' class="list-group">

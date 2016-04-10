@@ -19,26 +19,29 @@
           <li><%= link_to 'Cases', cases_path %></li>
           <li><%= link_to 'People', people_path %></li>
           <li><%= link_to 'Organizations', organizations_path %></li>
+          <% if true %>
+            <li><%= link_to 'Reports', root_path %></li>
+          <% end %>
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
           <!-- Admin functions (end) -->
           <li class="dropdown" style="margin: 8px">
-            <div class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               Admin
               <span class="caret"></span>
             </div>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to 'Users', admin_users_path %></li>
-              <li><%= link_to 'Tags', admin_tags_path %></li>
-              <li><%= link_to 'Audits', admin_audit_trails_path %></li>
+              <li><%= link_to 'User Management', admin_users_path %></li>
+              <li><%= link_to 'Issue Tagging', admin_tags_path %></li>
+              <li><%= link_to 'Audit Logs', admin_audit_trails_path %></li>
             </ul>
           </li>
           <!-- Admin functions (end) -->
   
           <!-- current_user options (start) -->
           <li class="dropdown" style="margin: 8px">
-            <div class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <%= current_user.name %>
               <span class="caret"></span>
             </div>

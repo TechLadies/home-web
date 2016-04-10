@@ -8,37 +8,51 @@
   <div class='panel panel-default'>
 
     <div class='panel-heading'>
-      <h2>All Audits</h2>
+      <h2>All Audit Items</h2>
     </div>
 
-    <div class='panel-body'>
-      <table class='table table-responsive table-striped'>
-        <div class='panel-heading'>
-          <thead>
-            <th>Who</th>
-            <th>Event</th>
-            <th>Item</th>
-          </thead>
-        </div>
+    <div class='panel-body table-responsive'>
+      <table class='table table-default'>
+        <thead>
+          <th>When</th>
+          <th>Who</th>
+          <th>Event</th>
+          <th>Type</th>
+          <th>Class</th>
+        </thead>
 
-          <tbody>
-            <% @versions.all.each do |version| %>
+        <tbody>
+          <% @versions.group_by { |v| v.created_at.to_date }.each do |date, versions| %>
+
+            <tr>
+              <th><strong><%= date.to_s(:long) %></strong></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            <tr>
+
+            <% versions.each do |version| %>
               <tr>
+
+                <td><%= version.created_at.to_s(:time) %></td>
                 <td><%= User.find(version.whodunnit.to_i).name %></td>
-                <td><%= version.event %></td>
+                <td><%= version.event.titleize %></td>
+                <td><%= "#{version.item.class} ##{version.item.id}" %></td>
 
                 <% if (version.item.is_a? CaseFile) %>
-                  <td><%= link_to "Case #{version.item.id}",case_path(version.item) %></td>
+                  <td><%= link_to "Case ##{version.item.id}",case_path(version.item) %></td>
                 <% else %>
-                  <td><%= link_to version.item.description, case_path(version.item.case_file) %></td>
+                  <td><%= link_to "Case ##{version.item.id}", case_path(version.item.case_file) %></td>
                 <% end %>
 
               </tr>
             <% end %>
-          </tbody>
+
+          <% end %>
+        </tbody>
       </table>
     </div>
+
   </div>
 </div>
-
-

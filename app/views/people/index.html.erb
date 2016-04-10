@@ -1,46 +1,50 @@
 <div class='page-header'>
   <div class='container'>
-      <h1>People</h1>
-    <div class='pull-left'>
-      <%= link_to 'New Person', new_person_path, class: 'btn btn-default' %>
-    </div>
+    <h1>People</h1>
+    <%= link_to 'New Person', new_person_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
 <div class='container'>
   <div class='panel panel-default'>
+
     <div class='panel-heading'>
       <h2>All People</h2>
     </div>
 
-    <div class='panel-body'>
-  <table class='table table-responsive'>
+    <div class='panel-body table-responsive'>
+      <table class='table table-default'>
 
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Contact number</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Date of birth</th>
-        <th>Gender</th>
-      </tr>
-    </thead>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Date of birth</th>
+            <th>Gender</th>
+            <th>Pending Cases</th>
+            <th>Closed Cases</th>
+          </tr>
+        </thead>
 
-    <tbody>
-      <%- @people.each do |person| %>
-        <tr>
-          <td><%= link_to person.name, person %> </td>
-          <td><%= person.phone %></td>
-          <td><%= person.email %> </td>
-          <td><%= person.address %></td>
-          <td><%= person.date_of_birth %></td>
-          <td><%= person.gender %></td>
-        </tr>
-      <% end %>
-    </tbody>
+        <tbody>
+          <%- @people.each do |person| %>
+            <tr>
+              <td><%= link_to person.name, person %> </td>
+              <td><%= person.phone %></td>
+              <td><%= person.email %> </td>
+              <td><%= person.address %></td>
+              <td><%= person.date_of_birth %></td>
+              <td><%= person.gender.titleize %></td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          <% end %>
+        </tbody>
 
-  </table>
+      </table>
+    </div>
+
   </div>
-  </div>
-
+</div>

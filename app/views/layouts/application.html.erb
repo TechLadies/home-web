@@ -35,7 +35,9 @@
   <body class="<%= "#{controller.controller_path.parameterize.gsub('-', '_')} #{controller.action_name}" %>">
 
     <%= render partial: 'layouts/flash_messages' %>
-    <%= render partial: 'layouts/navigation' %>
+    <div id='header'>
+      <%= render partial: 'layouts/navigation' %>
+    </div>
 
     <%= yield %>
 

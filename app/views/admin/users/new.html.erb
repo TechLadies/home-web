@@ -5,22 +5,22 @@
 </div>
 
 <div class='container'>
-
   <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h3>User Information</h3>
-    </div>
-    <div class='panel-body'>
-      <%= simple_form_for [:admin, @user] do |f| %>
-        <%= f.input :name %>
-        <%= f.input :email %>
-        <%= f.input :contact_number %>
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
+    <%= simple_form_for [:admin, @user] do |f| %>
 
-        <%= f.submit 'Create User', class: 'btn btn-primary' %>
-      <%- end %>
-    </div>
+      <div class='panel-heading'>
+        <h2>User Information</h2>
+      </div>
+
+      <div class='panel-body'>
+        <%= render partial: 'form', object: f %>
+      </div>
+
+      <div class='panel-footer'>
+        <%= link_to 'Cancel', admin_users_path, class: 'btn btn-default' %>
+        <%= f.submit 'Create Record', class: 'btn btn-primary pull-right' %>
+      </div>
+
+    <%- end %>
   </div>
-
 </div>

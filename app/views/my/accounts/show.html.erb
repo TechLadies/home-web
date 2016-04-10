@@ -1,4 +1,5 @@
 <div class='page-header'>
+
   <div class='container'>
     <div class="row">
       <div class="col-md-6">
@@ -6,39 +7,36 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class='container'>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Profile</h3>
-      <%= link_to 'Edit', edit_my_account_path, class: 'btn btn-primary' %>      
-    </div>
-    <div class="panel-body">      
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact number</th>
-            <th>Status</th>
-          </thead>
-          <tbody>
-            <td><%= current_user.name%></td>
-            <td><%= current_user.email%> </td>
-            <td><%= current_user.contact_number%></td>
-            <td><%= current_user.status%></td>
-            </tbody>
-        </table>
-      </div>
+  <div class='page-header-list'>
+    <div class='container'>
+      <ul class="list-inline">
+
+        <li>
+          <span>Status</span>
+          <strong><%= current_user.status %></strong>
+        </li>
+
+        <li>
+          <span>Email</span>
+          <strong><%= current_user.email %></strong>
+        </li>
+
+        <li>
+          <span>Contact Number</span>
+          <strong><%= current_user.contact_number %></strong>
+        </li>
+
+      </ul>
     </div>
   </div>
+
 </div>
 
 <div class='container'>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3>Assigned Cases</h3>
+      <h2>Assigned Cases</h2>
     </div>
 
     <div class='panel-body'>
@@ -46,63 +44,60 @@
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active">
             <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
-              <strong><%= @cases.where(status: "Pending").count %></strong> Pending
+              <span>Pending</span>
+              <span class="badge"><%= @cases.where(status: "Pending").count %></span>
             </a>
           </li>
           <li role="presentation">
             <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
-              <strong><%= @cases.where(status: "Closed").count %></strong> Closed
+              <span>Closed</span>
+              <span class="badge"><%= @cases.where(status: "Closed").count %></span>
             </a>
           </li>
         </ul>
           
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="pending">
+          <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
 
-            <table class='table table-responsive table-striped'>
+            <table class='table table-default'>
               <thead>
                 <tr>
                   <th>Case Number</th>
                   <th>Case Type</th>
-                  <th>Assigned To</th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @cases.where(status: "Pending").order('id DESC').each do |c| %>
                   <tr>
-                    <td><%= link_to c.id, case_path(c) %> </td>
-                    <td><%= c.case_type %> </td>
-                    <td><%= c.user.name %></td>
-                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
+                    <td><%= link_to c.id, case_path(c) %></td>
+                    <td><%= c.case_type %></td>
+                    <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default' %></td>
                   </tr>
                 <% end %>
-              </tbody>            
+              </tbody>
             </table>
 
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="closed">
+          <div role="tabpanel" class="tab-pane table-responsive" id="closed">
 
-            <table class='table table-responsive table-striped'>
+            <table class='table table-default'>
               <thead>
                 <tr>
                   <th>Case Number</th>
                   <th>Case Type</th>
-                  <th>Assigned To</th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @cases.where(status: "Closed").order('id DESC').each do |c| %>
                   <tr>
-                    <td><%= link_to c.id, case_path(c) %> </td>
-                    <td><%= c.case_type %> </td>
-                    <td><%= c.user.name %></td>
-                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
+                    <td><%= link_to c.id, case_path(c) %></td>
+                    <td><%= c.case_type %></td>
                   </tr>
                 <% end %>
-              </tbody>            
+              </tbody>
             </table>
 
           </div>
