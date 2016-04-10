@@ -11,6 +11,7 @@ class PeopleController < ApplicationController
   end
 
   def show
+    @involvements = @person.involvements
   end
 
   def new

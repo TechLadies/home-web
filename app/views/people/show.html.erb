@@ -63,36 +63,86 @@
 </div>
 </div>
 
+<!-- Show Person Case History -->
 <div class='container'>
   <div class='panel panel-default'>
     <div class='panel-heading'>
         <h2>Case History</h2>
     </div>
-    <div class='panel-body'>
-  <div class='row'>
-    <div class='col-xs-12'>
-          <table class='table table-responsive table-striped'>
 
+    <div class='panel-body'>
+    <!-- Tabs for Pending/Closed -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
+            <span>Pending</span>
+            <span class="badge"> X? </span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
+            <span>Closed</span>
+            <span class="badge"> X? </span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+    <!-- Cases Pending (start) -->        
+        <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
+          <table class='table table-responsive table-striped'>
             <thead>
               <tr>
                 <th>Case ID</th>
                 <th>Type</th>
                 <th>Status</th>
+                <th>Involvement</th>
               </tr>
             </thead>
 
             <tbody>
-                <tr>
-                  <td><a href="javascript:void(0)">12345</a></td>
-                  <td>green</td>
-                  <td>dunno</td>
-                </tr>
+              <%- @involvements.each do |i| %>
+                <%- if i.case_file.status == "Pending" %>
+                  <tr>
+                    <td><%= link_to i.case_id, case_path(i.case_file) %></td>
+                    <td><%= i.case_file.case_type %></td>
+                    <td><%= i.case_file.status %></td>
+                    <td><%= i.role %></td>
+                  </tr>
+                <%- end %>
+              <%- end %>
             </tbody>
-      </table>
+          </table>
+        </div>
+    <!-- Cases Pending (end) -->
+    <!-- Cases Closed (start)-->
+        <div role="tabpanel" class="tab-pane table-responsive" id="closed">
+          <table class='table table-responsive table-striped'>
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Involvement</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              <%- @involvements.each do |i| %>
+                <%- if i.case_file.status == "Closed" %>
+                  <tr>
+                    <td><%= link_to i.case_id, case_path(i.case_file) %></td>
+                    <td><%= i.case_file.case_type %></td>
+                    <td><%= i.case_file.status %></td>
+                    <td><%= i.role %></td>
+                  </tr>
+                <%- end %>
+              <%- end %>
+            </tbody>
+          </table>
+        </div>
+    <!-- Cases Closed (end)-->
       </div>
-   </div>
+    </div>
+  </div>
 </div>
-
-
-
