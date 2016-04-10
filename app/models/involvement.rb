@@ -5,7 +5,7 @@ class Involvement < ActiveRecord::Base
 
   enum role: [:client, :employer, :others]
 
-  accepts_nested_attributes_for :person
-  validates :case_file, :person, presence: true
+  validates :case_file, presence: true
+  #to add validations for roles
 
 end
