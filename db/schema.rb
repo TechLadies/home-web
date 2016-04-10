@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408172751) do
+ActiveRecord::Schema.define(version: 20160410131655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,12 +42,15 @@ ActiveRecord::Schema.define(version: 20160408172751) do
   end
 
   create_table "involvements", force: :cascade do |t|
-    t.integer  "person_id"
     t.integer  "case_id"
     t.integer  "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "involvable_id"
+    t.string   "involvable_type"
   end
+
+  add_index "involvements", ["involvable_type", "involvable_id"], name: "index_involvements_on_involvable_type_and_involvable_id", using: :btree
 
   create_table "issues", force: :cascade do |t|
     t.integer  "case_id"

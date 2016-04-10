@@ -1,7 +1,7 @@
 class Involvement < ActiveRecord::Base
 
   belongs_to :case_file
-  belongs_to :person
+  belongs_to :involvable, polymorphic: true
 
   enum role: [:client, :employer, :others]
 
