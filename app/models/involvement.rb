@@ -1,6 +1,6 @@
 class Involvement < ActiveRecord::Base
 
-  belongs_to :case_file
+  belongs_to :case_file, foreign_key: :case_id, inverse_of: :involvements
   belongs_to :involvable, polymorphic: true
 
   enum role: [:client, :employer, :others]
