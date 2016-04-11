@@ -44,10 +44,14 @@
                 <tr>
                   <td><%= link_to c.id, case_path(c) %> </td>
                   <td><%= c.case_type %> </td>
-                  <td><%= Person.find_by(id: Involvement.find_by(role: 0, case_id: c.id).try(:involvable_id)).try(:name) %></td>
                   <td>
-                    <%= Person.find_by(id: Involvement.find_by(role: 1, case_id: c.id).try(:involvable_id)).try(:name) %>
-                    <%= Organization.find_by(id: Involvement.find_by(role: 1, case_id: c.id).try(:involvable_id)).try(:name) %>                                      
+                    <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
+                  <td>
+                    <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
+                      <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
+                    <%- elsif c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
+                      <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
+                    <%- end %>
                   </td>
                   <td><%= c.user.name %></td>
                   <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default btn-sm' %></td>
@@ -76,10 +80,14 @@
                 <tr>
                   <td><%= link_to c.id, case_path(c) %> </td>
                   <td><%= c.case_type %> </td>
-                  <td><%= Person.find_by(id: Involvement.find_by(role: 0, case_id: c.id).try(:involvable_id)).try(:name) %></td>
                   <td>
-                    <%= Person.find_by(id: Involvement.find_by(role: 1, case_id: c.id).try(:involvable_id)).try(:name) %>
-                    <%= Organization.find_by(id: Involvement.find_by(role: 1, case_id: c.id).try(:involvable_id)).try(:name) %>                  
+                    <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
+                  <td>
+                    <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
+                      <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
+                    <%- elsif c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
+                      <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
+                    <%- end %>
                   </td>
                   <td><%= c.user.name %></td>
                   <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default btn-sm' %></td>
