@@ -24,7 +24,7 @@
           <tbody>
             <% @versions.all.each do |version| %>
               <tr>
-                <td><%= User.find(version.whodunnit.to_i).name %></td>
+                <td><%= version.whodunnit.to_i>0? User.find(version.whodunnit.to_i).name : 'unavailable' %></td>
                 <td><%= version.event %></td>
 
                 <% if (version.item.is_a? CaseFile) %>
