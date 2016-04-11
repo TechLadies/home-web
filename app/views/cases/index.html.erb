@@ -1,9 +1,18 @@
 <div class='page-header'>
   <div class='container'>
     <h1>Cases</h1>
-    <%= link_to 'New Case', new_case_path, class: 'btn btn-primary' %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= link_to 'New Case', new_case_path, class: 'btn btn-primary' %>
+      </div>
+      <div class="col-md-6">
+        <div class="pull-right">
+          <%= link_to 'Archive', archive_cases_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
-</div>
 
 <div class='container'>
 
@@ -16,14 +25,6 @@
     <div class='panel-body'>
 
       <div>
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a></li>
-          <li role="presentation"><a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">Closed</a></li>
-        </ul>
-          
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="pending">
-
             <table class='table table-responsive table-striped'>
               <thead>
                 <tr>
@@ -42,38 +43,13 @@
                     <td><%= link_to 'Edit', edit_case_path(c) %></td>
                   </tr>
                 <% end %>
-              </tbody>            
+              </tbody>
             </table>
-
           </div>
-
-          <div role="tabpanel" class="tab-pane" id="closed">
-
-            <table class='table table-responsive table-striped'>
-              <thead>
-                <tr>
-                  <th>Case Number</th>
-                  <th>Case Type</th>
-                  <th>Assigned To</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <% @cases.where(status: "Closed").each do |c| %>
-                  <tr>
-                    <td><%= link_to c.id, case_path(c) %> </td>
-                    <td><%= c.case_type %> </td>
-                    <td><%= c.user.name %></td>
-                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
-                  </tr>
-                <% end %>
-              </tbody>            
-            </table>
-
           </div>
         </div>
       </div>
-    </div>    
-  </div>  
+    </div>
+  </div>
 
 
