@@ -1,0 +1,40 @@
+<div class='page-header'>
+  <div class='container'>
+    <h1>Closed Cases</h1>
+      <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+          <div class="pull-right">
+            <%= link_to 'Pending', cases_path, class: 'btn btn-default' %>
+          </div>
+        </div>
+        </div>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h2>All Closed Cases</h2>
+    </div>
+    <div class='panel-body'>
+<table class='table table-responsive table-striped'>
+  <thead>
+    <tr>
+      <th>Case Number</th>
+      <th>Case Type</th>
+      <th>Assigned To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cases.where(status: "Closed").each do |c| %>
+      <tr>
+        <td><%= link_to c.id, case_path(c) %> </td>
+        <td><%= c.case_type %> </td>
+        <td><%= c.user.name %></td>
+        <td><%= link_to 'Edit', edit_case_path(c) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
