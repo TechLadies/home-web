@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
+    get :archive, on: :collection
+
     put :close, on: :member
-    
+
     resources :involvements, only: [:new, :create, :destroy]
     resources :follow_ups, only: [:new, :create]
     resources :documents, only: [:new, :create]
@@ -25,10 +27,10 @@ Rails.application.routes.draw do
 
   namespace :my do
     resource :account, only: [:show, :edit, :update]
-    
+
     resources :cases, only: [:show] do
     get :search_people, on: :member
-    patch :update_people, on: :member  
+    patch :update_people, on: :member
 
     end
   end
