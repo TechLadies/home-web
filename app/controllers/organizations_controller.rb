@@ -8,6 +8,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @involvements = @organization.involvements
+    @cases = @organization.case_files
   end
 
   def new

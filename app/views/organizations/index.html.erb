@@ -32,9 +32,9 @@
               <td><%= link_to organization.name, organization %></td>
               <td><%= organization.phone %></td>
               <td><%= organization.address %></td>
-              <td><%= organization.industry %></td>
-              <td>0</td>
-              <td>0</td>
+              <td><%= organization.industry.titleize %></td>
+              <td><%= organization.case_files.where(status: "Pending").count %></td>
+              <td><%= organization.case_files.where(status: "Closed").count %></td>
             </tr>
           <%- end %>
         </tbody>

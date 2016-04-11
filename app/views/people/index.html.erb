@@ -37,8 +37,8 @@
               <td><%= person.address %></td>
               <td><%= person.date_of_birth %></td>
               <td><%= person.gender.titleize %></td>
-              <td>0</td>
-              <td>0</td>
+              <td><%= person.case_files.where(status: "Pending").count %></td>
+              <td><%= person.case_files.where(status: "Closed").count %></td>
             </tr>
           <% end %>
         </tbody>

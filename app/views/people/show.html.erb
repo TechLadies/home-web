@@ -1,4 +1,3 @@
-
 <div class='page-header'>
   <div class='container'>
     <h1><%= @person.name %></h1>
@@ -76,13 +75,13 @@
         <li role="presentation" class="active">
           <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
             <span>Pending</span>
-            <span class="badge"> X? </span>
+            <span class="badge"><%= @cases.where(status: "Pending").count %></span>
           </a>
         </li>
         <li role="presentation">
           <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
             <span>Closed</span>
-            <span class="badge"> X? </span>
+            <span class="badge"><%= @cases.where(status: "Closed").count %></span>
           </a>
         </li>
       </ul>
@@ -107,7 +106,7 @@
                     <td><%= link_to i.case_id, case_path(i.case_file) %></td>
                     <td><%= i.case_file.case_type %></td>
                     <td><%= i.case_file.status %></td>
-                    <td><%= i.role %></td>
+                    <td><%= i.role.titleize %></td>
                   </tr>
                 <%- end %>
               <%- end %>
@@ -134,7 +133,7 @@
                     <td><%= link_to i.case_id, case_path(i.case_file) %></td>
                     <td><%= i.case_file.case_type %></td>
                     <td><%= i.case_file.status %></td>
-                    <td><%= i.role %></td>
+                    <td><%= i.role.titleize %></td>
                   </tr>
                 <%- end %>
               <%- end %>

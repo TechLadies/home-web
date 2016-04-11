@@ -12,6 +12,7 @@ class PeopleController < ApplicationController
 
   def show
     @involvements = @person.involvements
+    @cases = @person.case_files
   end
 
   def new

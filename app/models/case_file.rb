@@ -7,8 +7,8 @@ class CaseFile < ActiveRecord::Base
   has_many :documents, foreign_key: :case_id, inverse_of: :case_file
   has_many :links
   has_many :involvements, foreign_key: :case_id, inverse_of: :case_file
-  has_many :people, through: :involvements
-  has_many :organizations, through: :involvements
+  has_many :people, through: :involvements, source: :involvable, source_type: "Person"
+  has_many :organizations, through: :involvements, source: :involvable, source_type: "Organization"
   has_paper_trail
 
   accepts_nested_attributes_for :involvements
