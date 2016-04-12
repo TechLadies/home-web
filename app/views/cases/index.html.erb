@@ -49,7 +49,7 @@
                   <td>
                     <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
                       <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
-                    <%- elsif c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
+                    <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
                       <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
                     <%- end %>
                   </td>
@@ -85,7 +85,7 @@
                   <td>
                     <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
                       <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
-                    <%- elsif c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
+                    <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
                       <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
                     <%- end %>
                   </td>

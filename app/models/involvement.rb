@@ -6,8 +6,11 @@ class Involvement < ActiveRecord::Base
   enum role: [:client, :employer, :others]
 
   validates :case_id, presence: true
-  validates_uniqueness_of	:role, scope: :case_id, conditions: -> { where.(role: 0) }
-  validates_uniqueness_of	:role, scope: :case_id, conditions: -> { where.(role: 1) }
+
+# to add if case_id, exists already?
+
+#  validates_uniqueness_of	:involvable_id, scope: :case_id, conditions: -> { where.(role: 0) }
+#  validates_uniqueness_of	:involvable_id, scope: :case_id, conditions: -> { where.(role: 1) }
 
 #  to add validations for roles
 #  -- BAD ATTEMPT --
