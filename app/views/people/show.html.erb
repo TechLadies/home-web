@@ -1,45 +1,45 @@
-
 <div class='page-header'>
+
   <div class='container'>
     <h1><%= @person.name %></h1>
       <div>
       <%= link_to 'edit', edit_person_path, class: 'btn btn-default' %>
     </div>
   </div>
-</div>
 
+  <div class='page-header-list'>
+    <div class='container'>
+      <ul class="list-inline">
 
-<div class='container'>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h2>Details</h2>
+        <li>
+          <span>Phone</span>
+          <strong>&nbsp;<%= @person.phone %></strong>
+        </li>
+
+        <li>
+          <span>Address</span>
+          <strong>&nbsp;<%= @person.address %></strong>
+        </li>
+
+        <li>
+          <span>Email</span>
+          <strong>&nbsp;<%= @person.email %></strong>
+        </li>
+
+        <li>
+          <span>Birthdate</span>
+          <strong>&nbsp;<%= @person.date_of_birth %></strong>
+        </li>
+
+        <li>
+          <span>Gender</span>
+          <strong>&nbsp;<%= @person.gender %></strong>
+        </li>
+
+      </ul>
     </div>
-    <div class='panel-body'>
-  <div class='row'>
-    <div class='col-xs-12'>
-        <div>
+  </div>
 
-            <p>
-                Birthday: <%= @person.date_of_birth %>
-            </p>
-            <p>
-                Phone: <%= @person.phone %>
-            </p>
-            <p>
-                Email: <%= @person.email %>
-            </p>
-            <p>
-                Address: <%= @person.address %>
-            </p>
-            <p>
-                Gender: <%= @person.gender %>
-            </p>
-
-        </div>
-      </div>
-   </div>
-</div>
-</div>
 </div>
 
 <div class="container">
@@ -48,51 +48,101 @@
       <h2>Related Organization</h2>
     </div>
     <div class='panel-body'>
-  <div class="row">
-    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12">
 
-        <ul>
-          <li>Tinkerbox</li>
-          <li>Mc Donalds</li>
-          <li>KFC</li>
-        </ul>
+            <ul>
+              <li>Tinkerbox</li>
+              <li>Mc Donalds</li>
+              <li>KFC</li>
+            </ul>
 
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
-</div>
 
+<!-- Show Person Case History -->
 <div class='container'>
   <div class='panel panel-default'>
     <div class='panel-heading'>
         <h2>Case History</h2>
     </div>
-    <div class='panel-body'>
-  <div class='row'>
-    <div class='col-xs-12'>
-          <table class='table table-responsive table-striped'>
 
+    <div class='panel-body'>
+    <!-- Tabs for Pending/Closed -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
+            <span>Pending</span>
+            <span class="badge"><%= @cases.where(status: "Pending").count %></span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
+            <span>Closed</span>
+            <span class="badge"><%= @cases.where(status: "Closed").count %></span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+    <!-- Cases Pending (start) -->        
+        <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
+          <table class='table table-responsive table-striped'>
             <thead>
               <tr>
                 <th>Case ID</th>
                 <th>Type</th>
                 <th>Status</th>
+                <th>Involvement</th>
               </tr>
             </thead>
 
             <tbody>
-                <tr>
-                  <td><a href="javascript:void(0)">12345</a></td>
-                  <td>green</td>
-                  <td>dunno</td>
-                </tr>
+              <%- @involvements.each do |i| %>
+                <%- if i.case_file.status == "Pending" %>
+                  <tr>
+                    <td><%= link_to i.case_id, case_path(i.case_file) %></td>
+                    <td><%= i.case_file.case_type %></td>
+                    <td><%= i.case_file.status %></td>
+                    <td><%= i.role.titleize %></td>
+                  </tr>
+                <%- end %>
+              <%- end %>
             </tbody>
-      </table>
+          </table>
+        </div>
+    <!-- Cases Pending (end) -->
+    <!-- Cases Closed (start)-->
+        <div role="tabpanel" class="tab-pane table-responsive" id="closed">
+          <table class='table table-responsive table-striped'>
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Involvement</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              <%- @involvements.each do |i| %>
+                <%- if i.case_file.status == "Closed" %>
+                  <tr>
+                    <td><%= link_to i.case_id, case_path(i.case_file) %></td>
+                    <td><%= i.case_file.case_type %></td>
+                    <td><%= i.case_file.status %></td>
+                    <td><%= i.role.titleize %></td>
+                  </tr>
+                <%- end %>
+              <%- end %>
+            </tbody>
+          </table>
+        </div>
+    <!-- Cases Closed (end)-->
       </div>
-   </div>
+    </div>
+  </div>
 </div>
-
-
-

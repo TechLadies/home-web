@@ -1,37 +1,26 @@
-
 <div class='page-header'>
   <div class='container'>
-    <h1>New Person</h1>
+    <h1>New Person Record</h1>
   </div>
 </div>
 
 <div class='container'>
   <div class='panel panel-default'>
+    <%= simple_form_for @person do |f| %>
 
-    <div class='panel-heading'>
-      <h2>Details</h2>
-    </div>
-
-    <div class='panel-body'>
-      <div class='row'>
-        <div class='col-xs-12'>
-
-          <%= simple_form_for (@person) do |f| %>
-
-            <%= f.input :name %>
-            <%= f.input :date_of_birth %>
-            <%= f.input :phone %>
-            <%= f.input :email %>
-            <%= f.input :address %>
-            <%= f.input :gender, collection: [:male, :female] %>
-
-            <%= f.submit 'Submit', class: 'btn btn-primary' %>
-
-          <%- end %>
-
-        </div>
+      <div class='panel-heading'>
+        <h2>Details</h2>
       </div>
-    </div>
 
+      <div class='panel-body'>
+        <%= render partial: 'form', object: f %>
+      </div>
+
+      <div class='panel-footer'>
+        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
+        <%= f.submit 'Create Record', class: 'btn btn-primary pull-right' %>
+      </div>
+
+    <%- end %>
   </div>
 </div>

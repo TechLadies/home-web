@@ -1,41 +1,46 @@
 <div class='page-header'>
   <div class='container'>
     <h1>Organizations</h1>
-    <div class='pull-left'>
-      <%= link_to 'New Organization', new_organization_path, class: 'btn btn-default' %>
-    </div>
+    <%= link_to 'New Organization', new_organization_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
 <div class='container'>
-
   <div class='panel panel-default'>
+
     <div class='panel-heading'>
       <h2>All Organizations</h2>
     </div>
 
     <div class='panel-body'>
-  <table class='table table-default'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Industry</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%- @organizations.each do |organization| %>
-        <tr>
-          <td><%= link_to organization.name, organization %></td>
-          <td><%= organization.phone %></td>
-          <td><%= organization.address %></td>
-          <td><%= organization.industry %></td>
-        </tr>
-      <%- end %>
-    </tbody>
-  </table>
-</div>
-</div>
+      <table class='table table-default'>
 
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Industry</th>
+            <th>Pending Cases</th>
+            <th>Closed Cases</th>
+          </tr>
+        </thead>
 
+        <tbody>
+          <%- @organizations.each do |organization| %>
+            <tr>
+              <td><%= link_to organization.name, organization %></td>
+              <td><%= organization.phone %></td>
+              <td><%= organization.address %></td>
+              <td><%= organization.industry.titleize %></td>
+              <td><%= organization.case_files.where(status: "Pending").count %></td>
+              <td><%= organization.case_files.where(status: "Closed").count %></td>
+            </tr>
+          <%- end %>
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+</div>

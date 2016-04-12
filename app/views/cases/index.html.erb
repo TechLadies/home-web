@@ -15,41 +15,41 @@
   </div>
 
 <div class='container'>
-
   <div class='panel panel-default'>
+    <div class='panel-body table-responsive'>
 
-    <div class='panel-heading'>
-      <h2>All Cases</h2>
-    </div>
+      <table class='table table-default'>
 
-    <div class='panel-body'>
+        <thead>
+          <tr>
+            <th>Case Number</th>
+            <th>Case Type</th>
+            <th>Client</th>
+            <th>Employer</th>
+            <th>Assigned To</th>
+            <th></th>
+          </tr>
+        </thead>
 
-      <div>
-            <table class='table table-responsive table-striped'>
-              <thead>
-                <tr>
-                  <th>Case Number</th>
-                  <th>Case Type</th>
-                  <th>Assigned To</th>
-                </tr>
-              </thead>
+        <tbody>
+          <% @cases.where(status: "Pending").each do |c| %>
+            <tr>
+              <td><%= link_to c.id, case_path(c) %> </td>
+              <td><%= c.case_type %> </td>
+              <td><%= Person.find_by(id: Involvement.find_by(role: 0, case_id: c.id).try(:involvable_id)).try(:name) %></td>
+              <td>
+                <%= Person.find_by(id: Involvement.find_by(role: 1, case_id: c.id).try(:involvable_id)).try(:name) %>
+                <%= Organization.find_by(id: Involvement.find_by(role: 1, case_id: c.id).try(:involvable_id)).try(:name) %>                                      
+              </td>
+              <td><%= c.user.name %></td>
+              <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default btn-sm' %></td>
+            </tr>
+          <% end %>
+        </tbody>
 
-              <tbody>
-                <% @cases.where(status: "Pending").each do |c| %>
-                  <tr>
-                    <td><%= link_to c.id, case_path(c) %> </td>
-                    <td><%= c.case_type %> </td>
-                    <td><%= c.user.name %></td>
-                    <td><%= link_to 'Edit', edit_case_path(c) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          </div>
-        </div>
-      </div>
+      </table>
+
     </div>
   </div>
-
+</div>
 

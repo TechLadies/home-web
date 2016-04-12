@@ -13,9 +13,13 @@
   <div class='panel panel-default'>
     <div class='panel-body'>
       <%= simple_form_for @query, as: :query, url: admin_cases_path , method: :get do |form| %>
-        <%= form.input :start_date, class: 'form-control', type: 'text' %>
-        <%= form.input :end_date, class: 'form-control', type: 'text' %>
-        <%= form.submit 'Search', class: 'btn btn-default' %>
+        <div class='row'>
+          <%= form.input :start_date, wrapper_html: { class: 'col-md-5' }, type: 'text' %>
+          <%= form.input :end_date, wrapper_html: { class: 'col-md-5' }, type: 'text' %>
+          <div class="col-md-2">
+            <%= form.submit 'Search', class: 'btn btn-default' %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -47,6 +51,9 @@
             </tr>
           <% end %>
         </tbody>
+
+        <tfoot>
+        </tfoot>
 
       </table>
     </div>

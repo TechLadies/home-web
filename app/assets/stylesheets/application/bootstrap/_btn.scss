@@ -1,0 +1,18 @@
+.btn {
+
+  &.btn-default {
+
+    text-transform: uppercase;
+
+  }
+
+  &.btn-primary {
+
+    background-color: #e8b53c;
+    border-color: darken(#e8b53c, 2.5);
+
+    text-transform: uppercase;
+
+  }
+
+}

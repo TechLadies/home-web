@@ -1,0 +1,7 @@
+<div class="row">
+  <%= form.input :name, wrapper_html: { class: 'col-md-6' } %>
+  <%= form.input :industry, collection: [:Construction, :Domestic], wrapper_html: { class: 'col-md-6' } %>
+</div>
+
+<%= form.input :phone %>
+<%= form.input :address %>

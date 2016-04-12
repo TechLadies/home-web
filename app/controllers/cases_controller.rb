@@ -3,11 +3,38 @@ class CasesController < ApplicationController
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
-    @cases = CaseFile.where(status:"Pending").order('id DESC').all
+    @cases = CaseFile.pending.order('id DESC').all
+  end
+
+  def archive
+    @cases = CaseFile.closed.order('id DESC').all
   end
 
   def show
     @issues = @case.issues.order('id ASC')
+    @involvements = @case.involvements
+
+    if @involvements.where(role:0).blank?
+      @client = nil
+    else
+      @client = Person.find([ @involvements.where(role: 0).first.involvable_id ]).first
+    end
+
+    if @involvements.where(role:1).blank?
+      @employer = nil
+    else 
+      if @involvements.where(role: 1).first.involvable_type == "Person"
+        @employer = Person.find([ @involvements.where(role: 1).first.involvable_id ]).first 
+      else
+        @employer = Organization.find([ @involvements.where(role: 1).first.involvable_id ]).first
+      end
+    end
+
+    if @involvements.where(role:3).blank?
+      @others = nil
+    else
+      @others = @involvements.where(role: 2)
+    end
   end
 
   def new
@@ -47,10 +74,6 @@ class CasesController < ApplicationController
     @case.update(status: "Closed")
     flash[:notice] = "Case Closed!"
     redirect_to case_path(@case)
-  end
-
-  def archive
-    @cases = CaseFile.order('id DESC').all
   end
 
   private

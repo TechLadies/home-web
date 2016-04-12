@@ -1,2 +1,23 @@
 .panel.panel-default {
+
+  border-radius: 2px;
+
+  .panel-heading {
+
+    background-color: #fafafa;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    h2 {
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+  }
+
+  .panel-footer {
+    padding: 20px;
+  }
+
 }
