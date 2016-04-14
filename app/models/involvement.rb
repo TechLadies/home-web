@@ -5,9 +5,29 @@ class Involvement < ActiveRecord::Base
 
   enum role: [:client, :employer, :others]
 
-  validates :case_id, presence: true
+# to check if case_id exists
+  validates :case_file, presence: true
 
-# to add if case_id, exists already?
+#  validates :case_id, uniqueness: { scope: :role }
+#  validates :case_id, uniqueness: :true, if: :is_employer
+#  validate :client_is_person
+
+#private?
+
+  def is_client
+    role == 0
+  end
+
+  def is_employer
+    role == 1
+  end
+
+#  def client_is_person
+#  	unless (role == 0) && (involvable_type == "Person")
+#			errors.add("Client must be Person") 
+#  	end
+#  end
+ 
 
 #  validates_uniqueness_of	:involvable_id, scope: :case_id, conditions: -> { where.(role: 0) }
 #  validates_uniqueness_of	:involvable_id, scope: :case_id, conditions: -> { where.(role: 1) }

@@ -65,7 +65,7 @@
       </div>
       <!-- END ISSUES -->
 
-      <!-- BEGIN MAIN CLIENT/EMPLOYER -->
+    <!-- BEGIN MAIN CLIENT/EMPLOYER -->
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
@@ -80,83 +80,119 @@
 
         <div class="panel-body">
           <div class="row">
-            <!-- RELATED PEOPLE: CLIENT -->
+          <!-- RELATED PEOPLE: CLIENT -->
             <div class="col-md-6">
               <%- if @client.nil? %>
-                <%= link_to 'Add Client', new_case_involvement_path(@case), class: 'btn btn-primary', remote: true %>
+                <%= link_to 'Add Client', new_case_involvement_path(@case), class: 'btn btn-primary'%>
+<!-- to work on add client -->
               <%- else %>
-                <h3>
-                  <%= link_to @client.name, person_path(@client) %>
-                  <%= link_to 'Remove', case_involvement_path(@case, @client), method: :delete, class: 'btn btn-primary' %>
-<!-- link to remove not working -->
-                </h3>
-                <p> DOB: 
-                  <%= @client.date_of_birth.to_formatted_s(:rfc822) unless @client.date_of_birth == nil %>
-                </p>
-                <p> Gender: <%= @client.gender %></p>
-                <p> Email: <%= @client.email %></p>
-                <p> Contact: <%= @client.phone %></p>
+                <% @client.each do |e| %>
+                  <h3>
+                    <%= link_to Person.find(e.involvable_id).name, person_path(e.involvable_id) %>
+                    <%= link_to 'remove', case_involvement_path(@case, e), method: :delete, class: 'btn btn-primary btn-xs' %>
+                  </h3>
+                  <p> DOB: 
+                    <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
+                  </p>                
+                  <p> Gender: <%= Person.find(e.involvable_id).gender.titleize %></p>
+                  <p> Email:  <%= Person.find(e.involvable_id).email %></p>
+                  <p> Contact: <%= Person.find(e.involvable_id).phone %></p>
+                <% end %>
               <%- end %>
             </div>
-            <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
+          <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
             <div class="col-md-6">
               <%- if @employer.nil? %>
-                <%= link_to 'Add Employer', new_case_involvement_path(@case), class: 'btn btn-primary', remote: true %>
+                <%= link_to 'Add Employer', new_case_involvement_path(@case, role: 0), class: 'btn btn-primary' %>
+<!-- to work on add employer -->
+            <!-- RELATED PEOPLE/ORG: EMPLOYER - if employer is Person) -->
+              <%- elsif @employer.first.involvable_type == "Person" %>
+                <% @employer.each do |e| %>
+                  <h3>
+                    <%= link_to Person.find(e.involvable_id).name, person_path(e.involvable_id) %>
+                    <%= link_to 'remove', case_involvement_path(@case, e), method: :delete, class: 'btn btn-primary btn-xs' %>
+                  </h3>
+                  <p> DOB: 
+                    <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
+                  </p>                
+                  <p> Gender: <%= Person.find(e.involvable_id).gender.titleize %></p>
+                  <p> Email:  <%= Person.find(e.involvable_id).email %></p>
+                  <p> Phone: <%= Person.find(e.involvable_id).phone %></p>
+                  <p> Address:  <%= Person.find(e.involvable_id).address %></p>
+                <% end %>
+            <!-- RELATED PEOPLE/ORG: EMPLOYER - if employer is Organization) -->
               <%- else %>
-                <h3>
-                  <%= link_to @employer.name, organization_path(@employer) %>
-                  <%= link_to 'Remove', case_involvement_path(@case, @employer), method: :delete, class: 'btn btn-primary' %>
-<!-- link to remove not working -->
-                </h3>
-                <p> Contact: <%= @employer.phone %></p>
-                <p> Address: <%= @employer.address %></p>
-                <p> Industry: <%= @employer.industry %> </p>
+                <% @employer.each do |e| %>
+                  <h3>
+                    <%= link_to Organization.find(e.involvable_id).name, organization_path(e.involvable_id) %>
+                    <%= link_to 'remove', case_involvement_path(@case, e), method: :delete, class: 'btn btn-primary btn-xs' %>
+                  </h3>
+                  <p> Phone: <%= Organization.find(e.involvable_id).phone %></p>
+                  <p> Address:  <%= Organization.find(e.involvable_id).address %></p>
+                  <p> Industry:  <%= Organization.find(e.involvable_id).industry %></p>
+                <% end %>
               <%- end %>
             </div>
           </div>
         </div>
       </div>
-      <!-- END RELATED CLIENT/EMPLOYER -->
+    <!-- END RELATED CLIENT/EMPLOYER -->
 
-      <!-- BEGIN RELATED PEOPLE/ORG -->
+    <!-- BEGIN RELATED PEOPLE/ORG -->
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
             <div class="col-md-6">
-              <h2>Related People</h2>
+              <h2>Related People
+                  &nbsp&nbsp&nbsp
+                  <%= link_to 'Add', new_case_involvement_path(@case), class: 'btn btn-primary btn-sm', remote: true %>
+<!-- link to add not working -->
+              </h2>
             </div>
             <div class="col-md-6">
-              <h2>Related Organizations</h2>
+              <h2>Related Organizations
+                  &nbsp&nbsp&nbsp
+                  <%= link_to 'Add', new_case_involvement_path(@case), class: 'btn btn-primary btn-sm', remote: true %>
+              </h2>
+<!-- link to add not working -->
+              </h2>
+
             </div>
           </div>
         </div>
 
         <div class="panel-body">
           <div class="row">
-            <!-- RELATED PEOPLE (only where role: others) -->
+          <!-- RELATED PEOPLE (only where role: others) -->
             <div class="col-md-6">
               <ul>
-                <% @involvements.where(role: 2, involvable_type: "Person").each do |i| %>
-                  <li><%= link_to Person.find(i.involvable_id).name, person_path(i.involvable_id) %></li>
-                <% end %>
+                <%- unless @others.nil? %>
+                  <% @others.where(involvable_type: "Person").each do |i| %>
+                    <li>
+                      <%= link_to Person.find(i.involvable_id).name, person_path(i.involvable_id) %>
+                      <%= link_to '(remove)', case_involvement_path(@case, i), method: :delete %>
+                    </li> 
+                  <% end %>
+                <%- end %>
               </ul>
-              <%= link_to 'Add Person', new_case_involvement_path(@case), class: 'btn btn-primary', remote: true %>
-<!-- link to add not working -->
             </div>
-            <!-- RELATED ORG (only where role: others) -->
+          <!-- RELATED ORG (only where role: others) -->
             <div class="col-md-6">
               <ul>
-                <% @involvements.where(role: 2, involvable_type: "Organization").each do |i| %>
-                  <li><%= link_to Organization.find(i.involvable_id).name, organization_path(i.involvable_id) %></li>
-                <% end %>
+                <%- unless @others.nil? %>
+                  <% @others.where(involvable_type: "Organization").each do |i| %>
+                    <li>
+                      <%= link_to Person.find(i.involvable_id).name, person_path(i.involvable_id) %>
+                      <%= link_to '(remove)', case_involvement_path(@case, i), method: :delete %>
+                    </li> 
+                  <% end %>
+                <%- end %>
               </ul>
-              <%= link_to 'Add Organization', new_case_involvement_path(@case), class: 'btn btn-primary', remote: true %>
-<!-- link to add not working -->
             </div>
           </div>
         </div>
       </div>
-      <!-- END RELATED PEOPLE/ORG -->
+    <!-- END RELATED PEOPLE/ORG -->
 
       <!-- BEGIN FOLLOW UP -->
       <div class="panel panel-default">

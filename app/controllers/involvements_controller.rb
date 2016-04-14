@@ -16,11 +16,10 @@ class InvolvementsController < ApplicationController
   end
 
   def destroy
-    @client = @case_file.involvements.where(role:0).find(params[:id])
-    @client.destroy
+    @involvement = @case_file.involvements.find(params[:id])
+    @involvement.destroy
 
-    @employer = @case_file.involvements.where(role:1).find(params[:id])
-    @employer.destroy
+    redirect_to case_path(@case_file)
   end
 
   private
