@@ -9,7 +9,8 @@ class InvolvementsController < ApplicationController
   def create
     @involvement = @case_file.involvements.build(involvement_params)
     if @involvement.save
-      flash[:notice] = 'Person added to case'
+      flash[:notice] = 'Added to Case'
+      redirect_to case_path(@case_file)
     else
       render :new
     end
@@ -29,7 +30,7 @@ class InvolvementsController < ApplicationController
   end
 
   def involvement_params
-    params.require(:involvement).permit(:person_id)
+    params.require(:involvement).permit(:role, :case_id, :involable_id, :involable_type)
   end
 
 end
