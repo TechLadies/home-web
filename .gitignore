@@ -16,5 +16,6 @@
 !/log/.keep
 /tmp
 
+.env
 .DS_Store
 config/database.yml

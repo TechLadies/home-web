@@ -6,7 +6,7 @@
     <title>Home</title>
 
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:400,700,600', 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
+    <%= filepicker_js_include_tag %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 

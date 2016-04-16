@@ -90,11 +90,11 @@
               </h3>
               <p> DOB: 
                 <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
-              </p>                
+              </p>
               <p> Gender: <%= Person.find(e.involvable_id).gender.titleize %></p>
-              <p> Email:  <%= Person.find(e.involvable_id).email %></p>
+              <p> Email: <%= Person.find(e.involvable_id).email %></p>
               <p> Phone: <%= Person.find(e.involvable_id).phone %></p>
-              <p> Address:  <%= Person.find(e.involvable_id).address %></p>
+              <p> Address: <%= Person.find(e.involvable_id).address %></p>
             <% end %>
 
         <!-- RELATED PEOPLE/ORG: EMPLOYER - if employer is Organization) -->
@@ -105,8 +105,8 @@
                 <%= link_to 'remove', case_involvement_path(@case, e), method: :delete, class: 'btn btn-primary btn-xs' %>
               </h3>
               <p> Phone: <%= Organization.find(e.involvable_id).phone %></p>
-              <p> Address:  <%= Organization.find(e.involvable_id).address %></p>
-              <p> Industry:  <%= Organization.find(e.involvable_id).industry %></p>
+              <p> Address: <%= Organization.find(e.involvable_id).address %></p>
+              <p> Industry: <%= Organization.find(e.involvable_id).industry %></p>
             <% end %>
           <%- end %>
         </div>
@@ -242,13 +242,13 @@
               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                   <%- if i.image? %>
-                    <%= image_tag "https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/resize=width:350,height:250,fit:crop/#{i.url}", alt: i.filename %>
+                    <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
                   <%- else %>
-                    <%= image_tag "https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/output=format:png/resize=width:350,height:250,fit:crop/#{i.url}", alt: i.filename %>
+                    <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
                   <%- end %>
                   <div class="caption">
                     <p><%= i.filename %></p>
-                    <%= link_to 'Download', i.url, class: 'btn btn-primary '%>
+                    <%= link_to 'Download', i.url, class: 'btn btn-primary'%>
                   </div>
                 </div>
               </div>
