@@ -41,6 +41,8 @@ ready = function() {
     apply_select_2();
   });
 
+  $('.select2').select2();
+
 };
 
 $(document).ready(ready);

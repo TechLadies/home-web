@@ -1,5 +1,0 @@
-<%= simple_form_for @involvement, url: case_involvements_path(@case_file), remote: true do |f| %>
-  <%= f.select(:person_id, Person.all.collect { |p| [p.name, p.id] }) %>
-  <br>
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-<% end %>

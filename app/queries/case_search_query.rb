@@ -17,7 +17,6 @@ class CaseSearchQuery
 
   def perform
     if valid?
-
       CaseFile.where(reported_at: start_date..end_date)
     else
       CaseFile.none

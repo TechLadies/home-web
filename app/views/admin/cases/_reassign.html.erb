@@ -1,6 +1,6 @@
 <%= simple_form_for @case, url: update_assignment_admin_case_path(@case) do |f| %>
 
-  <%= select("case_file", "user_id", @users.where(status:"active").collect {|u| [ u.name, u.id ] }) %>
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
+  <%= f.input :user_id, as: :select, collection: @users.collect { |u| [ u.name, u.id ] } %>
+  <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
 
 <% end %>

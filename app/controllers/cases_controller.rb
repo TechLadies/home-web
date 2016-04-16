@@ -16,21 +16,17 @@ class CasesController < ApplicationController
 
     if @involvements.where(role:0).blank?
       @client = nil
-    else
-      @client = Person.find([ @involvements.where(role: 0).first.involvable_id ]).first
+    else 
+      @client = @involvements.where(role: 0)
     end
 
     if @involvements.where(role:1).blank?
       @employer = nil
     else 
-      if @involvements.where(role: 1).first.involvable_type == "Person"
-        @employer = Person.find([ @involvements.where(role: 1).first.involvable_id ]).first 
-      else
-        @employer = Organization.find([ @involvements.where(role: 1).first.involvable_id ]).first
-      end
+      @employer = @involvements.where(role: 1)
     end
 
-    if @involvements.where(role:3).blank?
+    if @involvements.where(role:2).blank?
       @others = nil
     else
       @others = @involvements.where(role: 2)
