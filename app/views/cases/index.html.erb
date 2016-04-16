@@ -47,7 +47,7 @@
                   <td>
                     <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
                   <td>
-                    <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
+                    <%- if c.involvements.where(role:1).first.try(:involvable_type) == "Person" %>
                       <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
                     <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
                       <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
@@ -83,7 +83,7 @@
                   <td>
                     <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
                   <td>
-                    <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
+                    <%- if c.involvements.where(role:1).first.try(:involvable_type) == "Person" %>
                       <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
                     <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
                       <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>

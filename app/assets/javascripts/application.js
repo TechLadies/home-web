@@ -31,6 +31,17 @@ apply_select_2 = function() {
   });
 }
 
+// apply_select_2 = function() {
+//   $('.simple_form.new_involvement select').select2({
+//     ajax: {
+//       url: "/people",
+//       dataType: 'json',
+//       delay: 250,
+//       cache: true
+//     }
+//   });
+// }
+
 ready = function() {
 
 	$('[data-toggle="popover"]').popover();

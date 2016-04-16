@@ -3,7 +3,7 @@ class InvolvementsController < ApplicationController
   before_action :prepare_case_file
 
   def new
-    @involvement = @case_file.involvements.build
+    @involvement = @case_file.involvements.build(involvement_params)
   end
 
   def create
@@ -30,7 +30,7 @@ class InvolvementsController < ApplicationController
   end
 
   def involvement_params
-    params.require(:involvement).permit(:role, :case_id, :involable_id, :involable_type)
+    params.require(:involvement).permit(:role, :case_id, :involvable_id, :involvable_type)
   end
 
 end
