@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416081213) do
+ActiveRecord::Schema.define(version: 20160416123534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20160416081213) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "filename"
+    t.string   "mimetype"
+    t.integer  "size"
   end
 
   add_index "links", ["case_file_id"], name: "index_links_on_case_file_id", using: :btree

@@ -31,6 +31,13 @@ apply_select_2 = function() {
   });
 }
 
+onPhotoUpload = function(event) {
+  $('#link_filename').val(event.fpfile.filename);
+  $('#link_mimetype').val(event.fpfile.mimetype);
+  $('#link_size').val(event.fpfile.size);
+  $('#new_link').submit();
+}
+
 ready = function() {
 
 	$('[data-toggle="popover"]').popover();

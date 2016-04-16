@@ -258,8 +258,10 @@
           <hr />
 
           <%= form_for([@case, @case.links.build], url: case_links_path(@case)) do |f| %>
-            <input id='caseId' type='hidden' data-case-id='<%= @case.id %>'>
-            <input id='upload' type='button' class='btn btn-primary pull-right' value='Upload New File'>
+            <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)' %>
+            <%= f.hidden_field :filename, as: :hidden %>
+            <%= f.hidden_field :mimetype, as: :hidden %>
+            <%= f.hidden_field :size, as: :hidden %>
           <%- end %>
 
         </div>
