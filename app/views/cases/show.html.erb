@@ -62,7 +62,7 @@
             <% @client.each do |e| %>
               <h3>
                 <%= link_to Person.find(e.involvable_id).name, person_path(e.involvable_id) %>
-                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs' %>
+                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: "Are you sure?"} %>
               </h3>
               <p> DOB: 
                 <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
@@ -85,7 +85,7 @@
             <% @employer.each do |e| %>
               <h3>
                 <%= link_to Person.find(e.involvable_id).name, person_path(e.involvable_id) %>
-                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs' %>
+                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: "Are you sure?"} %>
               </h3>
               <p> DOB: 
                 <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
@@ -101,7 +101,7 @@
             <% @employer.each do |e| %>
               <h3>
                 <%= link_to Organization.find(e.involvable_id).name, organization_path(e.involvable_id) %>
-                <%= link_to 'remove', case_involvement_path(@case, e), method: :delete, class: 'btn btn-primary btn-xs' %>
+                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: "Are you sure?"} %>
               </h3>
               <p> Phone: <%= Organization.find(e.involvable_id).phone %></p>
               <p> Address:  <%= Organization.find(e.involvable_id).address %></p>

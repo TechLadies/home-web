@@ -5,40 +5,39 @@
       <%= link_to 'edit', edit_person_path, class: 'btn btn-default' %>
     </div>
   </div>
-</div>
 
+  <div class='page-header-list'>
+    <div class='container'>
+      <ul class="list-inline">
 
-<div class='container'>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h2>Details</h2>
+        <li>
+          <span>DOB</span>
+          <strong><%= @person.date_of_birth.to_formatted_s(:rfc822) %></strong>
+        </li>
+
+        <li>
+          <span>Gender</span>
+          <strong><%= @person.gender %></strong>
+        </li>
+
+        <li>
+          <span>Phone</span>
+          <strong><%= @person.phone %></strong>
+        </li>
+
+        <li>
+          <span>Email</span>
+          <strong><%= @person.email %></strong>
+        </li>
+
+        <li>
+          <span>Address</span>
+          <strong><%= @person.address %></strong>
+        </li>
+
+      </ul>
     </div>
-    <div class='panel-body'>
-  <div class='row'>
-    <div class='col-xs-12'>
-        <div>
-
-            <p>
-                Birthday: <%= @person.date_of_birth %>
-            </p>
-            <p>
-                Phone: <%= @person.phone %>
-            </p>
-            <p>
-                Email: <%= @person.email %>
-            </p>
-            <p>
-                Address: <%= @person.address %>
-            </p>
-            <p>
-                Gender: <%= @person.gender %>
-            </p>
-
-        </div>
-      </div>
-   </div>
-</div>
-</div>
+  </div>  
 </div>
 
 <div class="container">
