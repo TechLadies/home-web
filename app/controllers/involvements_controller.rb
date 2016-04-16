@@ -1,6 +1,7 @@
 class InvolvementsController < ApplicationController
 
   before_action :prepare_case_file
+#before_action: check if case is already closed
 
   def new
     @involvement = @case_file.involvements.build(involvement_params)
@@ -10,7 +11,7 @@ class InvolvementsController < ApplicationController
     @involvement = @case_file.involvements.build(involvement_params)
     if @involvement.save
       flash[:notice] = 'Added to Case'
-      redirect_to case_path(@case_file)
+      redirect_to case_path(@case_file, tab:"related")
     else
       render :new
     end

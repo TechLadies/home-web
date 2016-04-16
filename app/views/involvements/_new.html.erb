@@ -1,0 +1,17 @@
+<div class='panel-body'>
+	<%= simple_form_for [@case_file, @involvement], as: :involvement, url: case_involvements_path(@case_file) do |f| %>
+    <%= f.input :case_id, as: :hidden %>
+    <%= f.input :involvable_type, as: :hidden %>
+
+    <%- if @involvement.involvable_type == 'Person' %>
+      <%= f.select :involvable_id, Person.all.collect { |p| [ p.name, p.id ] }, include_blank: false %>
+    <%- else %>
+      <%= f.select :involvable_id, Organization.all.collect { |o| [ o.name, o.id ] }, include_blank: false %>
+    <%- end %>
+
+    <%= f.input :role, as: :hidden %>
+
+    <%= f.submit 'Save', class: 'btn btn-primary pull-right' %>
+</div>
+
+<%- end %>
