@@ -1,11 +1,6 @@
 <div class='page-header'>
   <div class="container">
     <h1>All Cases</h1>
-    <p>
-      Download:
-      <%= link_to "CSV", admin_cases_path(query: params[:query], format:"csv") %>|
-      <%= link_to "Excel", admin_cases_path(format: "xls") %>
-    </p>
   </div>
 </div>
 
@@ -54,6 +49,15 @@
         </tbody>
 
         <tfoot>
+          <tr>
+            <td colspan='5'>
+              <%- if @cases.empty? %>
+                <p>No Cases Found.</p>
+              <%- else %>
+                <%= link_to "Download as CSV", admin_cases_path(query: params[:query], format: "csv") %>
+              <%- end %>
+            </td>
+          </tr>
         </tfoot>
 
       </table>

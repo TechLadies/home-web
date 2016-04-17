@@ -1,12 +1,9 @@
 <div class='page-header'>
 
   <div class="container">
-    <h1>Case #<%= @case.id%></h1>
+    <h1>Case #<%= @case.id %></h1>
     <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' %>
-
-    <%- if @case.status == "Pending" %>
-      <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger' %>
-    <%end%>
+    <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger' if @case.pending? %>
   </div>
 
   <!-- *Case Information -->
@@ -27,9 +24,7 @@
         <li>
           <span>Assigned To</span>
           <strong><%= @case.user.name %></strong>
-          <% if current_user.is_admin? %>
-            <%= link_to 'Reassign', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary btn-sm' %>
-          <% end %>
+          <%= link_to 'Reassign', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary btn-sm' if current_user.is_admin? %>
         </li>
 
       </ul>
@@ -56,60 +51,32 @@
 
     <div class="panel-body">
       <div class="row">
-      <!-- RELATED PEOPLE: CLIENT -->
-        <div class="col-md-6">
-          <%- if @client.nil? %>
-            <%= link_to 'Add Client', new_case_involvement_path(@case), class: 'btn btn-primary'%>
-            <!-- to work on add client -->
+
+        <!-- RELATED PEOPLE: CLIENT -->
+        <div id='client-info' class="col-md-6">
+          <%- if @case.client.nil? %>
+            <div class='well well-empty text-center'>
+              <p>No client information yet.</p>
+              <%= link_to 'Add Client', new_case_involvement_path(@case, involvement: { role: :client, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' %>
+            </div>
           <%- else %>
-            <% @client.each do |e| %>
-              <h3>
-                <%= link_to Person.find(e.involvable_id).name, person_path(e.involvable_id) %>
-                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs' %>
-              </h3>
-              <p> DOB: 
-                <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
-              </p>                
-              <p> Gender: <%= Person.find(e.involvable_id).gender.titleize %></p>
-              <p> Email:  <%= Person.find(e.involvable_id).email %></p>
-              <p> Contact: <%= Person.find(e.involvable_id).phone %></p>
-            <% end %>
+            <%= render partial: 'person', object: @case.client.involvable, locals: { involvement: @case.client } %>
           <%- end %>
         </div>
 
-      <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
-        <div class="col-md-6">
-          <%- if @employer.nil? %>
-            <%= link_to 'Add Employer', new_case_involvement_path(@case, role: 0), class: 'btn btn-primary' %>
-            <!-- to work on add employer -->
-          <%- elsif @employer.first.involvable_type == "Person" %>
-            <% @employer.each do |e| %>
-              <h3>
-                <%= link_to Person.find(e.involvable_id).name, person_path(e.involvable_id) %>
-                <%= link_to 'REMOVE', case_involvement_path(@case, e), method: :delete, class: 'btn btn-danger btn-xs' %>
-              </h3>
-              <p> DOB: 
-                <%= Person.find(e.involvable_id).date_of_birth.to_formatted_s(:rfc822) unless Person.find(e.involvable_id).date_of_birth == nil %>
-              </p>
-              <p> Gender: <%= Person.find(e.involvable_id).gender.titleize %></p>
-              <p> Email: <%= Person.find(e.involvable_id).email %></p>
-              <p> Phone: <%= Person.find(e.involvable_id).phone %></p>
-              <p> Address: <%= Person.find(e.involvable_id).address %></p>
-            <% end %>
-
-        <!-- RELATED PEOPLE/ORG: EMPLOYER - if employer is Organization) -->
+        <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
+        <div id='employer-info' class="col-md-6">
+          <%- if @case.employer.nil? %>
+            <div class='well well-empty text-center'>
+              <p>No employer information yet.</p>
+              <%= link_to 'Add Person', new_case_involvement_path(@case, involvement: { role: :employer, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case.domestic? %>
+              <%= link_to 'Add Organization', new_case_involvement_path(@case, involvement: { role: :employer, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success'  if @case.non_domestic? %>
+            </div>
           <%- else %>
-            <% @employer.each do |e| %>
-              <h3>
-                <%= link_to Organization.find(e.involvable_id).name, organization_path(e.involvable_id) %>
-                <%= link_to 'remove', case_involvement_path(@case, e), method: :delete, class: 'btn btn-primary btn-xs' %>
-              </h3>
-              <p> Phone: <%= Organization.find(e.involvable_id).phone %></p>
-              <p> Address: <%= Organization.find(e.involvable_id).address %></p>
-              <p> Industry: <%= Organization.find(e.involvable_id).industry %></p>
-            <% end %>
+            <%= render partial: @case.employer.involvable.class.to_s.downcase, object: @case.employer.involvable, locals: { involvement: @case.employer } %>
           <%- end %>
         </div>
+
       </div>
     </div>
 
@@ -130,107 +97,86 @@
         </li>
 
         <li role="presentation">
-          <a href="#followups" aria-controls="closed" role="tab" data-toggle="tab">
+          <a href="#followups" aria-controls="followups" role="tab" data-toggle="tab">
             <span>Follow Ups</span>
           </a>
         </li>
 
         <li role="presentation">
-          <a href="#related" aria-controls="closed" role="tab" data-toggle="tab">
+          <a href="#related" aria-controls="related" role="tab" data-toggle="tab">
             <span>People/Organizations</span>
           </a>
         </li>
 
         <li role="presentation">
-          <a href="#documents" aria-controls="closed" role="tab" data-toggle="tab">
+          <a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">
             <span>Documents</span>
           </a>
         </li>
       </ul>
-      <!-- Tabs -->
+      <!-- Tabs* -->
 
-      <!-- Tab Content -->
+      <!-- *Tab Content -->
       <div class="tab-content">
 
         <!-- ISSUES -->
-        <div role="tabpanel" class="tab-pane active" id="issues">
-          <ul class='list-group'>
-            <%- @issues.order('id ASC').each do |i| %>
-              <li class='list-group-item'>
-                <strong><%= i.tag.name %></strong>
-                <p><%= i.description %></p>
-              </li>
-            <%- end %>
-          </ul>
-        </div>          
+          <div role="tabpanel" class="tab-pane active table-responsive" id="issues">
+            <ul class='list-group'>
+              <%- @issues.order('id ASC').each do |i| %>
+                <li class='list-group-item'>
+                  <strong><%= i.tag.name %></strong>
+                  <p><%= i.description %></p>
+                </li>
+              <%- end %>
+            </ul>
+          </div>
         <!-- ISSUES -->
 
         <!-- FOLLOW UPS -->
         <div role="tabpanel" class="tab-pane table-responsive" id="followups">
-          <div class="table-responsive">
-            <table class="table table-default">
-              <thead>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Created By</th>
-              </thead>
-              <tbody>
-                <%- @case.follow_ups.each do |follow_up| %>
-                  <tr>
-                    <td><%= follow_up.created_at.to_date.to_formatted_s(:long) %></td>
-                    <td><%= follow_up.description %></td>
-                    <td><%= follow_up.user.name %></td>
-                  </tr>
-                <%- end %>
-              </tbody>
-            </table>
-          </div>
+          <table class="table table-default">
+            <thead>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Created By</th>
+            </thead>
+            <tbody>
+              <%- @case.follow_ups.each do |follow_up| %>
+                <tr>
+                  <td><%= follow_up.created_at.to_date.to_formatted_s(:long) %></td>
+                  <td><%= follow_up.description %></td>
+                  <td><%= follow_up.user.name %></td>
+                </tr>
+              <%- end %>
+            </tbody>
+          </table>
           <hr/>
-          <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-primary pull-right' %>
+          <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-success pull-right' %>
         </div>
         <!-- FOLLOW UPS -->
 
         <!-- PPL/ORG -->
-        <div role="tabpanel" class="tab-pane" id="related">
-          <div class="row">
-            <div class="col-md-6">
-              <h3>Related People</h3>
-              <%= link_to 'Add', new_case_involvement_path(@case), class: 'btn btn-primary btn-sm', remote: true %>
-            </div>
-            <div class="col-md-6">
-              <h3>Related Organizations</h3>
-              <%= link_to 'Add', new_case_involvement_path(@case), class: 'btn btn-primary btn-sm', remote: true %>
-            </div>
+        <div role="tabpanel" class="tab-pane table-responsive" id="related">
+
+          <table id='others-info' class="table table-default">
+            <thead>
+              <th>Name</th>
+              <th>Contact number</th>
+              <th>Email</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <%= render partial: 'other', collection: @case.others %>
+            </tbody>
+          </table>
+
+          <hr/>
+
+          <div class='pull-right'>
+            <%= link_to 'Add Person', new_case_involvement_path(@case, involvement: { role: :others, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' %>
+            <%= link_to 'Add Organization', new_case_involvement_path(@case, involvement: { role: :others, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success' %>
           </div>
 
-          <div class="row">
-          <!-- RELATED PEOPLE (only where role: others) -->
-            <div class="col-md-6">
-              <ul>
-                <%- unless @others.nil? %>
-                  <% @others.where(involvable_type: "Person").each do |i| %>
-                    <li>
-                      <%= link_to Person.find(i.involvable_id).name, person_path(i.involvable_id) %>
-                      <%= link_to '(remove)', case_involvement_path(@case, i), method: :delete %>
-                    </li> 
-                  <% end %>
-                <%- end %>
-              </ul>
-            </div>
-          <!-- RELATED ORG (only where role: others) -->
-            <div class="col-md-6">
-              <ul>
-                <%- unless @others.nil? %>
-                  <% @others.where(involvable_type: "Organization").each do |i| %>
-                    <li>
-                      <%= link_to Person.find(i.involvable_id).name, person_path(i.involvable_id) %>
-                      <%= link_to '(remove)', case_involvement_path(@case, i), method: :delete %>
-                    </li> 
-                  <% end %>
-                <%- end %>
-              </ul>
-            </div>
-          </div>
         </div>
         <!-- PPL/ORG -->
 
@@ -241,14 +187,10 @@
             <%- @case.links.each do |i| %>
               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                  <%- if i.image? %>
-                    <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
-                  <%- else %>
-                    <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
-                  <%- end %>
+                  <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %> 
                   <div class="caption">
                     <p><%= i.filename %></p>
-                    <%= link_to 'Download', i.url, class: 'btn btn-primary'%>
+                    <%= link_to 'Download', i.url, class: 'btn btn-default'%>
                   </div>
                 </div>
               </div>
@@ -257,8 +199,10 @@
 
           <hr />
 
-          <%= form_for([@case, @case.links.build], url: case_links_path(@case)) do |f| %>
-            <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)' %>
+          <%= form_for [@case, @case.links.build], url: case_links_path(@case) do |f| %>
+            <div class='pull-right'>
+              <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)' %>
+            </div>
             <%= f.hidden_field :filename, as: :hidden %>
             <%= f.hidden_field :mimetype, as: :hidden %>
             <%= f.hidden_field :size, as: :hidden %>

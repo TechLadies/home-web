@@ -1,16 +1,20 @@
 class InvolvementsController < ApplicationController
 
   before_action :prepare_case_file
+  before_action :prepare_involvable_class, only: :index
+
+  def index
+    @results = @involvable_class.where('LOWER(name) LIKE ?', "%#{params[:q].downcase}%")
+  end
 
   def new
-    @involvement = @case_file.involvements.build
+    @involvement = @case_file.involvements.build(involvement_params)
   end
 
   def create
     @involvement = @case_file.involvements.build(involvement_params)
     if @involvement.save
-      flash[:notice] = 'Added to Case'
-      redirect_to case_path(@case_file)
+      flash.now[:notice] = 'Added to case'
     else
       render :new
     end
@@ -30,7 +34,12 @@ class InvolvementsController < ApplicationController
   end
 
   def involvement_params
-    params.require(:involvement).permit(:role, :case_id, :involable_id, :involable_type)
+    params.require(:involvement).permit(:role, :case_id, :involvable_id, :involvable_type)
+  end
+
+  def prepare_involvable_class
+    params[:q] ||= ''
+    @involvable_class = params[:t].constantize
   end
 
 end

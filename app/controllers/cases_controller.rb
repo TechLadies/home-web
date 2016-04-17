@@ -12,25 +12,6 @@ class CasesController < ApplicationController
 
   def show
     @issues = @case.issues.order('id ASC')
-    @involvements = @case.involvements
-
-    if @involvements.where(role:0).blank?
-      @client = nil
-    else 
-      @client = @involvements.where(role: 0)
-    end
-
-    if @involvements.where(role:1).blank?
-      @employer = nil
-    else 
-      @employer = @involvements.where(role: 1)
-    end
-
-    if @involvements.where(role:2).blank?
-      @others = nil
-    else
-      @others = @involvements.where(role: 2)
-    end
   end
 
   def new

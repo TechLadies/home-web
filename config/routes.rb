@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     put :close, on: :member
 
-    resources :involvements, only: [:new, :create, :destroy]
+    resources :involvements, only: [:index, :new, :create, :destroy]
     resources :follow_ups, only: [:new, :create]
     resources :documents, only: [:new, :create]
     resources :links, only: [:create, :destroy]

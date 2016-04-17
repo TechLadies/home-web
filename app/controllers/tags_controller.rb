@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 	before_action :prepare_query, only: [:index]
 
   def index
-    @tags = Tag.where('lower(name) LIKE ?', "%#{@query.downcase}%")
+    @tags = Tag.where('LOWER(name) LIKE ?', "%#{@query.downcase}%")
   end
 
   private

@@ -1,1 +1,9 @@
-alert('success');
+<%- if @involvement.client? %>
+  $('#client-info').html('<%= j render partial: "cases/person", object: @involvement.involvable, locals: { involvement: @involvement } %>');
+<%- elsif @involvement.employer? %>
+  $('#employer-info').html('<%= j render partial: "cases/#{@involvement.involvable.class.to_s.downcase}", object: @involvement.involvable, locals: { involvement: @involvement } %>');
+<%- else %>
+  $('#others-info tbody').html('<%= j render partial: "cases/other", collection: @involvement.case_file.involvements.others %>');
+<%- end %>
+
+$('#modal').modal('hide');

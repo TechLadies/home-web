@@ -1,11 +1,15 @@
-$('#modal .modal-title').html('Add People to Case');
+$('#modal .modal-title').html('Add <%= @involvement.involvable_type %> to Case');
 $('#modal .modal-body').html("<%= j render(partial: 'new')%>");
-$('#modal').modal('show');
+$('#modal .modal-footer').hide();
 
-$('.select-people').select2({
+$('#involvement_involvable_id').select2({
   ajax: {
-    url: "/people",
+    url: "<%= case_involvements_path(@case_file, t: @involvement.involvable_type) %>",
     dataType: 'json',
-    delay: 250
-  }
+    delay: 250,
+    cache: true
+  },
+  width: '100%'
 });
+
+$('#modal').modal('show');

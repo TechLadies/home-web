@@ -28,7 +28,7 @@
 
         <li>
           <span>Birthdate</span>
-          <strong>&nbsp;<%= @person.date_of_birth %></strong>
+          <strong><%= @person.date_of_birth.to_formatted_s(:rfc822) unless @person.date_of_birth == nil %></strong>
         </li>
 
         <li>
@@ -42,7 +42,7 @@
 
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h2>Related Organization</h2>
@@ -61,7 +61,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Show Person Case History -->
 <div class='container'>
@@ -90,7 +90,7 @@
       <div class="tab-content">
     <!-- Cases Pending (start) -->        
         <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
-          <table class='table table-responsive table-striped'>
+          <table class='table table-default'>
             <thead>
               <tr>
                 <th>Case ID</th>
@@ -117,7 +117,7 @@
     <!-- Cases Pending (end) -->
     <!-- Cases Closed (start)-->
         <div role="tabpanel" class="tab-pane table-responsive" id="closed">
-          <table class='table table-responsive table-striped'>
+          <table class='table table-default'>
             <thead>
               <tr>
                 <th>Case ID</th>

@@ -1,0 +1,13 @@
+button.fp__btn {
+
+  border-radius: 4px;
+  text-transform: uppercase;
+  background-color: $btn-success-bg;
+  border-color: $btn-success-border;
+
+  &:hover, &:focus, &:active {
+    background-color: darken($btn-success-bg, 5);
+    border-color: darken($btn-success-border, 5);
+  }
+
+}

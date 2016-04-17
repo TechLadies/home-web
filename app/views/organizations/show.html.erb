@@ -5,56 +5,51 @@
       <%= link_to 'edit', edit_organization_path, class: 'btn btn-default' %>
     </div>
   </div>
-</div>
+
+  <div class='page-header-list'>
+    <div class='container'>
+      <ul class="list-inline">
+
+        <li>
+          <span>Industry</span>
+          <strong><%= @organization.industry %></strong>
+        </li>
 
 
-<div class='container'>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h2>Details</h2>
+        <li>
+          <span>Phone</span>
+          <strong><%= @organization.phone %></strong>
+        </li>
+
+        <li>
+          <span>Address</span>
+          <strong><%= @organization.address %></strong>
+        </li>
+
+      </ul>
     </div>
-
-    <div class='panel-body'>
-  <div class='row'>
-    <div class='col-xs-12'>
-        <div>
-            <p>
-                Industry: <%= @organization.industry %>
-            </p>
-
-            <p> Phone: <%= @organization.phone %>
-            </p>
-            <p>
-                Address: <%= @organization.address %>
-            </p>
-
-        </div>
-      </div>
-   </div>
-</div>
-</div>
+  </div>  
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h2>Related People</h2>
     </div>
 
     <div class='panel-body'>
-    <div class="row">
-    <div class="col-xs-12">
+     <div class="row">
+      <div class="col-xs-12">
         <ul>
           <li>Jaryl</li>
           <li>Peter</li>
           <li>wtvr</li>
         </ul>
-
+       </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-</div>
+</div> -->
 
 <!-- Show Organization Case History -->
 <div class='container'>
@@ -83,7 +78,7 @@
       <div class="tab-content">
     <!-- Cases Pending (start) -->        
         <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
-          <table class='table table-responsive table-striped'>
+          <table class='table table-default'>
             <thead>
               <tr>
                 <th>Case ID</th>
@@ -110,7 +105,7 @@
     <!-- Cases Pending (end) -->
     <!-- Cases Closed (start)-->
         <div role="tabpanel" class="tab-pane table-responsive" id="closed">
-          <table class='table table-responsive table-striped'>
+          <table class='table table-default'>
             <thead>
               <tr>
                 <th>Case ID</th>

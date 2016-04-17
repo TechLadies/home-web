@@ -1,9 +1,10 @@
 .btn {
 
-  &.btn-default {
+  font-weight: 600;
+  font-size: 12px;
 
+  &.btn-default, &.btn-primary, &.btn-success, &.btn-danger {
     text-transform: uppercase;
-
   }
 
   &.btn-primary {
@@ -11,7 +12,10 @@
     background-color: #e8b53c;
     border-color: darken(#e8b53c, 2.5);
 
-    text-transform: uppercase;
+    &:hover, &:focus, &:active {
+      background-color: darken(#e8b53c, 2.5);
+      border-color: darken(#e8b53c, 5);
+    }
 
   }
 

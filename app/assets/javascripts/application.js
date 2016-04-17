@@ -11,9 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require jquery_ujs
 //= require jquery-ui
 //= require cocoon
@@ -38,9 +36,9 @@ onPhotoUpload = function(event) {
   $('#new_link').submit();
 }
 
-ready = function() {
+$(document).ready(function() {
 
-	$('[data-toggle="popover"]').popover();
+  $('[data-toggle="popover"]').popover();
 
   apply_select_2();
 
@@ -50,7 +48,4 @@ ready = function() {
 
   $('.select2').select2();
 
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
+});

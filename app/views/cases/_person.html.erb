@@ -1,0 +1,25 @@
+<div class='well well-default'>
+
+  <h3><%= link_to person.name, person_path(person) %></h3>
+
+  <dl class='dl-horizontal'>
+
+    <dt>Date of birth</dt>
+    <dd><%= person.date_of_birth.to_formatted_s(:rfc822) unless person.date_of_birth == nil %></dd>
+
+    <dt>Gender</dt>
+    <dd><%= person.gender.titleize %></dd>
+
+    <dt>Email</dt>
+    <dd><%= person.email %></dd>
+
+    <dt>Contact</dt>
+    <dd><%= person.phone %></dd>
+
+  </dl>
+
+  <hr />
+
+  <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Are you sure?" } %>
+
+</div>
