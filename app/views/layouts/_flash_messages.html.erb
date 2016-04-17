@@ -17,7 +17,7 @@
   <%- if flash.key? :error %>
     <div class="alert alert-danger">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= flash.error %>
+      <%= flash[:error] %>
     </div>
   <%- end %>
 

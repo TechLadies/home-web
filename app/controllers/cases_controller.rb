@@ -48,8 +48,12 @@ class CasesController < ApplicationController
   end
 
   def close
-    @case.update(status: "Closed")
-    flash[:notice] = "Case Closed!"
+    @service = CloseCaseFileService.new(@case)
+    if @service.run
+      flash[:notice] = "Case Closed!"
+    else
+      flash[:errors] = @service.errors.full_messages.to_sentence
+    end
     redirect_to case_path(@case)
   end
 
