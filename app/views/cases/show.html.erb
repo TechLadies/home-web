@@ -93,24 +93,28 @@
         <li role="presentation" class="active">
           <a href="#issues" aria-controls="pending" role="tab" data-toggle="tab">
             <span>Issues</span>
+            <span class="badge"><%= @issues.count %></span>            
           </a>
         </li>
 
         <li role="presentation">
           <a href="#followups" aria-controls="followups" role="tab" data-toggle="tab">
             <span>Follow Ups</span>
+            <span class="badge"><%= @case.follow_ups.count %></span>            
           </a>
         </li>
 
         <li role="presentation">
           <a href="#related" aria-controls="related" role="tab" data-toggle="tab">
             <span>People/Organizations</span>
+            <span class="badge"><%= @case.others.count %></span>
           </a>
         </li>
 
         <li role="presentation">
           <a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">
             <span>Documents</span>
+            <span class="badge"><%= @case.links.count %></span>
           </a>
         </li>
       </ul>
@@ -141,7 +145,7 @@
               <th>Created By</th>
             </thead>
             <tbody>
-              <%- @case.follow_ups.each do |follow_up| %>
+              <%- @case.follow_ups.order(created_at: :desc).each do |follow_up| %>
                 <tr>
                   <td><%= follow_up.created_at.to_date.to_formatted_s(:long) %></td>
                   <td><%= follow_up.description %></td>
