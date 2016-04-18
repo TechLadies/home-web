@@ -33,6 +33,7 @@ gem 'select2-rails'
 gem 'cocoon'
 
 gem 'paper_trail'
+gem 'nested_form_fields'
 
 gem 'filepicker-rails'
 
@@ -58,5 +59,6 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
 end
 
