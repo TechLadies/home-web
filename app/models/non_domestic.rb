@@ -1,0 +1,2 @@
+class NonDomestic < Worker
+end
