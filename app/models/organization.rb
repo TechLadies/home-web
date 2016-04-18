@@ -6,4 +6,6 @@ class Organization < ActiveRecord::Base
 
   validates :name, presence: true
 
+  INDUSTRY = ['Marine', 'Services', 'Manufacturing', 'Conservancy', 'Landscape Works', 'Others']
+
 end
