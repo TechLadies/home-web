@@ -17,9 +17,10 @@
 //= require cocoon
 //= require select2
 //= require_tree .
+//= require nested_form_fields
 
 apply_select_2 = function() {
-  $('.simple_form.edit_case_file select, .simple_form.new_case_file select').select2({
+  $('.simple_form.edit_case_file .case_file_issues_tag_id select, .simple_form.new_case_file .case_file_issues_tag_id select').select2({
     ajax: {
       url: "/tags",
       dataType: 'json',
