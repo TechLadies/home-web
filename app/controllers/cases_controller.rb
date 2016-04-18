@@ -48,7 +48,7 @@ class CasesController < ApplicationController
     if @service.run
       flash[:notice] = "Case Closed!"
     else
-      flash[:errors] = @service.errors.full_messages.to_sentence
+      flash[:error] = @service.errors.full_messages.to_sentence
     end
     redirect_to case_path(@case)
   end

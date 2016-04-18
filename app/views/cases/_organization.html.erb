@@ -1,7 +1,7 @@
 <div class='well well-default'>
 
   <h3><%= link_to organization.name, organization_path(organization) %>
-    <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs pull-right', style: 'color: #FFFFFF', data: {confirm: "Are you sure?"} %>
+    <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs pull-right', style: 'color: #FFFFFF', data: {confirm: "Are you sure?"} if @case.pending? %>
   </h3>
 
   <dl class='dl-horizontal'>

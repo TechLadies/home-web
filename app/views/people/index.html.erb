@@ -21,7 +21,7 @@
             <th>Contact number</th>
             <th>Email</th>
             <th>Address</th>
-            <th>Date of birth</th>
+            <th>DOB</th>
             <th>Gender</th>
             <th>Pending Cases</th>
             <th>Closed Cases</th>
@@ -37,8 +37,8 @@
               <td><%= person.address %></td>
               <td><%= person.date_of_birth.to_formatted_s(:rfc822) unless person.date_of_birth == nil %></td>
               <td><%= person.gender.titleize %></td>
-              <td><%= person.case_files.where(status: "Pending").count %></td>
-              <td><%= person.case_files.where(status: "Closed").count %></td>
+              <td><%= person.case_files.pending.count %></td>
+              <td><%= person.case_files.closed.count %></td>
             </tr>
           <% end %>
         </tbody>

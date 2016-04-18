@@ -126,7 +126,7 @@
         <!-- ISSUES -->
           <div role="tabpanel" class="tab-pane active table-responsive" id="issues">
             <ul class='list-group'>
-              <%- @issues.order('id ASC').each do |i| %>
+              <%- @issues.each do |i| %>
                 <li class='list-group-item'>
                   <strong><%= i.tag.name %></strong>
                   <p><%= i.description %></p>

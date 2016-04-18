@@ -3,12 +3,12 @@ class OrganizationsController < ApplicationController
   before_action :prepare_organization, only: [:show, :edit, :update]
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.order('id DESC').all
   end
 
   def show
     @involvements = @organization.involvements
-    @cases = @organization.case_files
+    @cases = @organization.case_files.order('id DESC')
   end
 
   def new
