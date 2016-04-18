@@ -11,6 +11,9 @@ class CaseFile < ActiveRecord::Base
   has_many :involvements, foreign_key: :case_id, inverse_of: :case_file
   has_many :people, through: :involvements, source: :involvable, source_type: "Person"
   has_many :organizations, through: :involvements, source: :involvable, source_type: "Organization"
+  has_one :worker
+  accepts_nested_attributes_for :worker, allow_destroy: true
+  has_paper_trail
 
   accepts_nested_attributes_for :involvements
   accepts_nested_attributes_for :issues, reject_if: proc { |a| a['description'].blank? }, allow_destroy: true
