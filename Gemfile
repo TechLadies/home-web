@@ -33,7 +33,6 @@ gem 'select2-rails'
 gem 'cocoon'
 
 gem 'paper_trail'
-gem 'nested_form_fields'
 
 gem 'filepicker-rails'
 

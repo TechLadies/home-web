@@ -12,38 +12,11 @@ class CasesController < ApplicationController
 
   def show
     @issues = @case.issues.order('id ASC')
-
-    @involvements = @case.involvements
-
-    if @involvements.where(role:0).blank?
-      @client = nil
-    else
-      @client = Person.find([ @involvements.where(role: 0).first.involvable_id ]).first
-    end
-
-    if @involvements.where(role:1).blank?
-      @employer = nil
-    else
-      if @involvements.where(role: 1).first.involvable_type == "Person"
-        @employer = Person.find([ @involvements.where(role: 1).first.involvable_id ]).first
-      else
-        @employer = Organization.find([ @involvements.where(role: 1).first.involvable_id ]).first
-      end
-    end
-
-    if @involvements.where(role:3).blank?
-      @others = nil
-    else
-      @others = @involvements.where(role: 2)
-    end
   end
 
   def new
     @case = current_user.case_files.build
     @case.issues.build
-    @case.people.build
-    @people = Person.all
-    @tags = Tag.order('id ASC').all
     @case.build_worker
   end
 
@@ -53,14 +26,12 @@ class CasesController < ApplicationController
       flash[:success] = "New Case Saved!"
       redirect_to case_path(@case)
     else
-      @people = Person.all
       render :new
     end
-        if @case.case_type == "Domestic"?
   end
 
   def edit
-    @people = Person.all
+    @case.build_worker unless @case.worker
   end
 
   def update
@@ -68,7 +39,6 @@ class CasesController < ApplicationController
       flash[:success] = "Case Updated!"
       redirect_to case_path(@case)
     else
-      @people = Person.all
       render :edit
     end
   end

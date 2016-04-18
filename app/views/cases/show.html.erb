@@ -2,7 +2,7 @@
 
   <div class="container">
     <h1>Case #<%= @case.id %></h1>
-    <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' %>
+    <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' if @case.pending? %>
     <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger' if @case.pending? %>
   </div>
 
@@ -24,7 +24,7 @@
         <li>
           <span>Assigned To</span>
           <strong><%= @case.user.name %></strong>
-          <%= link_to 'Reassign', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary btn-sm' if current_user.is_admin? %>
+          <%= link_to 'Reassign', reassign_admin_case_path(@case), remote: true, class: 'btn btn-primary btn-sm' if current_user.is_admin? && @case.pending? %>
         </li>
 
       </ul>
@@ -57,7 +57,7 @@
           <%- if @case.client.nil? %>
             <div class='well well-empty text-center'>
               <p>No client information yet.</p>
-              <%= link_to 'Add Client', new_case_involvement_path(@case, involvement: { role: :client, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' %>
+              <%= link_to 'Add Client', new_case_involvement_path(@case, involvement: { role: :client, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case.pending? %>
             </div>
           <%- else %>
             <%= render partial: 'person', object: @case.client.involvable, locals: { involvement: @case.client } %>
@@ -69,8 +69,8 @@
           <%- if @case.employer.nil? %>
             <div class='well well-empty text-center'>
               <p>No employer information yet.</p>
-              <%= link_to 'Add Person', new_case_involvement_path(@case, involvement: { role: :employer, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case.domestic? %>
-              <%= link_to 'Add Organization', new_case_involvement_path(@case, involvement: { role: :employer, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success'  if @case.non_domestic? %>
+              <%= link_to 'Add Person', new_case_involvement_path(@case, involvement: { role: :employer, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case.domestic? && @case.pending? %>
+              <%= link_to 'Add Organization', new_case_involvement_path(@case, involvement: { role: :employer, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success'  if @case.non_domestic? && @case.pending? %>
             </div>
           <%- else %>
             <%= render partial: @case.employer.involvable.class.to_s.downcase, object: @case.employer.involvable, locals: { involvement: @case.employer } %>
@@ -155,7 +155,9 @@
             </tbody>
           </table>
           <hr/>
-          <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-success pull-right', remote: true %>
+          <%- if @case.pending? %>
+            <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-success pull-right', remote: true %>
+          <%- end %>
         </div>
         <!-- FOLLOW UPS -->
 
@@ -176,10 +178,12 @@
 
           <hr/>
 
-          <div class='pull-right'>
-            <%= link_to 'Add Person', new_case_involvement_path(@case, involvement: { role: :others, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' %>
-            <%= link_to 'Add Organization', new_case_involvement_path(@case, involvement: { role: :others, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success' %>
-          </div>
+          <%- if @case.pending? %>
+            <div class='pull-right'>
+              <%= link_to 'Add Person', new_case_involvement_path(@case, involvement: { role: :others, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' %>
+              <%= link_to 'Add Organization', new_case_involvement_path(@case, involvement: { role: :others, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success' %>
+            </div>
+          <%- end %>
 
         </div>
         <!-- PPL/ORG -->
@@ -203,13 +207,15 @@
 
           <hr />
 
-          <%= form_for [@case, @case.links.build], url: case_links_path(@case) do |f| %>
-            <div class='pull-right'>
-              <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)' %>
-            </div>
-            <%= f.hidden_field :filename, as: :hidden %>
-            <%= f.hidden_field :mimetype, as: :hidden %>
-            <%= f.hidden_field :size, as: :hidden %>
+          <%- if @case.pending? %>
+            <%= form_for [@case, @case.links.build], url: case_links_path(@case) do |f| %>
+              <div class='pull-right'>
+                <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)' %>
+              </div>
+              <%= f.hidden_field :filename, as: :hidden %>
+              <%= f.hidden_field :mimetype, as: :hidden %>
+              <%= f.hidden_field :size, as: :hidden %>
+            <%- end %>
           <%- end %>
 
         </div>
