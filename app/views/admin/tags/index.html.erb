@@ -2,7 +2,6 @@
   <div class="container">
     <h1>All Tags</h1>
     <%= link_to 'New Tag', new_admin_tag_path, class: 'btn btn-primary' %>
-    <%= link_to 'Edit Tag', select_admin_tags_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
@@ -11,16 +10,29 @@
     <div class="col-md-6">
       <div class='panel panel-default'>
         <div class='panel-heading'>
-          <h4>Category: <%= f.name %></h4>
+          <h4>
+            Category: 
+            <a href="/admin/tags/<%= f.id %>/edit" data-toggle="popover" title="Description" data-trigger="hover" data-placement="top" data-content= '<%= f.description %>'>
+              <%= f.name %> <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </h4>
         </div>
 
         <div class='panel-body'>
             <%- f.children.each do |g|%>
               <ul>
-                <li><%= g.name %></li>
+                <li>
+                  <a href="/admin/tags/<%= g.id %>/edit" data-toggle="popover" title="Description" data-trigger="hover" data-placement="top" data-content= '<%= g.description %>'>
+                    <%= g.name %> <span class="glyphicon glyphicon-pencil"></span>
+                  </a>
+                </li>
                 <%- g.children.each do |h|%>
                   <ul>
-                    <li><%= h.name %></li>
+                    <li>
+                      <a href="/admin/tags/<%= h.id %>/edit" data-toggle="popover" title="Description" data-trigger="hover" data-placement="top" data-content= '<%= h.description %>'>
+                        <%= h.name %> <span class="glyphicon glyphicon-pencil"></span>
+                      </a>
+                    </li>
                   </ul>
                 <%- end %>
               </ul>
@@ -30,3 +42,9 @@
     </div>
   <%- end %>
 </div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
