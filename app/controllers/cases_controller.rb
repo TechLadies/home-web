@@ -1,6 +1,7 @@
 class CasesController < ApplicationController
 
-  before_action :prepare_casefile, only: [:show, :edit, :update, :close]
+  before_action :prepare_casefile, only: [:show, :edit, :update, :close, :reopen]
+  before_action :require_admin_authorization, only: :reopen
 
   def index
     @cases = CaseFile.pending.order('id DESC').all
@@ -45,10 +46,20 @@ class CasesController < ApplicationController
 
   def close
     @service = CloseCaseFileService.new(@case)
-    if @service.run
+    if @service.run_close
       flash[:notice] = "Case Closed!"
     else
       flash[:error] = @service.errors.full_messages.to_sentence
+    end
+    redirect_to case_path(@case)
+  end
+
+  def reopen
+    @service = CloseCaseFileService.new(@case)
+    if @service.run_open
+      flash[:notice] = "Case reopened!"
+    else
+      flash[:error] = "Case cannot be reopened by non-admin personnel!"
     end
     redirect_to case_path(@case)
   end

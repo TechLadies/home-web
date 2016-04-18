@@ -21,12 +21,6 @@ class CaseFile < ActiveRecord::Base
   validates :user, :case_type, :status, presence: true
 
   TYPE = ['Domestic', 'Non-Domestic']
-  # STATUS = ['Pending', 'Closed']
-
-  # before_validation :default_status
-
-  # scope :pending, -> { where(status: :pending) }
-  # scope :closed, -> { where(status: :closed) }
 
   include AASM
 
@@ -37,6 +31,11 @@ class CaseFile < ActiveRecord::Base
     event :close do
       transitions from: :pending, to: :closed
     end
+
+    event :open do
+      transitions from: :closed, to: :pending
+    end
+
   end
 
   def client
@@ -59,19 +58,7 @@ class CaseFile < ActiveRecord::Base
     case_type == 'Non-Domestic'
   end
 
-  # def pending?
-  #   status == 'Pending'
-  # end
-
-  # def closed?
-  #   status == 'Closed'
-  # end
-
   protected
-
-  # def default_status
-  #   self.status ||= "Pending"
-  # end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
