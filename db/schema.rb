@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416123534) do
+
+ActiveRecord::Schema.define(version: 20160416064919) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +119,32 @@ ActiveRecord::Schema.define(version: 20160416123534) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "workers", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "person_id"
+    t.integer  "organization_id"
+    t.string   "nationality"
+    t.string   "passport_number"
+    t.string   "fin_number"
+    t.string   "pass_type"
+    t.date     "start_of_employment"
+    t.text     "previous_employers_details"
+    t.integer  "days_off"
+    t.integer  "loan_value"
+    t.integer  "remaining_loan_value"
+    t.text     "salary_details"
+    t.decimal  "basic_salary"
+    t.string   "industry"
+    t.string   "accomodation_type"
+    t.decimal  "origin_agent_fee"
+    t.decimal  "local_agent_fee"
+    t.integer  "weekly_working_hours"
+    t.integer  "sunday_working_hours"
+    t.integer  "case_file_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   add_foreign_key "links", "case_files"
 end
