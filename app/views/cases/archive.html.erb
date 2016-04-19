@@ -27,8 +27,8 @@
             <tr>
               <td><%= link_to c.id, case_path(c) %> </td>
               <td><%= c.case_type %> </td>
-              <td><%= c.client.involvable.name %> </td>
-              <td><%= c.employer.involvable.name %> </td>
+              <td><%= c.client&.involvable&.name %> </td>
+              <td><%= c.employer&.involvable&.name %> </td>
               <td><%= c.user.name %></td>
             </tr>
           <% end %>

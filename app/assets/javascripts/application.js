@@ -19,13 +19,13 @@
 //= require_tree .
 
 apply_select_2 = function() {
-  $('.simple_form.edit_case_file .case_file_issues_tag_id select, .simple_form.new_case_file .case_file_issues_tag_id select').select2({
+  $('.case_file_issues_tag_id select').select2({
     ajax: {
       url: "/tags",
       dataType: 'json',
-      delay: 250,
-      cache: true
-    }
+      delay: 2
+    },
+    width: '100%'
   });
 }
 
