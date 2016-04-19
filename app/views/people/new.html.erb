@@ -5,22 +5,26 @@
 </div>
 
 <div class='container'>
-  <div class='panel panel-default'>
-    <%= simple_form_for @person do |f| %>
+  <div class='row'>
+    <div class='col-md-8 col-md-offset-2'>
+      <div class='panel panel-default'>
+        <%= simple_form_for @person do |f| %>
 
-      <div class='panel-heading'>
-        <h2>Details</h2>
+          <div class='panel-heading'>
+            <h2>Details</h2>
+          </div>
+
+          <div class='panel-body'>
+            <%= render partial: 'form', object: f %>
+          </div>
+
+          <div class='panel-footer'>
+            <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
+            <%= f.submit 'Create Record', class: 'btn btn-primary pull-right' %>
+          </div>
+
+        <%- end %>
       </div>
-
-      <div class='panel-body'>
-        <%= render partial: 'form', object: f %>
-      </div>
-
-      <div class='panel-footer'>
-        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
-        <%= f.submit 'Create Record', class: 'btn btn-primary pull-right' %>
-      </div>
-
-    <%- end %>
+    </div>
   </div>
 </div>

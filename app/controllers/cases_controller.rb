@@ -27,13 +27,12 @@ class CasesController < ApplicationController
       flash[:success] = "New Case Saved!"
       redirect_to case_path(@case)
     else
-      @people = Person.all
       render :new
     end
   end
 
   def edit
-    @people = Person.all
+    @case.build_worker unless @case.worker
   end
 
   def update
@@ -41,7 +40,6 @@ class CasesController < ApplicationController
       flash[:success] = "Case Updated!"
       redirect_to case_path(@case)
     else
-      @people = Person.all
       render :edit
     end
   end

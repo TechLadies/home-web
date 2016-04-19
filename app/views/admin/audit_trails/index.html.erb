@@ -38,13 +38,21 @@
                 <td><%= version.created_at.to_s(:time) %></td>
                 <td><%= version.whodunnit.to_i > 0 ? User.find(version.whodunnit.to_i).name : 'unavailable' %></td>
                 <td><%= version.event.titleize %></td>
-                <td><%= "#{version.item.class.to_s.titleize} ##{version.item.id}" %></td>
 
-                <% if (version.item.is_a? CaseFile) %>
-                  <td><%= link_to "Case ##{version.item.id}",case_path(version.item) %></td>
-                <% else %>
-                  <td><%= link_to "Case ##{version.item.id}", case_path(version.item.case_file) %></td>
-                <% end %>
+                <%- if version.item %>
+
+                  <td><%= "#{version.item.class.to_s.titleize} ##{version.item.id}" %></td>
+
+                  <% if (version.item.is_a? CaseFile) %>
+                    <td><%= link_to "Case ##{version.item.id}",case_path(version.item) %></td>
+                  <% else %>
+                    <td><%= link_to "Case ##{version.item.id}", case_path(version.item.case_file) %></td>
+                  <% end %>
+
+                <%- else %>
+                  <td></td>
+                  <td></td>
+                <%- end %>
 
               </tr>
             <% end %>
