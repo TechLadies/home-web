@@ -1,5 +1,6 @@
 class Admin::TagsController < ApplicationController
 
+  before_action :require_admin_authorization
   before_action :all_tags, only: [:index, :new, :edit, :update]
   before_action :prepare_tag, only: [:edit, :update]
 
