@@ -1,2 +1,0 @@
-class NonDomestic < Worker
-end
