@@ -10,7 +10,7 @@ class CloseCaseFileService
     @case_file = case_file
   end
 
-  def run_close
+  def run
     @case_file.close! if valid?
   end
 

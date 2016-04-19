@@ -17,6 +17,7 @@ class CasesController < ApplicationController
   def new
     @case = current_user.case_files.build
     @case.issues.build
+    @case.people.build
     @case.build_worker
   end
 
@@ -45,7 +46,7 @@ class CasesController < ApplicationController
 
   def close
     @service = CloseCaseFileService.new(@case)
-    if @service.run_close
+    if @service.run
       flash[:notice] = "Case Closed!"
     else
       flash[:error] = @service.errors.full_messages.to_sentence
@@ -60,7 +61,13 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id], worker_attributes: [:nationality, :passport_number, :start_of_employment, :fin_number, :pass_type, :previous_employers_details, :days_off, :loan_value, :remaining_loan_value, :salary_details, :basic_salary, :industry, :accomodation_type, :origin_agent_fee, :local_agent_fee, :weekly_working_hours, :sunday_working_hours])
+    case params[:case_file][:case_type]
+    when 'Domestic'
+      params[:case_file][:worker_attributes][:type] = 'DomesticWorker'
+    when 'Non-Domestic'
+      params[:case_file][:worker_attributes][:type] = 'NonDomesticWorker'
+    end
+    params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id], worker_attributes: [:type, :nationality, :passport_number, :start_of_employment, :fin_number, :pass_type, :previous_employers_details, :days_off, :loan_value, :remaining_loan_value, :salary_details, :basic_salary, :industry, :accomodation_type, :origin_agent_fee, :local_agent_fee, :weekly_working_hours, :sunday_working_hours])
   end
 
 end

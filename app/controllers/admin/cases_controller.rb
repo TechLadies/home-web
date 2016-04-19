@@ -29,7 +29,7 @@ class Admin::CasesController < ApplicationController
 
   def reopen
     @service = OpenCaseFileService.new(@case)
-    if @service.run_open
+    if @service.run
       flash[:notice] = "Case Reopened!"
     else
       flash[:error] = "Case cannot be reopened by non-admin personnel!"

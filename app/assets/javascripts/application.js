@@ -40,12 +40,12 @@ $(document).ready(function() {
 
   $('[data-toggle="popover"]').popover();
 
-  apply_select_2();
-
   $('body').on('.simple_form.edit_case_file cocoon:after-insert, .simple_form.new_case_file cocoon:after-insert', function(e, insertedItem) {
     apply_select_2();
   });
 
   $('.select2').select2();
+
+  apply_select_2();
 
 });

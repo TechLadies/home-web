@@ -1,2 +1,0 @@
-class Domestic < Worker
-end

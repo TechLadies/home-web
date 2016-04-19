@@ -6,8 +6,6 @@
     <title>Home</title>
 
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:400,700,600', 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= filepicker_js_include_tag %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-touch-icon-57x57.png">
@@ -42,6 +40,9 @@
     <%= yield %>
 
     <%= render partial: 'layouts/modal' %>
+
+    <%= filepicker_js_include_tag %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   </body>
 

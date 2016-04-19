@@ -10,7 +10,7 @@ class OpenCaseFileService
     @case_file = case_file
   end
 
-  def run_open
+  def run
     @case_file.open! if valid?
   end
 
