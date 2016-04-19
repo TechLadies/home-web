@@ -1,5 +1,5 @@
 <fieldset>
-  <%= form.input :case_type, label: 'Case Type', as: :radio_buttons, collection: CaseFile::TYPE %>
+  <%= form.input :case_type, as: :radio_buttons_inline, collection: CaseFile::TYPE %>
 </fieldset>
 
 <fieldset>
@@ -7,8 +7,6 @@
   <legend>Biodata</legend>
 
   <%= form.simple_fields_for :worker do |ff| %>
-
-    <%= ff.input :type, as: :hidden, input_html: { value: 'DomesticWorker' } %>
 
     <div class="row">
       <%= ff.input :nationality, wrapper_html: { class: "col-md-6" } %>
@@ -19,9 +17,9 @@
       <%= ff.input :pass_type, wrapper_html: { class: "col-md-6" } %>
     </div>
     <div class="row">
-      <%= ff.input :start_of_employment, label: 'Start of Employment', wrapper_html: { class: "col-md-3" } %>
+      <%= ff.input :start_of_employment, as: :string, input_html: { class: 'datepicker' }, wrapper_html: { class: "col-md-3" } %>
       <%= ff.input :days_off, label: 'Days off', wrapper_html: { class: "col-md-3" } %>
-      <%= ff.input :previous_employers_details, label: 'Previous Employers Details', wrapper_html: { class: "col-md-6" } %>
+      <%= ff.input :previous_employers_details, label: "Previous Employers' Details", wrapper_html: { class: "col-md-6" } %>
     </div>
 
     <hr>
@@ -29,19 +27,19 @@
     <div class="row">
         <div class="col-md-6">
           <legend>Domestic</legend>
-            <%= ff.input :loan_value, label: 'Loan Value' %>
-            <%= ff.input :remaining_loan_value, label: 'Remaining Loan Value' %>
-            <%= ff.input :salary_details, label: 'Salary Details' %>
+            <%= ff.input :loan_value %>
+            <%= ff.input :remaining_loan_value %>
+            <%= ff.input :salary_details %>
         </div>
         <div class="col-md-6">
           <legend>Non-Domestic</legend>
-            <%= ff.input :basic_salary, label: 'Basic Salary' %>
-            <%= ff.input :industry, label: 'Industry' %>
-            <%= ff.input :accomodation_type, label: 'Accomodation Type' %>
-            <%= ff.input :origin_agent_fee, label: 'Origin Agent Fee' %>
-            <%= ff.input :local_agent_fee, label: 'Local Agent Fee' %>
-            <%= ff.input :weekly_working_hours, label: 'Weekly Working Hours' %>
-            <%= ff.input :sunday_working_hours, label: 'Sunday Working Hours' %>
+            <%= ff.input :basic_salary %>
+            <%= ff.input :industry %>
+            <%= ff.input :accomodation_type %>
+            <%= ff.input :origin_agent_fee %>
+            <%= ff.input :local_agent_fee %>
+            <%= ff.input :weekly_working_hours %>
+            <%= ff.input :sunday_working_hours %>
         </div>
     </div>
 

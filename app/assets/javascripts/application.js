@@ -48,4 +48,6 @@ $(document).ready(function() {
 
   apply_select_2();
 
+  $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+
 });

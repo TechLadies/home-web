@@ -1,5 +1,65 @@
-.ui-datepicker-calendar, .ui-datepicker-title, .ui-datepicker-header {
-  background-color: beige;
-  border-collapse: inherit;
-  border-spacing: 5px;
+.ui-datepicker {
+
+  padding: 10px;
+  background-color: #310834;
+  border-radius: 5px;
+
+  a { color: white; }
+
+  span {
+    text-transform: uppercase;
+    color: #aaa;
+  }
+
+  thead th { text-align: center; }
+
+  .ui-datepicker-calendar, .ui-datepicker-title, .ui-datepicker-header {
+    background-color: transparent;
+    border-collapse: inherit;
+    border-spacing: 5px;
+  }
+
+  .ui-datepicker-header a {
+
+    background-color: rgba(white, 0.1);
+    border-radius: 5px;
+    padding: 3px 7px;
+    cursor: pointer;
+
+    span {
+      color: white;
+      font-size: 12px;
+    }
+
+    &:hover { text-decoration: none; }
+
+    &.ui-datepicker-next { float: right; }
+
+  }
+
+  .ui-datepicker-title {
+    padding: 10px 5px 5px;
+    border-bottom: 1px solid rgba(white, 0.5);
+  }
+
+  .ui-datepicker-calendar {
+    
+    a.ui-state-default {
+      background-color: rgba(white, 0.1);
+      border-radius: 40px;
+      padding: 2px 3px;
+      width: 25px;
+      display: block;
+      text-align: center;
+    }
+
+    .ui-datepicker-current-day a, a.ui-state-hover {
+      background-color: #e8b53c;
+      border-radius: 40px;
+      padding: 2px 3px;
+      text-decoration: none;
+    }
+
+  }
+
 }
