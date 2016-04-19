@@ -11,7 +11,7 @@ class FollowUpsController < ApplicationController
     @followup.user = current_user
 
     if @followup.save
-      redirect_to case_path(@case)
+      flash[:notice] = "Added to Case"
     else
       render :new
     end

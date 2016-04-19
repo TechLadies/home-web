@@ -139,20 +139,14 @@
 
         <!-- FOLLOW UPS -->
         <div role="tabpanel" class="tab-pane table-responsive" id="followups">
-          <table class="table table-default">
+          <table id='follow-ups' class="table table-default">
             <thead>
               <th>Date</th>
               <th>Description</th>
               <th>Created By</th>
             </thead>
             <tbody>
-              <%- @case.follow_ups.order(created_at: :desc).each do |follow_up| %>
-                <tr>
-                  <td><%= follow_up.created_at.to_date.to_formatted_s(:long) %></td>
-                  <td><%= follow_up.description %></td>
-                  <td><%= follow_up.user.name %></td>
-                </tr>
-              <%- end %>
+              <%= render partial: 'follow_up', collection: @case.follow_ups.order(created_at: :desc) %>
             </tbody>
           </table>
           <hr/>

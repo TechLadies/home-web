@@ -1,4 +1,4 @@
-<%= simple_form_for [@case, @followup], as: :entry, url: case_follow_ups_path(@case) do |f| %>
+<%= simple_form_for [@case, @followup], as: :entry, url: case_follow_ups_path(@case), remote: true do |f| %>
 
   <%= f.input :case_id, as: :hidden %>
   <%= f.input :user_id, as: :hidden %>
