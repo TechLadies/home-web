@@ -14,10 +14,6 @@ class CloseCaseFileService
     @case_file.close! if valid?
   end
 
-  def run_open
-    @case_file.open!
-  end
-
   private
 
   def case_must_be_pending

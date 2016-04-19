@@ -3,8 +3,8 @@
   <div class="container">
     <h1>Case #<%= @case.id %></h1>
     <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' if @case.pending? %>
-    <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger' if @case.pending? %>
-    <%= link_to 'Reopen Case', reopen_case_path(@case), method: :put, class: 'btn btn-danger' if current_user.is_admin? && @case.closed? %>
+    <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger', data: { confirm: "Are you sure?" } if @case.pending? %>
+    <%= link_to 'Reopen Case', reopen_admin_case_path(@case), method: :put, class: 'btn btn-danger', data: { confirm: "Are you sure?" } if current_user.is_admin? && @case.closed? %>
   </div>
 
   <!-- *Case Information -->

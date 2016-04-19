@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     get :archive, on: :collection
 
-    put :close, :reopen, on: :member
+    put :close, on: :member
 
     resources :involvements, only: [:index, :new, :create, :destroy]
     resources :follow_ups, only: [:new, :create]
@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :cases, only: [:index, :show] do
       get :reassign, on: :member
       patch :update_assignment, on: :member
+      put :reopen, on: :member
     end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
