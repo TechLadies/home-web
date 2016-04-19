@@ -22,16 +22,8 @@
             <th>Assigned To</th>
           </tr>
         </thead>
-        <tbody>
-          <% @cases.where(status: :closed).each do |c| %>
-            <tr>
-              <td><%= link_to c.id, case_path(c) %> </td>
-              <td><%= c.case_type %> </td>
-              <td><%= c.client&.involvable&.name %> </td>
-              <td><%= c.employer&.involvable&.name %> </td>
-              <td><%= c.user.name %></td>
-            </tr>
-          <% end %>
+        <tbody id='closed-cases'>
+          <%= render partial: "cases/case_file", collection: @cases %>
         </tbody>
       </table>
     </div>

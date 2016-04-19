@@ -25,17 +25,8 @@
           </tr>
         </thead>
 
-        <tbody>
-          <% @cases.each do |c| %>
-            <tr>
-              <td><%= link_to c.id, case_path(c) %> </td>
-              <td><%= c.case_type %> </td>
-              <td><%= c.client.try(:involvable).try(:name) %></td>
-              <td><%= c.employer.try(:involvable).try(:name) %></td>
-              <td><%= c.user.name %></td>
-              <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default btn-sm' %></td>
-            </tr>
-          <% end %>
+        <tbody id='pending-cases'>
+          <%= render partial: "cases/case_file", collection: @cases %>
         </tbody>
       </table>
 
