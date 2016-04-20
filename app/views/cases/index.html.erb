@@ -10,10 +10,19 @@
 </div>
 
 <div class='container'>
+  <%= form_tag cases_path, method: :get, enforce_utf8: false, remote: true do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", name: nil %>
+    </p>
+  <% end %>
+</div>
+
+<div class='container'>
   <div class='panel panel-default'>
     <div class='panel-body'>
 
-      <table class='table table-default'>
+      <table class='table table-default' id='pending-cases'>
         <thead>
           <tr>
             <th>Case Number</th>
@@ -25,7 +34,7 @@
           </tr>
         </thead>
 
-        <tbody id='pending-cases'>
+        <tbody>
           <%= render partial: "cases/case_file", collection: @cases %>
         </tbody>
       </table>

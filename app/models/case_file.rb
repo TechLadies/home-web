@@ -58,6 +58,14 @@ class CaseFile < ActiveRecord::Base
     case_type == 'Non-Domestic'
   end
 
+  def self.search(query)
+    if query
+      where("case_type LIKE ?", "#{query}")
+    else
+      all
+    end
+  end
+
   protected
 
   def self.to_csv(options = {})
