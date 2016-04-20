@@ -9,13 +9,16 @@
   </div>
 </div>
 
+<!-- filter by case_type -->
 <div class='container'>
-  <%= form_tag cases_path, method: :get, enforce_utf8: false, remote: true do %>
-    <p>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", name: nil %>
-    </p>
-  <% end %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= simple_form_for :search, url: cases_path, method: :get, enforce_utf8: false, remote: true do |f| %>
+        <%= f.input params[:search], collection: CaseFile::TYPE, include_blank: false, prompt: 'Filter by Case Type' %>
+        <%= f.submit 'Search', name: nil %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div class='container'>

@@ -3,7 +3,7 @@ class CasesController < ApplicationController
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
-    @cases = CaseFile.pending.search(params[:search]).order('id DESC')
+    @cases = CaseFile.pending.search(params[:search].try(:join)).order('id DESC')
   end
 
   def archive
