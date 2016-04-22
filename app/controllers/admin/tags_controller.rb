@@ -8,11 +8,11 @@ class Admin::TagsController < ApplicationController
   end
 
   def new
-  	@tag = Tag.new
+    @tag = Tag.new
   end
 
   def create
-  	@tag = Tag.new(tag_params)
+    @tag = Tag.new(tag_params)
       if @tag.save
       redirect_to admin_tags_path
       flash[:notice] = 'New Tag Created'
@@ -30,6 +30,7 @@ class Admin::TagsController < ApplicationController
       flash[:success] = 'Tag Updated'
       redirect_to admin_tags_path
     else
+      flash[:alert] = @tag.errors.full_messages.to_sentence
       render :edit
     end
   end

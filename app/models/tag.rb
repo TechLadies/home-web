@@ -8,6 +8,14 @@ class Tag < ActiveRecord::Base
 
   validates :name, presence: true
 
+  validate :cannot_be_tagged_under_itself
+
   scope :roots, -> { where(parent_id: nil) }
+
+  private
+
+  def cannot_be_tagged_under_itself
+    errors.add(:parent_id, 'cannot be equal to own id') if parent_id == id
+  end
 
 end
