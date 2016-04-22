@@ -6,7 +6,7 @@ class Issue < ActiveRecord::Base
   validates :case_file, presence: true
   validates :tag_id, uniqueness: { scope: :case_id }
 
-  accepts_nested_attributes_for :tag
+#  accepts_nested_attributes_for :tag
 
   has_paper_trail
 
