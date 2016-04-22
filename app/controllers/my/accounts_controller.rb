@@ -3,7 +3,6 @@ class My::AccountsController < ApplicationController
   before_action :prepare_account
 
   def show
-    @cases = CaseFile.where(user: current_user.id).all
   end
 
   def edit
@@ -13,7 +12,7 @@ class My::AccountsController < ApplicationController
     if @account.update(account_params)
       redirect_to my_account_path
     else
-      render :show
+      render :edit
     end
   end
 
