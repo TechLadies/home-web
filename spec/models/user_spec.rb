@@ -11,4 +11,8 @@ RSpec.describe User, type: :model do
 
   it { should define_enum_for(:status).with([:active, :inactive]) }
 
+  user = User.new
+  it { expect(user).to transition_from(:active).to(:inactive).on_event(:deactivate) }
+	it { expect(user).to transition_from(:inactive).to(:active).on_event(:activate) }
+
 end
