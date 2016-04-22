@@ -11,7 +11,7 @@ class CloseCaseFileService
   end
 
   def run
-    @case_file.update(status: "Closed") if valid?
+    @case_file.close! if valid?
   end
 
   private

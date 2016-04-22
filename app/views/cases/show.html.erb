@@ -3,7 +3,8 @@
   <div class="container">
     <h1>Case #<%= @case.id %></h1>
     <%= link_to 'Edit Case', edit_case_path(@case), class: 'btn btn-default' if @case.pending? %>
-    <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger' if @case.pending? %>
+    <%= link_to 'Close Case', close_case_path(@case), method: :put, class: 'btn btn-danger', data: { confirm: "Are you sure?" } if @case.pending? %>
+    <%= link_to 'Reopen Case', reopen_admin_case_path(@case), method: :put, class: 'btn btn-danger', data: { confirm: "Are you sure?" } if current_user.is_admin? && @case.closed? %>
   </div>
 
   <!-- *Case Information -->
@@ -126,7 +127,7 @@
         <!-- ISSUES -->
           <div role="tabpanel" class="tab-pane active table-responsive" id="issues">
             <ul class='list-group'>
-              <%- @issues.order('id ASC').each do |i| %>
+              <%- @issues.each do |i| %>
                 <li class='list-group-item'>
                   <strong><%= i.tag.name %></strong>
                   <p><%= i.description %></p>
@@ -138,20 +139,14 @@
 
         <!-- FOLLOW UPS -->
         <div role="tabpanel" class="tab-pane table-responsive" id="followups">
-          <table class="table table-default">
+          <table id='follow-ups' class="table table-default">
             <thead>
               <th>Date</th>
               <th>Description</th>
               <th>Created By</th>
             </thead>
             <tbody>
-              <%- @case.follow_ups.order(created_at: :desc).each do |follow_up| %>
-                <tr>
-                  <td><%= follow_up.created_at.to_date.to_formatted_s(:long) %></td>
-                  <td><%= follow_up.description %></td>
-                  <td><%= follow_up.user.name %></td>
-                </tr>
-              <%- end %>
+              <%= render partial: 'follow_up', collection: @case.follow_ups.order(created_at: :desc) %>
             </tbody>
           </table>
           <hr/>

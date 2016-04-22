@@ -1,6 +1,7 @@
 class Admin::TagsController < ApplicationController
 
-  before_action :all_tags, only: [:index, :new, :select, :edit, :update]
+  before_action :require_admin_authorization
+  before_action :all_tags, only: [:index, :new, :edit, :update]
   before_action :prepare_tag, only: [:edit, :update]
 
   def index
@@ -19,9 +20,6 @@ class Admin::TagsController < ApplicationController
       render :new
       flash[:alert] = 'Please Retry'
     end
-  end
-
-  def select
   end
 
   def edit

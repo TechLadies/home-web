@@ -64,13 +64,13 @@
         <li role="presentation" class="active">
           <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
             <span>Pending</span>
-            <span class="badge"><%= @cases.where(status: "Pending").count %></span>
+            <span class="badge"><%= @cases.pending.count %></span>
           </a>
         </li>
         <li role="presentation">
           <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
             <span>Closed</span>
-            <span class="badge"><%= @cases.where(status: "Closed").count %></span>
+            <span class="badge"><%= @cases.closed.count %></span>
           </a>
         </li>
       </ul>
@@ -90,11 +90,11 @@
 
             <tbody>
               <%- @involvements.each do |i| %>
-                <%- if i.case_file.status == "Pending" %>
+                <%- if i.case_file.pending? %>
                   <tr>
                     <td><%= link_to i.case_id, case_path(i.case_file) %></td>
                     <td><%= i.case_file.case_type %></td>
-                    <td><%= i.case_file.status %></td>
+                    <td><%= i.case_file.status.titleize %></td>
                     <td><%= i.role.titleize %></td>
                   </tr>
                 <%- end %>
@@ -117,11 +117,11 @@
 
             <tbody>
               <%- @involvements.each do |i| %>
-                <%- if i.case_file.status == "Closed" %>
+                <%- if i.case_file.closed? %>
                   <tr>
                     <td><%= link_to i.case_id, case_path(i.case_file) %></td>
                     <td><%= i.case_file.case_type %></td>
-                    <td><%= i.case_file.status %></td>
+                    <td><%= i.case_file.status.titleize %></td>
                     <td><%= i.role.titleize %></td>
                   </tr>
                 <%- end %>

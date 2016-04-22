@@ -9,8 +9,8 @@
     <div class='panel-body'>
       <%= simple_form_for @query, as: :query, url: admin_cases_path , method: :get do |form| %>
         <div class='row'>
-          <%= form.input :start_date, wrapper_html: { class: 'col-md-5' }, type: 'text' %>
-          <%= form.input :end_date, wrapper_html: { class: 'col-md-5' }, type: 'text' %>
+          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-5' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-5' }, input_html: { class: 'datepicker' } %>
           <div class="col-md-2">
             <br />
             <%= form.submit 'Search', class: 'btn btn-primary btn-block' %>
@@ -64,11 +64,3 @@
     </div>
   </div>
 </div>
-
-<script>
-
-  $(document).ready(function() {
-    $('#query_start_date').datepicker({ dateFormat: 'dd/mm/yy' });
-    $('#query_end_date').datepicker({ dateFormat: 'dd/mm/yy' });
-  });
-</script>

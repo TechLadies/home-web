@@ -6,7 +6,6 @@ class CaseFile < ActiveRecord::Base
   has_many :issues, foreign_key: :case_id, inverse_of: :case_file
   has_many :tags, through: :issues
   has_many :follow_ups, foreign_key: :case_id, inverse_of: :case_file
-  has_many :documents, foreign_key: :case_id, inverse_of: :case_file
   has_many :links
   has_many :involvements, foreign_key: :case_id, inverse_of: :case_file
   has_many :people, through: :involvements, source: :involvable, source_type: "Person"
@@ -21,12 +20,22 @@ class CaseFile < ActiveRecord::Base
   validates :user, :case_type, :status, presence: true
 
   TYPE = ['Domestic', 'Non-Domestic']
-  STATUS = ['Pending', 'Closed']
 
-  before_validation :default_status
+  include AASM
 
-  scope :pending, -> { where(status: 'Pending') }
-  scope :closed, -> { where(status: 'Closed') }
+  aasm column: :status do
+    state :pending, initial: true
+    state :closed
+
+    event :close do
+      transitions from: :pending, to: :closed
+    end
+
+    event :open do
+      transitions from: :closed, to: :pending
+    end
+
+  end
 
   def client
     involvements.client.first
@@ -48,19 +57,7 @@ class CaseFile < ActiveRecord::Base
     case_type == 'Non-Domestic'
   end
 
-  def pending?
-    status == 'Pending'
-  end
-
-  def closed?
-    status == 'Closed'
-  end
-
   protected
-
-  def default_status
-    self.status ||= "Pending"
-  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

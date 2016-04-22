@@ -9,11 +9,37 @@
   </div>
 </div>
 
+<!-- search by case_type -->
+<div class='container'>
+  <div class="row">
+    <div class="col-md-3">
+      <%= simple_form_for :search_type, url: search_by_type_cases_path, method: :get, enforce_utf8: false, remote: true do |f| %>
+        <%= f.input params[:search_type], collection: CaseFile::TYPE, include_blank: false, prompt: 'All Cases' %>
+        <%= f.submit 'Search', name: nil, class: 'btn btn-primary btn-sml' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- search by client name -->
+<!-- <div class='container'>
+  <div class="row">
+    <div class="col-md-3">
+      <%= simple_form_for :search_name, url: search_by_name_cases_path, method: :get, enforce_utf8: false, remote: true do |f| %>
+        <%= f.input params[:search_name], as: :string %>
+        <%= f.submit 'Search', name: nil, class: 'btn btn-primary btn-sml' %>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+<br/>
+
 <div class='container'>
   <div class='panel panel-default'>
     <div class='panel-body'>
 
-      <table class='table table-default'>
+      <table class='table table-default' id='pending-cases'>
         <thead>
           <tr>
             <th>Case Number</th>
@@ -26,23 +52,7 @@
         </thead>
 
         <tbody>
-          <% @cases.where(status: "Pending").each do |c| %>
-            <tr>
-              <td><%= link_to c.id, case_path(c) %> </td>
-              <td><%= c.case_type %> </td>
-              <td>
-                <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
-              <td>
-                <%- if c.involvements.where(role:1).first.try(:involvable_type) == "Person" %>
-                  <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
-                <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
-                  <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
-                <%- end %>
-              </td>
-              <td><%= c.user.name %></td>
-              <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default btn-sm' %></td>
-            </tr>
-          <% end %>
+          <%= render partial: "cases/case_file", collection: @cases %>
         </tbody>
       </table>
 

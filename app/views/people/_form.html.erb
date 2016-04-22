@@ -1,7 +1,7 @@
 <div class="row">
   <%= form.input :name, wrapper_html: { class: 'col-md-5' } %>
   <%= form.input :gender, collection: [:Male, :Female], wrapper_html: { class: 'col-md-3' } %>
-  <%= form.input :date_of_birth, wrapper_html: { class: 'col-md-4' } %>
+  <%= form.input :date_of_birth, as: :string, wrapper_html: { class: 'col-md-4' }, input_html: { class: 'datepicker' } %>
 </div>
 
 <div class="row">

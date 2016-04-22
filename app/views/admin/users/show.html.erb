@@ -53,13 +53,13 @@
           <li role="presentation" class="active">
             <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
               <span>Pending</span>
-              <span class="badge"><%= @cases.where(status: "Pending").count %></span>
+              <span class="badge"><%= @cases.pending.count %></span>
             </a>
           </li>
           <li role="presentation">
             <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
               <span>Closed</span>
-              <span class="badge"><%= @cases.where(status: "Closed").count %></span>
+              <span class="badge"><%= @cases.closed.count %></span>
             </a>
           </li>
         </ul>

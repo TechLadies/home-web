@@ -19,13 +19,13 @@
 //= require_tree .
 
 apply_select_2 = function() {
-  $('.simple_form.edit_case_file .case_file_issues_tag_id select, .simple_form.new_case_file .case_file_issues_tag_id select').select2({
+  $('.case_file_issues_tag_id select').select2({
     ajax: {
       url: "/tags",
       dataType: 'json',
-      delay: 250,
-      cache: true
-    }
+      delay: 2
+    },
+    width: '100%'
   });
 }
 
@@ -40,12 +40,14 @@ $(document).ready(function() {
 
   $('[data-toggle="popover"]').popover();
 
-  apply_select_2();
-
   $('body').on('.simple_form.edit_case_file cocoon:after-insert, .simple_form.new_case_file cocoon:after-insert', function(e, insertedItem) {
     apply_select_2();
   });
 
   $('.select2').select2();
+
+  apply_select_2();
+
+  $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
 
 });

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
-    get :archive, on: :collection
+    get :archive, :search_by_type, :search_by_name, on: :collection
 
     put :close, on: :member
 
@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :cases, only: [:index, :show] do
       get :reassign, on: :member
       patch :update_assignment, on: :member
+      put :reopen, on: :member
     end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do

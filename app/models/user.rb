@@ -12,9 +12,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   enum status: [:active, :inactive]
-#can we remove this?
-
-  aasm column: :status, enum: true do
+  aasm column: :status do
 
     state :active
     state :inactive, initial: true

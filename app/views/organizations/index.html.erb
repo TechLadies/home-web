@@ -33,8 +33,8 @@
               <td><%= organization.phone %></td>
               <td><%= organization.address %></td>
               <td><%= organization.industry.titleize %></td>
-              <td><%= organization.case_files.where(status: "Pending").count %></td>
-              <td><%= organization.case_files.where(status: "Closed").count %></td>
+              <td><%= organization.case_files.pending.count %></td>
+              <td><%= organization.case_files.closed.count %></td>
             </tr>
           <%- end %>
         </tbody>

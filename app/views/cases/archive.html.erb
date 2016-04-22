@@ -17,17 +17,13 @@
           <tr>
             <th>Case Number</th>
             <th>Case Type</th>
+            <th>Client</th>
+            <th>Employer</th>
             <th>Assigned To</th>
           </tr>
         </thead>
-        <tbody>
-          <% @cases.where(status: "Closed").each do |c| %>
-            <tr>
-              <td><%= link_to c.id, case_path(c) %> </td>
-              <td><%= c.case_type %> </td>
-              <td><%= c.user.name %></td>
-            </tr>
-          <% end %>
+        <tbody id='closed-cases'>
+          <%= render partial: "cases/case_file", collection: @cases %>
         </tbody>
       </table>
     </div>

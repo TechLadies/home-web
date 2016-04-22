@@ -1,0 +1,3 @@
+$('#follow-ups tbody').html('<%= j render partial: "cases/follow_up", collection: @case.follow_ups.order(created_at: :desc) %>');
+
+$('#modal').modal('hide');

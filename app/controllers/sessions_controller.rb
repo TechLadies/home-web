@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   def create
     @form = LoginForm.new(self, login_form_params)
     if @form.save
-      flash[:notice] = "Login successfully"
+      flash[:notice] = "Login successful!"
       redirect_to my_account_path
     else
       flash.now[:alert] = @form.errors.full_messages.join(', ')
