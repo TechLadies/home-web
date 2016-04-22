@@ -5,36 +5,36 @@ class Admin::CasesController < ApplicationController
 
   def index
     @query = CaseSearchQuery.new(query_params)
-    @cases = @query.perform
+    @case_files = @query.perform
     respond_to do |format|
       format.html
-      format.csv { send_data @cases.to_csv }
+      format.csv { send_data @case_files.to_csv }
       format.xls
     end
   end
 
   def reassign
-    @case = CaseFile.find(params[:id])
+    @case_file = CaseFile.find(params[:id])
     @users = User.order('id DESC').all
   end
 
   def update_assignment
-    @case = CaseFile.find(params[:id])
-    if @case.update_attributes(case_params)
-      redirect_to case_path(@case)
+    @case_file = CaseFile.find(params[:id])
+    if @case_file.update_attributes(case_params)
+      redirect_to case_path(@case_file)
     else
       render :reassign
     end
   end
 
   def reopen
-    @service = OpenCaseFileService.new(@case)
+    @service = OpenCaseFileService.new(@case_file)
     if @service.run
       flash[:notice] = "Case Reopened!"
     else
       flash[:error] = "Case cannot be reopened by non-admin personnel!"
     end
-    redirect_to case_path(@case)
+    redirect_to case_path(@case_file)
   end
 
   private
@@ -48,7 +48,7 @@ class Admin::CasesController < ApplicationController
   end
 
   def prepare_casefile
-    @case = CaseFile.find(params[:id])
+    @case_file = CaseFile.find(params[:id])
   end
 
 end

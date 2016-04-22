@@ -7,17 +7,17 @@ class OpenCaseFileService
   validate :case_must_be_closed
 
   def initialize(case_file)
-    @case_file = case_file
+    @case_file_file = case_file
   end
 
   def run
-    @case_file.open! if valid?
+    @case_file_file.open! if valid?
   end
 
   private
 
   def case_must_be_closed
-    errors.add(:case_file, 'must be closed') unless @case_file.closed?
+    errors.add(:case_file, 'must be closed') unless @case_file_file.closed?
   end
 
 end

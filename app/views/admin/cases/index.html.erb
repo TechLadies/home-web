@@ -37,7 +37,7 @@
         </thead>
 
         <tbody>
-          <%- @cases.each do |case_file| %>
+          <%- @case_files.each do |case_file| %>
             <tr>
               <td><%= case_file.user.name %> </td>
               <td><%= case_file.case_type%></td>
@@ -51,7 +51,7 @@
         <tfoot>
           <tr>
             <td colspan='5'>
-              <%- if @cases.empty? %>
+              <%- if @case_files.empty? %>
                 <p>No Cases Found.</p>
               <%- else %>
                 <%= link_to "Download as CSV", admin_cases_path(query: params[:query], format: "csv") %>

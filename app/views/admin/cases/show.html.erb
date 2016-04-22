@@ -1,6 +1,6 @@
 <div class='page-header'>    
   <div class="container">
- <%= simple_form_for @case, url: case_path(@case) do |f| %>
+ <%= simple_form_for @case_file, url: case_path(@case_file) do |f| %>
 
         <%= f.input :users, label: 'Reassign Case', as: :radio_buttons, collection: CaseFile::TYPE%>
         <%end%>
@@ -23,15 +23,15 @@
             <tbody>
               <tr>
                 <td>Case Type</td>
-                <td><%= @case.case_type %></td>
+                <td><%= @case_file.case_type %></td>
               </tr>
               <tr>
                 <td>Status</td>
-                <td><%= @case.status %></td>
+                <td><%= @case_file.status %></td>
               </tr>
               <tr>
                 <td>Assigned To</td>
-                <td><%= @case.user.name %></td>
+                <td><%= @case_file.user.name %></td>
               </tr>
             </tbody>
           </table>
@@ -44,7 +44,7 @@
           <h3>Related Issues</h3>
         </div>
         <ul class="list-group">
-          <% @case.issues.each do |i| %>
+          <% @case_file.issues.each do |i| %>
             <li class="list-group-item">
               <p><%= i.description %></p>
             </li>
@@ -56,10 +56,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>Follow Up</h3>
-          <%= link_to "Add Follow Up", new_case_follow_up_path(@case), class: 'btn btn-primary' %>
+          <%= link_to "Add Follow Up", new_case_follow_up_path(@case_file), class: 'btn btn-primary' %>
         </div>
           <ul class="list-group">
-          <% @case.follow_ups.each do |i| %>
+          <% @case_file.follow_ups.each do |i| %>
             <li class="list-group-item">
               <p><%= i.description %></p>
             </li>
@@ -79,7 +79,7 @@
         </div>
 
         <ul id='links' class="list-group">
-          <% @case.links.each do |i| %>
+          <% @case_file.links.each do |i| %>
             <li class="list-group-item">
               <%= link_to i.filename, i.url %>
             </li>
@@ -87,8 +87,8 @@
         </ul>
 
         <div class="panel-body">
-          <%= form_for([@case, @case.links.build], url: case_links_path(@case)) do |f| %>
-            <input id='caseId' type='hidden' data-case-id='<%= @case.id %>'>
+          <%= form_for([@case_file, @case_file.links.build], url: case_links_path(@case_file)) do |f| %>
+            <input id='caseId' type='hidden' data-case-id='<%= @case_file.id %>'>
             <input id='upload' type='button' class='btn btn-primary btn-block' value='Upload New File'>
           <% end %>
         </div>

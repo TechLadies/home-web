@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <%= simple_form_for [@case, @document], as: :document do |f| %>
+      <%= simple_form_for [@case_file, @document], as: :document do |f| %>
       <div class="row">
         <div class="col-sm-2">  
       	    <strong>Case Number:</strong>
@@ -48,7 +48,7 @@
       	    <p><strong>*</strong> required fields</p>
       	    <%= f.button :submit, 'Add Document' %>
         	<% end %>
-          <p style="padding-top: 10px"><%= link_to 'Go Back to Case', case_path(@case)%></p>
+          <p style="padding-top: 10px"><%= link_to 'Go Back to Case', case_path(@case_file)%></p>
         </div>
       </div>
 

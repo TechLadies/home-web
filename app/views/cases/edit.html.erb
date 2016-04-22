@@ -1,13 +1,13 @@
 <div class='page-header'>
   <div class='container'>
-    <h1>Edit Case Number <%= @case.id%></h1>
-    <%= link_to 'Back to Case', case_path(@case), class: 'btn btn-default' %>
+    <h1>Edit Case Number <%= @case_file.id%></h1>
+    <%= link_to 'Back to Case', case_path(@case_file), class: 'btn btn-default' %>
   </div>
 </div>
 
 <div class='container'>
   <div class='panel panel-default'>
-    <%= simple_form_for @case, url: case_path(@case) do |f| %>
+    <%= simple_form_for @case_file, url: case_path(@case_file) do |f| %>
 
       <div class='panel-heading'>
         <h2>Case Details</h2>
@@ -18,7 +18,7 @@
       </div>
 
       <div class='panel-footer'>
-        <%= link_to 'Cancel', case_path(@case), class: 'btn btn-default' %>
+        <%= link_to 'Cancel', case_path(@case_file), class: 'btn btn-default' %>
         <%= f.submit 'Save Changes', class: 'btn btn-primary pull-right' %>
       </div>
 

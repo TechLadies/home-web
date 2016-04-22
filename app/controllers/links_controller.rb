@@ -3,20 +3,20 @@ class LinksController < ApplicationController
   before_action :prepare_case
   
   def create
-    @link = @case.links.create(link_params)
-    redirect_to case_path(@case)
+    @link = @case_file.links.create(link_params)
+    redirect_to case_path(@case_file)
   end
 
   def destroy
-    @link = @case.links.find(params[:id])
+    @link = @case_file.links.find(params[:id])
     @link.destroy
-    redirect_to case_path(@case)
+    redirect_to case_path(@case_file)
   end
 
   private
 
   def prepare_case
-    @case = CaseFile.find(params[:case_id])
+    @case_file = CaseFile.find(params[:case_id])
   end
  
   def link_params

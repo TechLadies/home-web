@@ -12,7 +12,7 @@
         <Cell><Data ss:Type="String">Status</Data></Cell>
         <Cell><Data ss:Type="String">Issues</Data></Cell>
       </Row>
-    <% @cases.each do |casefile| %>
+    <% @case_files.each do |casefile| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= casefile.user.name%></Data></Cell>
         <Cell><Data ss:Type="String"><%= casefile.case_type%></Data></Cell>

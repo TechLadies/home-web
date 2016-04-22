@@ -64,13 +64,13 @@
         <li role="presentation" class="active">
           <a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">
             <span>Pending</span>
-            <span class="badge"><%= @cases.pending.count %></span>
+            <span class="badge"><%= @case_files.pending.count %></span>
           </a>
         </li>
         <li role="presentation">
           <a href="#closed" aria-controls="closed" role="tab" data-toggle="tab">
             <span>Closed</span>
-            <span class="badge"><%= @cases.closed.count %></span>
+            <span class="badge"><%= @case_files.closed.count %></span>
           </a>
         </li>
       </ul>

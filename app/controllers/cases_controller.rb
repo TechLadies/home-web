@@ -3,73 +3,73 @@ class CasesController < ApplicationController
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
-    @cases = CaseFile.pending.order('id DESC')
+    @case_files = CaseFile.pending.order('id DESC')
   end
 
   def search_by_type
-    @cases = CaseFile.pending.where("case_type LIKE ?", params[:search_type].try(:join)).order('id DESC')
-    @cases.any? ? @cases : @cases = CaseFile.pending.order('id DESC')
+    @case_files = CaseFile.pending.where("case_type LIKE ?", params[:search_type].try(:join)).order('id DESC')
+    @case_files.any? ? @case_files : @case_files = CaseFile.pending.order('id DESC')
     render :index
   end
 
   # def search_by_name
-  #   @cases = CaseFile.pending.where(people: Person.where(name: params[:search_name])).order('id DESC')
-  #   @cases.any? ? @cases : @cases = CaseFile.pending.order('id DESC')
+  #   @case_files = CaseFile.pending.where(people: Person.where(name: params[:search_name])).order('id DESC')
+  #   @case_files.any? ? @case_files : @case_files = CaseFile.pending.order('id DESC')
   #   render :index
   # end
 
   def archive
-    @cases = CaseFile.closed.order('id DESC')
+    @case_files = CaseFile.closed.order('id DESC')
   end
 
   def show
-    @issues = @case.issues.order('id ASC')
+    @issues = @case_file.issues.order('id ASC')
   end
 
   def new
-    @case = current_user.case_files.build
-    @case.issues.build
-    @case.people.build
-    @case.build_worker
+    @case_file = current_user.case_files.build
+    @case_file.issues.build
+    @case_file.people.build
+    @case_file.build_worker
   end
 
   def create
-    @case = current_user.case_files.build(case_params)
-    if @case.save
+    @case_file = current_user.case_files.build(case_params)
+    if @case_file.save
       flash[:success] = "New Case Saved!"
-      redirect_to case_path(@case)
+      redirect_to case_path(@case_file)
     else
       render :new
     end
   end
 
   def edit
-    @case.build_worker unless @case.worker
+    @case_file.build_worker unless @case_file.worker
   end
 
   def update
-    if @case.update_attributes(case_params)
+    if @case_file.update_attributes(case_params)
       flash[:success] = "Case Updated!"
-      redirect_to case_path(@case)
+      redirect_to case_path(@case_file)
     else
       render :edit
     end
   end
 
   def close
-    @service = CloseCaseFileService.new(@case)
+    @service = CloseCaseFileService.new(@case_file)
     if @service.run
       flash[:notice] = "Case Closed!"
     else
       flash[:error] = @service.errors.full_messages.to_sentence
     end
-    redirect_to case_path(@case)
+    redirect_to case_path(@case_file)
   end
 
   private
 
   def prepare_casefile
-    @case = CaseFile.find(params[:id])
+    @case_file = CaseFile.find(params[:id])
   end
 
   def case_params

@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @involvements = @organization.involvements
-    @cases = @organization.case_files.order('id DESC')
+    @case_files = @organization.case_files.order('id DESC')
   end
 
   def new
