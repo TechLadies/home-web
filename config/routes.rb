@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
-    get :archive, on: :collection
+    get :archive, :search_by_type, :search_by_name, on: :collection
 
     put :close, on: :member
 

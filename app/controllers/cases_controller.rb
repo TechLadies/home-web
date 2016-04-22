@@ -3,11 +3,23 @@ class CasesController < ApplicationController
   before_action :prepare_casefile, only: [:show, :edit, :update, :close]
 
   def index
-    @cases = CaseFile.pending.search(params[:search].try(:join)).order('id DESC')
+    @cases = CaseFile.pending.order('id DESC')
   end
 
+  def search_by_type
+    @cases = CaseFile.pending.where("case_type LIKE ?", params[:search_type].try(:join)).order('id DESC')
+    @cases.any? ? @cases : @cases = CaseFile.pending.order('id DESC')
+    render :index
+  end
+
+  # def search_by_name
+  #   @cases = CaseFile.pending.where(people: Person.where(name: params[:search_name])).order('id DESC')
+  #   @cases.any? ? @cases : @cases = CaseFile.pending.order('id DESC')
+  #   render :index
+  # end
+
   def archive
-    @cases = CaseFile.closed.order('id DESC').all
+    @cases = CaseFile.closed.order('id DESC')
   end
 
   def show
