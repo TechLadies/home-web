@@ -10,46 +10,31 @@
     <div class='container'>
       <ul class="list-inline">
 
-        <li>
-          <span>Industry</span>
-          <strong><%= @organization.industry %></strong>
-        </li>
+        <%- unless @organization.industry.blank? %>
+          <li>
+            <span>Industry</span>
+            <strong><%= @organization.industry %></strong>
+          </li>
+        <%- end %>
 
+        <%- unless @organization.phone.blank? %>
+          <li>
+            <span>Phone</span>
+            <strong><%= @organization.phone %></strong>
+          </li>
+        <%- end %>
 
-        <li>
-          <span>Phone</span>
-          <strong><%= @organization.phone %></strong>
-        </li>
-
-        <li>
-          <span>Address</span>
-          <strong><%= @organization.address %></strong>
-        </li>
+        <%- unless @organization.address.blank? %>
+          <li>
+            <span>Address</span>
+            <strong><%= @organization.address %></strong>
+          </li>
+        <%- end %>
 
       </ul>
     </div>
   </div>  
 </div>
-
-<!-- <div class="container">
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h2>Related People</h2>
-    </div>
-
-    <div class='panel-body'>
-     <div class="row">
-      <div class="col-xs-12">
-        <ul>
-          <li>Jaryl</li>
-          <li>Peter</li>
-          <li>wtvr</li>
-        </ul>
-       </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <!-- Show Organization Case History -->
 <div class='container'>

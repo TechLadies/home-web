@@ -1,0 +1,32 @@
+@mixin indent($n) {
+  padding-left: 50px * $n;
+}
+
+
+.admin_tags {
+
+  .list-group-item {
+
+    &:hover { background-color: rgba(#310834, 0.1); }
+
+    > label {
+      font-weight: normal;
+      margin-left: 10px;
+    }
+
+    input[disabled='disabled'] + label { color: #ccc; }
+
+  }
+
+  .list-group-item-0 {
+    font-weight: bold;
+
+    & > label { font-weight: bold; }
+  }
+
+  .list-group-item-1 { @include indent(1); }
+  .list-group-item-2 { @include indent(2); }
+  .list-group-item-3 { @include indent(3); }
+  .list-group-item-4 { @include indent(4); }
+
+}

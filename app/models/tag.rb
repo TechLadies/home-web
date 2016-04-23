@@ -12,6 +12,13 @@ class Tag < ActiveRecord::Base
 
   scope :roots, -> { where(parent_id: nil) }
 
+  def self.traverse(tags = Tag.roots, level = 0, &block)
+    tags.each do |tag|
+      block.call tag, level
+      traverse(tag.children, level + 1, &block) unless tag.children.empty?
+    end
+  end
+
   private
 
   def cannot_be_tagged_under_itself

@@ -38,7 +38,7 @@ class Admin::TagsController < ApplicationController
   private
   
   def all_tags
-    @tags = Tag.order('id ASC').all    
+    @tags = Tag.order('id ASC').all
   end
 
   def tag_params

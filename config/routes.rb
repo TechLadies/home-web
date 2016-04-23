@@ -48,9 +48,7 @@ Rails.application.routes.draw do
       put :activate, on: :member
     end
 
-    resources :tags, only: [:index, :new, :create, :edit, :update] do
-      get :select, on: :collection
-    end
+    resources :tags, only: [:index, :new, :create, :edit, :update]
 
     resources :audit_trails, only: [:index]
 

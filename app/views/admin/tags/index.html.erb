@@ -5,46 +5,16 @@
   </div>
 </div>
 
+
 <div class='container'>
-  <%- @tags.where(parent_id: nil).each do |f|%>
-    <div class="col-md-6">
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4>
-            Category: 
-            <a href="/admin/tags/<%= f.id %>/edit" data-toggle="popover" title="Description" data-trigger="hover" data-placement="top" data-content= '<%= f.description %>'>
-              <%= f.name %> <span class="glyphicon glyphicon-pencil"></span>
-            </a>
-          </h4>
-        </div>
-
-        <div class='panel-body'>
-            <%- f.children.each do |g|%>
-              <ul>
-                <li>
-                  <a href="/admin/tags/<%= g.id %>/edit" data-toggle="popover" title="Description" data-trigger="hover" data-placement="top" data-content= '<%= g.description %>'>
-                    <%= g.name %> <span class="glyphicon glyphicon-pencil"></span>
-                  </a>
-                </li>
-                <%- g.children.each do |h|%>
-                  <ul>
-                    <li>
-                      <a href="/admin/tags/<%= h.id %>/edit" data-toggle="popover" title="Description" data-trigger="hover" data-placement="top" data-content= '<%= h.description %>'>
-                        <%= h.name %> <span class="glyphicon glyphicon-pencil"></span>
-                      </a>
-                    </li>
-                  </ul>
-                <%- end %>
-              </ul>
-          <%- end %>
-        </div>
-      </div>
-    </div>
-  <%- end %>
+  <div class='panel panel-default'>
+    <ul class='list-group'>
+      <%- Tag.traverse do |tag, level| %>
+        <li class='list-group-item list-group-item-<%= level %>'>
+          <%= tag.name %>
+          <%= link_to 'Edit', edit_admin_tag_path(tag), class: 'pull-right' %>
+        </li>
+      <%- end %>
+    </ul>
+  </div>
 </div>
-
-<script>
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover(); 
-});
-</script>

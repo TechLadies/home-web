@@ -8,52 +8,36 @@
 <div class='container'>
   <%= simple_form_for [:admin, @tag] do |f| %>
     <div class='panel panel-default'>
+
       <div class='panel-heading'>
         <h3>Tag Information</h3>
       </div>
 
       <div class='panel-body'>
+
         <div class='row'>
-          <div class="col-md-8">
-            <%= f.input :name %>
-            <%= f.input :description %>
-          </div>
+          <%= f.input :name, wrapper_html: { class: 'col-md-6' } %>
+          <%= f.input :description, wrapper_html: { class: 'col-md-6' } %>
         </div>
 
-        <div class='row'>
-          <div class="col-md-6">
-            <h4><strong>Select Parent Category (if any)</strong></h4>
-          </div>
-        </div>
-
-        <div class='row'>
-          <%- @tags.where(parent_id: nil).each do |x|%>
-            <div class="col-md-6">
-              <div class='panel panel-default'>
-                <div class='panel-heading'>
-                  <%= f.radio_button :parent_id, x.id %> 
-                  <%= f.label :parent_id, x.name, value: x.id %>
-                </div>
-
-                <div class='panel-body'>
-                  <%- x.children.each do |y|%>
-                    <ul>
-                      <%= f.radio_button :parent_id, y.id %>
-                      <%= f.label :parent_id, y.name, value: y.id %>
-                      <%- y.children.each do |z|%>
-                        <ul><%= z.name %></ul>
-                      <%- end %>
-                    </ul>
-                  <%- end %>
-                </div>    
-              </div>
-            </div>
+        <h4><strong>Select Parent Category (if any)</strong></h4>
+        <ul class='list-group'>
+          <%- Tag.traverse do |tag, level| %>
+            <li class='list-group-item list-group-item-<%= level %>'>
+              <%= f.radio_button :parent_id, tag.id, disabled: tag == @tag %> 
+              <%= f.label :parent_id, tag.name, value: tag.id %>
+            </li>
           <%- end %>
-        </div>
+        </ul>
 
-      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
+        <hr />
+
+        <%= link_to 'Cancel', admin_tags_path, class: 'btn btn-default' %>
+
+        <%= f.submit 'Save Changes', class: 'btn btn-primary pull-right' %>
 
       </div>
+
     </div>
   <%- end %>
 </div>
