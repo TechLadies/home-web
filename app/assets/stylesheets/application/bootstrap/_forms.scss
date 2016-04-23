@@ -26,6 +26,10 @@
 
   }
 
+  br + .btn-lg { margin-top: 5px; }
+
+  .form-control { height: 40px; }
+
   .form-control.string, .form-control.password, .form-control.decimal, .form-control.integer {
 
     border-radius: 0;
@@ -35,7 +39,6 @@
     background-color: transparent;
 
     padding: 0;
-    height: 40px;
     font-size: 16px;
     line-height: 16px;
 

@@ -6,18 +6,6 @@ class CasesController < ApplicationController
     @case_files = CaseFile.pending.order('id DESC')
   end
 
-  def search_by_type
-    @case_files = CaseFile.pending.where("case_type LIKE ?", params[:search_type].try(:join)).order('id DESC')
-    @case_files.any? ? @case_files : @case_files = CaseFile.pending.order('id DESC')
-    render :index
-  end
-
-  # def search_by_name
-  #   @case_files = CaseFile.pending.where(people: Person.where(name: params[:search_name])).order('id DESC')
-  #   @case_files.any? ? @case_files : @case_files = CaseFile.pending.order('id DESC')
-  #   render :index
-  # end
-
   def archive
     @case_files = CaseFile.closed.order('id DESC')
   end
@@ -73,13 +61,8 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    case params[:case_file][:case_type]
-    when 'Domestic'
-      params[:case_file][:worker_attributes][:type] = 'DomesticWorker'
-    when 'Non-Domestic'
-      params[:case_file][:worker_attributes][:type] = 'NonDomesticWorker'
-    end
-    params.require(:case_file).permit(:case_type, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id], worker_attributes: [:type, :nationality, :passport_number, :start_of_employment, :fin_number, :pass_type, :previous_employers_details, :days_off, :loan_value, :remaining_loan_value, :salary_details, :basic_salary, :industry, :accomodation_type, :origin_agent_fee, :local_agent_fee, :weekly_working_hours, :sunday_working_hours])
+    params[:case_file][:worker_attributes][:type] = "#{params[:case_file][:case_type].gsub('-', '')}Worker" if params[:case_file][:case_type]
+    params.require(:case_file).permit(:case_type, :reported_at, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id], worker_attributes: [:type, :nationality, :passport_number, :start_of_employment, :fin_number, :pass_type, :previous_employers_details, :days_off, :loan_value, :remaining_loan_value, :salary_details, :basic_salary, :industry, :accomodation_type, :origin_agent_fee, :local_agent_fee, :weekly_working_hours, :sunday_working_hours])
   end
 
 end

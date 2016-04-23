@@ -77,7 +77,7 @@
               <%- @involvements.each do |i| %>
                 <%- if i.case_file.pending? %>
                   <tr>
-                    <td><%= link_to i.case_id, case_path(i.case_file) %></td>
+                    <td><%= link_to i.case_file, case_path(i.case_file) %></td>
                     <td><%= i.case_file.case_type %></td>
                     <td><%= i.case_file.status.titleize %></td>
                     <td><%= i.role.titleize %></td>
@@ -104,7 +104,7 @@
               <%- @involvements.each do |i| %>
                 <%- if i.case_file.closed? %>
                   <tr>
-                    <td><%= link_to i.case_id, case_path(i.case_file) %></td>
+                    <td><%= link_to i.case_file, case_path(i.case_file) %></td>
                     <td><%= i.case_file.case_type %></td>
                     <td><%= i.case_file.status.titleize %></td>
                     <td><%= i.role.titleize %></td>

@@ -32,7 +32,7 @@ class Admin::CasesController < ApplicationController
     if @service.run
       flash[:notice] = "Case Reopened!"
     else
-      flash[:error] = "Case cannot be reopened by non-admin personnel!"
+      flash[:error] = @service.errors.full_messages.to_sentence
     end
     redirect_to case_path(@case_file)
   end
@@ -40,7 +40,7 @@ class Admin::CasesController < ApplicationController
   private
 
   def query_params
-    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date) : Hash.new
+    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date, :case_type) : Hash.new
   end
 
   def case_params

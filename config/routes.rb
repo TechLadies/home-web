@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
-    get :archive, :search_by_type, :search_by_name, on: :collection
+    get :archive, on: :collection
 
     put :close, on: :member
 
@@ -17,35 +17,34 @@ Rails.application.routes.draw do
 
   end
 
-  resources :organizations, only: [:index, :show, :new, :create, :edit, :update] do
-    # resources :members, only: [:new, :create]
-  end
+  resources :organizations, only: [:index, :show, :new, :create, :edit, :update]
 
   resources :people, only: [:index, :show, :new, :create, :edit, :update]
 
   resources :tags, only: [:index]
 
   namespace :my do
+
     resource :account, only: [:show, :edit, :update]
 
-    resources :cases, only: [:show] do
-    get :search_people, on: :member
-    patch :update_people, on: :member
-
-    end
   end
 
   namespace :admin do
 
     resources :cases, only: [:index, :show] do
-      get :reassign, on: :member
-      patch :update_assignment, on: :member
-      put :reopen, on: :member
+      member do
+        get :reassign
+        patch :update_assignment
+        put :reopen
+      end
+    end
+
+    resources :reports, only: [] do
+      get :days_off, :general, on: :collection
     end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
-      put :deactivate, on: :member
-      put :activate, on: :member
+      put :activate, :deactivate, on: :member
     end
 
     resources :tags, only: [:index, :new, :create, :edit, :update]
@@ -108,4 +107,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

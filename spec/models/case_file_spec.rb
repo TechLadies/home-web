@@ -19,6 +19,7 @@ RSpec.describe CaseFile, type: :model do
   it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to validate_presence_of(:case_type) }
   it { is_expected.to validate_presence_of(:status) }
+  it { is_expected.to validate_presence_of(:reported_at) }
  
 #include aasm testing for :status
  #  case = CaseFile.new

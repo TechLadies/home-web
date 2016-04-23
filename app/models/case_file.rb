@@ -11,13 +11,12 @@ class CaseFile < ActiveRecord::Base
   has_many :people, through: :involvements, source: :involvable, source_type: "Person"
   has_many :organizations, through: :involvements, source: :involvable, source_type: "Organization"
   has_one :worker
-  accepts_nested_attributes_for :worker, allow_destroy: true
-  has_paper_trail
 
+  accepts_nested_attributes_for :worker, allow_destroy: true
   accepts_nested_attributes_for :involvements
   accepts_nested_attributes_for :issues, reject_if: proc { |a| a['description'].blank? }, allow_destroy: true
 
-  validates :user, :case_type, :status, presence: true
+  validates :user, :case_type, :status, :reported_at, presence: true
 
   TYPE = ['Domestic', 'Non-Domestic']
 
@@ -35,6 +34,10 @@ class CaseFile < ActiveRecord::Base
       transitions from: :closed, to: :pending
     end
 
+  end
+
+  def to_s
+    "##{id} #{[client&.involvable&.name, employer&.involvable&.name].compact.join(' v ')}"
   end
 
   def client

@@ -1,5 +1,8 @@
 <fieldset>
-  <%= form.input :case_type, as: :radio_buttons_inline, collection: CaseFile::TYPE %>
+  <div class="row">
+    <%= form.input :case_type, as: :radio_buttons_inline, collection: CaseFile::TYPE, wrapper_html: { class: 'col-md-6' } %>
+    <%= form.input :reported_at, as: :string, wrapper_html: { class: 'col-md-6' }, input_html: { class: 'datepicker' } %>
+  </div>
 </fieldset>
 
 <fieldset>

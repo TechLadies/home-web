@@ -9,11 +9,12 @@
     <div class='panel-body'>
       <%= simple_form_for @query, as: :query, url: admin_cases_path , method: :get do |form| %>
         <div class='row'>
-          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-5' }, input_html: { class: 'datepicker' } %>
-          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-5' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :case_type, collection: CaseFile::TYPE, include_blank: 'All Cases', wrapper_html: { class: 'col-md-4' } %>
           <div class="col-md-2">
             <br />
-            <%= form.submit 'Search', class: 'btn btn-primary btn-block' %>
+            <%= form.submit 'Search', class: 'btn btn-primary btn-block btn-lg' %>
           </div>
         </div>
       <% end %>
@@ -28,10 +29,10 @@
 
         <thead>
           <tr>
-            <th>User</th>
+            <th>Case</th>
+            <th>Assigned to</th>
             <th>Case Type</th>
             <th>Status</th>
-            <th>Issues</th>
             <th>Reported at</th>
           </tr>
         </thead>
@@ -39,10 +40,10 @@
         <tbody>
           <%- @case_files.each do |case_file| %>
             <tr>
-              <td><%= case_file.user.name %> </td>
+              <td><%= link_to case_file, case_path(case_file) %></td>
+              <td><%= case_file.user.name %></td>
               <td><%= case_file.case_type%></td>
-              <td><%= case_file.status %></td>
-              <td><%= case_file.issues.collect { |i| i.tag.name }.to_sentence %></td>
+              <td><%= case_file.status.titleize %></td>
               <td><%= case_file.reported_at.to_date.to_s(:long) %></td>
             </tr>
           <% end %>

@@ -1,39 +1,8 @@
 <div class='page-header'>
   <div class='container'>
     <h1>Pending Cases</h1>
-    <div class="row">
-      <div class="col-md-6">
-        <%= link_to 'New Case', new_case_path, class: 'btn btn-primary' %>
-      </div>
-    </div>
   </div>
 </div>
-
-<!-- search by case_type -->
-<div class='container'>
-  <div class="row">
-    <div class="col-md-3">
-      <%= simple_form_for :search_type, url: search_by_type_cases_path, method: :get, enforce_utf8: false, remote: true do |f| %>
-        <%= f.input params[:search_type], collection: CaseFile::TYPE, include_blank: false, prompt: 'All Cases' %>
-        <%= f.submit 'Search', name: nil, class: 'btn btn-primary btn-sml' %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<!-- search by client name -->
-<!-- <div class='container'>
-  <div class="row">
-    <div class="col-md-3">
-      <%= simple_form_for :search_name, url: search_by_name_cases_path, method: :get, enforce_utf8: false, remote: true do |f| %>
-        <%= f.input params[:search_name], as: :string %>
-        <%= f.submit 'Search', name: nil, class: 'btn btn-primary btn-sml' %>
-      <% end %>
-    </div>
-  </div>
-</div> -->
-
-<br/>
 
 <div class='container'>
   <div class='panel panel-default'>
@@ -44,8 +13,6 @@
           <tr>
             <th>Case Number</th>
             <th>Case Type</th>
-            <th>Client</th>
-            <th>Employer</th>
             <th>Assigned To</th>
             <th></th>
           </tr>
