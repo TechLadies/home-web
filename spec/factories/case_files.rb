@@ -6,6 +6,7 @@ FactoryGirl.define do
     # organization
 
     case_type 'Domestic'
+    reported_at { Date.today - 10.days }
 
     trait :invalid do
       user nil
