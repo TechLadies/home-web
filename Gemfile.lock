@@ -49,6 +49,8 @@ GEM
     builder (3.2.2)
     byebug (8.2.2)
     cocoon (1.2.9)
+    codeclimate-test-reporter (0.5.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -59,6 +61,7 @@ GEM
     concurrent-ruby (1.0.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -181,6 +184,11 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sorcery (0.9.1)
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
@@ -214,6 +222,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   cocoon
+  codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   dotenv-rails
   factory_girl_rails
