@@ -11,10 +11,12 @@ FactoryGirl.define do
     end
 
     trait :with_person do
+      case_file
       association :involvable, factory: :person
     end
 
     trait :with_organization do
+      case_file
       association :involvable, factory: :organization
     end
 

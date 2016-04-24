@@ -1,4 +1,4 @@
-<%= simple_form_for [@case_file_file, @involvement], as: :involvement, url: case_involvements_path(@case_file_file), remote: true do |f| %>
+<%= simple_form_for [@case_file, @involvement], as: :involvement, url: case_involvements_path(@case_file), remote: true do |f| %>
 
   <%= f.input :case_id, as: :hidden %>
   <%= f.input :involvable_type, as: :hidden %>

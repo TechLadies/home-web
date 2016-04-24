@@ -8,11 +8,11 @@ class InvolvementsController < ApplicationController
   end
 
   def new
-    @involvement = @case_file_file.involvements.build(involvement_params)
+    @involvement = @case_file.involvements.build
   end
 
   def create
-    @involvement = @case_file_file.involvements.build(involvement_params)
+    @involvement = @case_file.involvements.build(involvement_params)
     if @involvement.save
       flash.now[:notice] = 'Added to case'
     else
@@ -21,16 +21,16 @@ class InvolvementsController < ApplicationController
   end
 
   def destroy
-    @involvement = @case_file_file.involvements.find(params[:id])
+    @involvement = @case_file.involvements.find(params[:id])
     @involvement.destroy
 
-    redirect_to case_path(@case_file_file)
+    redirect_to case_path(@case_file)
   end
 
   private
 
   def prepare_case_file
-    @case_file_file = CaseFile.find(params[:case_id])
+    @case_file = CaseFile.find(params[:case_id])
   end
 
   def involvement_params

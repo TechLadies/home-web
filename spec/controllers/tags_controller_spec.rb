@@ -1,16 +1,14 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe TagsController, type: :controller do
+RSpec.describe TagsController, type: :controller do
 
-#   # let(:user) { build(:user) }
+  let(:user) { build(:user) }
+  before { login_user user }
 
-#   # before { login_user user }
+  describe 'GET index' do
+    before { xhr :get, :index }
+	  it { expect(:tags).not_to be_empty }
+	  it { expect(response).to render_template(:index) }
+	end
 
-#   describe 'GET index' do
-#     let!(:case_file) { build(:case_file, user: user) }
-#     before { get :show }
-#     it { expect(response).to render_template(:show) }
-#     it { expect(assigns(:account)).not_to be_nil }
-#   end
-
-# end
+end

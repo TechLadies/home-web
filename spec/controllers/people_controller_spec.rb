@@ -2,31 +2,73 @@ require 'rails_helper'
 
 RSpec.describe PeopleController, type: :controller do
 
-  # describe 'GET index' do
-		# before { get :index, format: :json }
-  #   it { expect(response).to render_template(:index) }
-  # end
+  let(:user) { build(:user) }
+  before { login_user user }
 
-  # describe 'GET edit' do
-  #   before { get :edit }
-  #   it { expect(response).to render_template(:edit) }
-  #   it { expect(assigns(:account)).not_to be_nil }
-  # end
+  let(:person) { create(:person) }
 
-  # describe 'PUT update' do
+  describe 'GET index' do
 
-  #   context 'with valid params' do
-  #     before { put :update, user: attributes_for(:user) }
-  #     it { expect(response).to redirect_to(my_account_path) }
-  #     it { expect(assigns(:account)).to be_valid }
-  #   end
+    context "when valid" do    
+      before { get :index }
+      it { expect(:people).not_to be_empty }
+      it { expect(response).to render_template(:index) }
+    end
 
-  #   context 'with invalid params' do
-  #     before { put :update, user: attributes_for(:user, :invalid) }
-  #     it { is_expected.to render_template(:edit) }
-  #     it { expect(assigns(:account)).not_to be_valid }
-  #   end
+    context "when valid" do
+      before { xhr :get, :index }
+      it { expect(:people).not_to be_empty }
+      it { expect(response).to render_template(:index) }
+    end
+    
+  end
 
-  # end
+  describe "GET show" do
+    before { get :show, id: person }
+    it { expect(response).to render_template(:show) }
+  end
+ 
+  describe "GET new" do
+    before { get :new }
+    it { expect(assigns(:person)).to be_a_new(Person) }
+    it { expect(response).to render_template(:new) }
+  end
+
+  describe "POST create" do
+
+    context "when valid" do
+      before { post :create, person: attributes_for(:person) }
+      it { expect(assigns(:person)).to be_valid }
+      it { expect(response).to redirect_to(person_path(assigns(:person))) }
+    end
+ 
+    context "when invalid" do
+      before { post :create, person: attributes_for(:person, :invalid) }
+      it { expect(assigns(:person)).not_to be_valid }
+      it { expect(response).to render_template(:new) }
+    end
+
+  end
+
+  describe "GET edit" do
+    before { get :edit, id: person.id }
+    it { expect(response).to render_template(:edit) }
+  end
+
+  describe 'PUT update' do
+
+    context 'when valid' do
+      before { put :update, id: person, person: attributes_for(:person) }
+      it { expect(assigns(:person)).to be_valid }
+      it { expect(response).to redirect_to(person_path(assigns(:person))) }
+    end
+
+    context 'when invalid' do
+      before { put :update, id: person, person: attributes_for(:person, :invalid) }
+      it { expect(assigns(:person)).not_to be_valid }
+      it { expect(response).to render_template(:edit) }
+    end
+
+  end
 
 end
