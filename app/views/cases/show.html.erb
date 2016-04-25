@@ -58,7 +58,7 @@
           <%- if @case_file.client.nil? %>
             <div class='well well-empty text-center'>
               <p>No client information yet.</p>
-              <%= link_to 'Add Client', new_case_involvement_path(@case_file, involvement: { role: :client, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.pending? %>
+              <%= link_to 'Add Client', new_case_involvement_path(@case_file, involvement: { role: 'client', involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.pending? %>
             </div>
           <%- else %>
             <%= render partial: 'person', object: @case_file.client.involvable, locals: { involvement: @case_file.client } %>

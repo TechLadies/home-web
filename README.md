@@ -4,6 +4,10 @@
 
 This repository contains the source code for a case management application, that was built for [HOME](http://www.home.org.sg/). This project was started as part of the [Tech Ladies](http://www.techladies.co/) initiative, to not only teach women to code, but to actually build something of use for a social cause.
 
+This is what the app looks like:
+
+[Case file show page](https://cloud.githubusercontent.com/assets/19878/14795376/ce51dcc4-0b5a-11e6-9d14-cbd91b17defa.png)
+
 The app helps HOME manage their cases, and supports the following features:
 
 * Volunteers can open new case files, and capture biodata of both domestic and non-domestic foreign workers;
@@ -44,4 +48,4 @@ Run tests to check if things are set up right:
 
 The original [Tech Ladies](http://www.techladies.co/) team are made up of [Cornet](https://github.com/nettocornetto), [Jaryl Sim](https://github.com/jaryl), [Kate Lim](https://github.com/katelyp), [Sandy Tseng](https://github.com/SandyTseng).
 
-If you are interested in helping out, do get in touch with [Jolovan](jolovan.wham@home.org.sg).
+If you are interested in helping out, do get in touch with [Jolovan](mailto:jolovan.wham@home.org.sg).

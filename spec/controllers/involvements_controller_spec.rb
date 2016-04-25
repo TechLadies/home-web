@@ -11,7 +11,7 @@ RSpec.describe InvolvementsController, type: :controller do
 # need help for index
 
   describe "GET new" do
-    before { xhr :get, :new, case_id: case_file }
+    before { xhr :get, :new, case_id: case_file, involvement: { involvable_type: 'Person', role: 'employer' } }
     it { expect(assigns(:involvement)).to be_a_new(Involvement) }
     it { expect(response).to render_template(:new) }
   end

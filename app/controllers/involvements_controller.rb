@@ -8,7 +8,7 @@ class InvolvementsController < ApplicationController
   end
 
   def new
-    @involvement = @case_file.involvements.build
+    @involvement = @case_file.involvements.build(involvement_params)
   end
 
   def create
