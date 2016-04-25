@@ -61,6 +61,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   end
 
+#rework: missing test?
   describe 'states' do
 
 	  describe ':inactive' do
@@ -72,11 +73,17 @@ RSpec.describe Admin::UsersController, type: :controller do
       it 'should change from :inactive to :active ' do
 				expect(user).to transition_from(:inactive).to(:active).on_event(:activate)
 				expect(user).to be_active
+#to include redirect
       end
+ 
+    end
+
+    describe ':active' do
 
       it 'should change from :active to :inactive ' do
 				expect(user).to transition_from(:active).to(:inactive).on_event(:deactivate)
 				expect(user).to be_inactive
+#to include redirect
       end
 
     end

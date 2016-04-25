@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe InvolvementsController, type: :controller do
 
-
   let(:user) { build(:user) }
   before { login_user user }
 
@@ -21,17 +20,17 @@ RSpec.describe InvolvementsController, type: :controller do
 
   describe "POST create" do
 
-    context "when valid" do
-      before { xhr :post, :create, case_id: case_file, involvement: attributes_for(:involvement, :with_person) }
-      it { expect(assigns(:involvement)).to be_valid }
-      it { expect(response).to render_template(:create) }
-     end
+    # context "when valid" do
+    #   before { xhr :post, :create, case_id: case_file, involvement: attributes_for(:involvement, :with_person) }
+    #   it { expect(assigns(:involvement)).to be_valid }
+    #   it { expect(response).to render_template(:create) }
+    #  end
  
-    context "when invalid" do
-      before { xhr :post, :create, case_id: case_file, involvement: attributes_for(:involvement, :invalid) }
-      it { expect(assigns(:involvement)).not_to be_valid }
-      it { expect(response).to render_template(:new) }
-    end
+    # context "when invalid" do
+    #   before { xhr :post, :create, case_id: case_file, involvement: attributes_for(:involvement, :invalid) }
+    #   it { expect(assigns(:involvement)).not_to be_valid }
+    #   it { expect(response).to render_template(:new) }
+    # end
 
   end
   

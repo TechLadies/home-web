@@ -1,20 +1,27 @@
 require 'rails_helper'
 
+RSpec.describe SessionsController, type: :controller do
+
+  let(:user) { build(:user) }
+  before { login_user user }
+
+# reference to attr_accessor :email, :password (no factory)
+
 # need help
+  # describe "GET new" do
+  #   before { get :new }
+  # end
 
-# RSpec.describe SessionsController, type: :controller do
+# need help
+  # describe "POST create" do
+  #   before { post :create }
+  # end
+# to validate: user_account_is_active
 
-# 	before do
-#     @user = FactoryGirl::create(:user)
-#    	login_user
-#   end
-
-#   describe "GET new" do
-#     it "returns http success" do
-#       login_user
-#       get 'index'
-#       expect(response).to be_success
-#     end
-#   end
+# need help
+  # describe "DELETE destroy" do
+  #   before { delete :destroy }
+  # end
 
 end
+
