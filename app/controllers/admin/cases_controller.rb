@@ -1,7 +1,7 @@
 class Admin::CasesController < ApplicationController
 
   before_action :require_admin_authorization
-  before_action :prepare_casefile, only: :reopen
+  before_action :prepare_casefile, only: [:reassign, :update_assignment, :reopen]
 
   def index
     @query = CaseSearchQuery.new(query_params)
@@ -14,12 +14,10 @@ class Admin::CasesController < ApplicationController
   end
 
   def reassign
-    @case_file = CaseFile.find(params[:id])
     @users = User.order('id DESC').all
   end
 
   def update_assignment
-    @case_file = CaseFile.find(params[:id])
     if @case_file.update_attributes(case_params)
       redirect_to case_path(@case_file)
     else

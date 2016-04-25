@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
     resources :involvements, only: [:index, :new, :create, :destroy]
     resources :follow_ups, only: [:new, :create]
-    resources :documents, only: [:new, :create]
     resources :links, only: [:create, :destroy]
 
   end
