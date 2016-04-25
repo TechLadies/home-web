@@ -51,7 +51,7 @@ RSpec.describe OrganizationsController, type: :controller do
   end
 
   describe "GET edit" do
-    before { get :edit, id: organization.id }
+    before { get :edit, id: organization }
     it { expect(response).to render_template(:edit) }
   end
 

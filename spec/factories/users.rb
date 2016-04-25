@@ -12,6 +12,10 @@ FactoryGirl.define do
       email ''
     end
 
+    trait :admin do
+      is_admin true
+    end
+
   end
 
 end

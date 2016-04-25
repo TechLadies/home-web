@@ -6,18 +6,6 @@ class CasesController < ApplicationController
     @case_files = CaseFile.pending.order('id DESC')
   end
 
-  def search_by_type
-    @case_files = CaseFile.pending.where("case_type LIKE ?", params[:search_type].try(:join)).order('id DESC')
-    @case_files.any? ? @case_files : @case_files = CaseFile.pending.order('id DESC')
-    render :index
-  end
-
-  # def search_by_name
-  #   @case_files = CaseFile.pending.where(people: Person.where(name: params[:search_name])).order('id DESC')
-  #   @case_files.any? ? @case_files : @case_files = CaseFile.pending.order('id DESC')
-  #   render :index
-  # end
-
   def archive
     @case_files = CaseFile.closed.order('id DESC')
   end
