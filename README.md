@@ -6,7 +6,7 @@ This repository contains the source code for a case management application, that
 
 This is what the app looks like:
 
-[Case file show page](https://cloud.githubusercontent.com/assets/19878/14795376/ce51dcc4-0b5a-11e6-9d14-cbd91b17defa.png)
+![Case file show page](https://cloud.githubusercontent.com/assets/19878/14795376/ce51dcc4-0b5a-11e6-9d14-cbd91b17defa.png)
 
 The app helps HOME manage their cases, and supports the following features:
 
