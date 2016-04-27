@@ -4,6 +4,8 @@ class Admin::TagsController < ApplicationController
   before_action :all_tags, only: [:index, :new, :edit, :update]
   before_action :prepare_tag, only: [:edit, :update]
 
+  before_action :cannot_be_tagged_under_itself, only: :update
+
   def index
   end
 
@@ -13,12 +15,12 @@ class Admin::TagsController < ApplicationController
 
   def create
     @tag = Tag.new(tag_params)
-      if @tag.save
-      redirect_to admin_tags_path
+    if @tag.save
       flash[:notice] = 'New Tag Created'
+      redirect_to admin_tags_path
     else
+      flash[:alert] = @tag.errors.full_messages.to_sentence
       render :new
-      flash[:alert] = 'Please Retry'
     end
   end
 
@@ -47,6 +49,10 @@ class Admin::TagsController < ApplicationController
 
   def prepare_tag
     @tag = Tag.find(params[:id])
+  end
+
+  def cannot_be_tagged_under_itself
+    errors.add(:parent_id, 'cannot be equal to own id') if @tag.parent_id == @tag.id
   end
 
 end

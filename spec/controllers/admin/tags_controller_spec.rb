@@ -25,12 +25,11 @@ RSpec.describe Admin::TagsController, type: :controller do
       it { expect(response).to redirect_to(admin_tags_path) }
     end
 
-#rework after merge 
-    # context "when invalid" do
-    #   before { post :create, tag: attributes_for(:tag, :invalid) }
-    #   it { expect(assigns(:tag)).not_to be_valid }
-    #   it { expect(response).to render_template(:new) }
-    # end
+    context "when invalid" do
+      before { post :create, tag: attributes_for(:tag, :invalid) }
+      it { expect(assigns(:tag)).not_to be_valid }
+      it { expect(response).to render_template(:new) }
+    end
 
   end
 

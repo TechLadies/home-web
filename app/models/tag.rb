@@ -8,8 +8,6 @@ class Tag < ActiveRecord::Base
 
   validates :name, presence: true
 
-  validate :cannot_be_tagged_under_itself
-
   scope :roots, -> { where(parent_id: nil) }
 
   def self.traverse(tags = Tag.roots, level = 0, &block)
@@ -17,12 +15,6 @@ class Tag < ActiveRecord::Base
       block.call tag, level
       traverse(tag.children, level + 1, &block) unless tag.children.empty?
     end
-  end
-
-  private
-
-  def cannot_be_tagged_under_itself
-    errors.add(:parent_id, 'cannot be equal to own id') if parent_id == id
   end
 
 end
