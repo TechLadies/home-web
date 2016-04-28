@@ -11,30 +11,40 @@
     <div class='container'>
       <ul class="list-inline">
 
-        <li>
-          <span>Phone</span>
-          <strong>&nbsp;<%= @person.phone %></strong>
-        </li>
+        <%- if @person.phone %>
+          <li>
+            <span>Phone</span>
+            <strong><%= @person.phone %></strong>
+          </li>
+        <%- end %>
 
-        <li>
-          <span>Address</span>
-          <strong>&nbsp;<%= @person.address %></strong>
-        </li>
+        <%- if @person.address %>
+          <li>
+            <span>Address</span>
+            <strong><%= @person.address %></strong>
+          </li>
+        <%- end %>
 
-        <li>
-          <span>Email</span>
-          <strong>&nbsp;<%= @person.email %></strong>
-        </li>
+        <%- if @person.email %>
+          <li>
+            <span>Email</span>
+            <strong><%= @person.email %></strong>
+          </li>
+        <%- end %>
 
-        <li>
-          <span>DOB</span>
-          <strong><%= @person.date_of_birth.to_formatted_s(:rfc822) unless @person.date_of_birth == nil %></strong>
-        </li>
+        <%- if @person.date_of_birth %>
+          <li>
+            <span>DOB</span>
+            <strong><%= @person.date_of_birth.to_formatted_s(:rfc822) unless @person.date_of_birth == nil %></strong>
+          </li>
+        <%- end %>
 
-        <li>
-          <span>Gender</span>
-          <strong>&nbsp;<%= @person.gender %></strong>
-        </li>
+        <%- if @person.gender %>
+          <li>
+            <span>Gender</span>
+            <strong><%= @person.gender %></strong>
+          </li>
+        <%- end %>
 
       </ul>
     </div>

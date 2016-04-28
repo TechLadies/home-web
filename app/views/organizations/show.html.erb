@@ -10,21 +10,21 @@
     <div class='container'>
       <ul class="list-inline">
 
-        <%- unless @organization.industry.blank? %>
+        <%- if @organization.industry %>
           <li>
             <span>Industry</span>
             <strong><%= @organization.industry %></strong>
           </li>
         <%- end %>
 
-        <%- unless @organization.phone.blank? %>
+        <%- if @organization.phone %>
           <li>
             <span>Phone</span>
             <strong><%= @organization.phone %></strong>
           </li>
         <%- end %>
 
-        <%- unless @organization.address.blank? %>
+        <%- if @organization.address %>
           <li>
             <span>Address</span>
             <strong><%= @organization.address %></strong>

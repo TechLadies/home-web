@@ -28,10 +28,12 @@
           <strong><%= @user.email %></strong>
         </li>
 
-        <li>
-          <span>Contact Number</span>
-          <strong><%= @user.contact_number %></strong>
-        </li>
+        <%- if @user.contact_number %>
+          <li>
+            <span>Contact Number</span>
+            <strong><%= @user.contact_number %></strong>
+          </li>
+        <%- end %>
 
       </ul>
     </div>
