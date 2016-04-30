@@ -30,9 +30,17 @@
     <div class="row">
         <div class="col-md-6">
           <legend>Domestic</legend>
+            <%= ff.input :arrived_at %>
+            <%= ff.input :interview_conducted_by %>
+            <%= ff.input :date_of_interview %>
+            <%= ff.input :transfer_required, as: :boolean, checked_value: true, unchecked_value: false %>
+            <%= ff.input :repatriation_required %>
+            <%= ff.input :translate_to %>
+            <%= ff.input :english_proficiency, as: :check_boxes, collection: ["basic", "intermediate", "advanced"] %>
             <%= ff.input :loan_value %>
             <%= ff.input :remaining_loan_value %>
             <%= ff.input :salary_details %>
+            <%= ff.input :sleeping_area, as: :check_boxes, collection: ["bed", "mattress", "pillow", "blanket", "fan", "window", "surveillance camera"] %>
         </div>
         <div class="col-md-6">
           <legend>Non-Domestic</legend>
