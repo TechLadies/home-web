@@ -25,3 +25,20 @@
   }
 
 }
+
+.table.table-noline {
+
+  tbody {
+
+    th {
+      text-transform: uppercase;
+    }
+
+    td { 
+      padding: 8px 10px; 
+      border: none;
+    }
+
+  }
+
+}

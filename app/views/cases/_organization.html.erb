@@ -4,17 +4,25 @@
     <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs pull-right', style: 'color: #FFFFFF', data: {confirm: "Are you sure?"} if @case_file.pending? %>
   </h3>
 
-  <dl class='dl-horizontal'>
+  <table class="table table-noline">
+    <tbody>
 
-    <dt>Phone</dt>
-    <dd><%= organization.phone %></dd>
+      <tr>
+        <th>Phone</th>
+        <td><%= organization.phone %></td>
+      </tr>
 
-    <dt>Address</dt>
-    <dd><%= organization.address %></dd>
+      <tr>
+        <th>Address</th>
+        <td><%= organization.address %></td>
+      </tr>
 
-    <dt>Industry</dt>
-    <dd><%= organization.industry %></dd>
+      <tr>
+        <th>Industry</th>
+        <td><%= organization.industry %></td>
+      </tr>
 
-  </dl>
+    </tbody>
+  </table>
 
 </div>

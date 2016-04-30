@@ -35,55 +35,126 @@
 
 </div>
 
-<!-- BEGIN MAIN CLIENT/EMPLOYER -->
-<div class="container">  
-  <div class="panel panel-default">
 
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Client</h2>
+<% if @case_file.domestic? %>
+
+  <!-- BEGIN MAIN CLIENT/EMPLOYER -->
+  <div class="container">  
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Client</h2>
+          </div>
+          <div class="col-md-4">
+            <h2>Employer</h2>
+          </div>
+          <div class="col-md-4">
+            <h2>Agency</h2>
+          </div>
         </div>
-        <div class="col-md-6">
-          <h2>Employer</h2>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+
+          <!-- RELATED PEOPLE: CLIENT -->
+          <div id='client-info' class="col-md-4">
+            <%- if @case_file.client.nil? %>
+              <div class='well well-empty text-center'>
+                <p>No client information</p>
+                <%= link_to 'Add Client', new_case_involvement_path(@case_file, involvement: { role: 'client', involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.pending? %>
+              </div>
+            <%- else %>
+              <%= render partial: 'person', object: @case_file.client.involvable, locals: { involvement: @case_file.client } %>
+            <%- end %>
+          </div>
+
+          <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
+          <div id='employer-info' class="col-md-4">
+            <%- if @case_file.employer.nil? %>
+              <div class='well well-empty text-center'>
+                <p>No employer information</p>
+                <%= link_to 'Add Person', new_case_involvement_path(@case_file, involvement: { role: :employer, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.domestic? && @case_file.pending? %>
+                <%= link_to 'Add Organization', new_case_involvement_path(@case_file, involvement: { role: :employer, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success'  if @case_file.non_domestic? && @case_file.pending? %>
+              </div>
+            <%- else %>
+              <%= render partial: @case_file.employer.involvable.class.to_s.downcase, object: @case_file.employer.involvable, locals: { involvement: @case_file.employer } %>
+            <%- end %>
+          </div>
+
+          <!-- RELATED PEOPLE/ORG: AGENCY) -->
+          <div id='agency-info' class="col-md-4">
+            <%- if @case_file.agency.nil? %>
+              <div class='well well-empty text-center'>
+                <p>No agency information</p>
+  <!-- can we get industry: maid agencies only? -->
+                <%= link_to 'Add Agency', new_case_involvement_path(@case_file, involvement: { role: :agency, involvable_type: 'Organization' }, agency: true), remote: true, class: 'btn btn-success'  if @case_file.domestic? && @case_file.pending? %>
+              </div>
+            <%- else %>
+              <%= render partial: 'organization', object: @case_file.agency.involvable, locals: { involvement: @case_file.agency } %>
+            <%- end %>
+          </div>
+
         </div>
       </div>
     </div>
-
-    <div class="panel-body">
-      <div class="row">
-
-        <!-- RELATED PEOPLE: CLIENT -->
-        <div id='client-info' class="col-md-6">
-          <%- if @case_file.client.nil? %>
-            <div class='well well-empty text-center'>
-              <p>No client information yet.</p>
-              <%= link_to 'Add Client', new_case_involvement_path(@case_file, involvement: { role: 'client', involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.pending? %>
-            </div>
-          <%- else %>
-            <%= render partial: 'person', object: @case_file.client.involvable, locals: { involvement: @case_file.client } %>
-          <%- end %>
-        </div>
-
-        <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
-        <div id='employer-info' class="col-md-6">
-          <%- if @case_file.employer.nil? %>
-            <div class='well well-empty text-center'>
-              <p>No employer information yet.</p>
-              <%= link_to 'Add Person', new_case_involvement_path(@case_file, involvement: { role: :employer, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.domestic? && @case_file.pending? %>
-              <%= link_to 'Add Organization', new_case_involvement_path(@case_file, involvement: { role: :employer, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success'  if @case_file.non_domestic? && @case_file.pending? %>
-            </div>
-          <%- else %>
-            <%= render partial: @case_file.employer.involvable.class.to_s.downcase, object: @case_file.employer.involvable, locals: { involvement: @case_file.employer } %>
-          <%- end %>
-        </div>
-
-      </div>
-    </div>
-
   </div>
-</div>
-<!-- END RELATED CLIENT/EMPLOYER -->
+  <!-- END RELATED CLIENT/EMPLOYER -->
+
+<% else %>
+
+  <!-- BEGIN MAIN CLIENT/EMPLOYER -->
+  <div class="container">  
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Client</h2>
+          </div>
+          <div class="col-md-6">
+            <h2>Employer</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+
+          <!-- RELATED PEOPLE: CLIENT -->
+          <div id='client-info' class="col-md-6">
+            <%- if @case_file.client.nil? %>
+              <div class='well well-empty text-center'>
+                <p>No client information</p>
+                <%= link_to 'Add Client', new_case_involvement_path(@case_file, involvement: { role: 'client', involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.pending? %>
+              </div>
+            <%- else %>
+              <%= render partial: 'person', object: @case_file.client.involvable, locals: { involvement: @case_file.client } %>
+            <%- end %>
+          </div>
+
+          <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
+          <div id='employer-info' class="col-md-6">
+            <%- if @case_file.employer.nil? %>
+              <div class='well well-empty text-center'>
+                <p>No employer information</p>
+                <%= link_to 'Add Person', new_case_involvement_path(@case_file, involvement: { role: :employer, involvable_type: 'Person' }), remote: true, class: 'btn btn-success' if @case_file.domestic? && @case_file.pending? %>
+                <%= link_to 'Add Organization', new_case_involvement_path(@case_file, involvement: { role: :employer, involvable_type: 'Organization' }), remote: true, class: 'btn btn-success'  if @case_file.non_domestic? && @case_file.pending? %>
+              </div>
+            <%- else %>
+              <%= render partial: @case_file.employer.involvable.class.to_s.downcase, object: @case_file.employer.involvable, locals: { involvement: @case_file.employer } %>
+            <%- end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END RELATED CLIENT/EMPLOYER -->
+
+<% end %>
 
 <div class='container'>
   <div class="panel panel-default">
