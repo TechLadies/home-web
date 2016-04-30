@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416123534) do
+ActiveRecord::Schema.define(version: 20160430075547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,8 +140,17 @@ ActiveRecord::Schema.define(version: 20160416123534) do
     t.integer  "weekly_working_hours"
     t.integer  "sunday_working_hours"
     t.integer  "case_file_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.date     "date_of_arrival"
+    t.date     "date_of_interview"
+    t.string   "interview_conducted_by"
+    t.date     "arrived_at"
+    t.boolean  "transfer_required"
+    t.string   "repatriation_required"
+    t.string   "translate_to"
+    t.integer  "english_proficiency"
+    t.integer  "sleeping_area",              default: [],              array: true
   end
 
   add_foreign_key "links", "case_files"
