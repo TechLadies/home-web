@@ -11,6 +11,20 @@
     <div class='container'>
       <ul class="list-inline">
 
+        <%- if @person.date_of_birth %>
+          <li>
+            <span>DOB</span>
+            <strong><%= @person.date_of_birth.to_formatted_s(:rfc822) unless @person.date_of_birth == nil %></strong>
+          </li>
+        <%- end %>
+
+        <%- if @person.gender %>
+          <li>
+            <span>Gender</span>
+            <strong><%= @person.gender %></strong>
+          </li>
+        <%- end %>
+
         <%- if @person.phone %>
           <li>
             <span>Phone</span>
@@ -29,20 +43,6 @@
           <li>
             <span>Email</span>
             <strong><%= @person.email %></strong>
-          </li>
-        <%- end %>
-
-        <%- if @person.date_of_birth %>
-          <li>
-            <span>DOB</span>
-            <strong><%= @person.date_of_birth.to_formatted_s(:rfc822) unless @person.date_of_birth == nil %></strong>
-          </li>
-        <%- end %>
-
-        <%- if @person.gender %>
-          <li>
-            <span>Gender</span>
-            <strong><%= @person.gender %></strong>
           </li>
         <%- end %>
 
