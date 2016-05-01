@@ -5,7 +5,7 @@ RSpec.describe Involvement, type: :model do
   it { is_expected.to belong_to(:case_file) }
   it { is_expected.to belong_to(:involvable) }
 
-  it { is_expected.to define_enum_for(:role).with([:client, :employer, :others]) }
+  it { is_expected.to define_enum_for(:role).with([:client, :employer, :others, :agency]) }
 
   it { is_expected.to validate_presence_of(:case_file) }
   it { is_expected.to validate_presence_of(:involvable) }
