@@ -2,5 +2,5 @@
   <td><%= link_to case_file, case_path(case_file) %> </td>
   <td><%= case_file.case_type %> </td>
   <td><%= case_file.user.name %></td>
-  <td><%= link_to 'Edit', edit_case_path(case_file), class: 'btn btn-default btn-sm' %></td>
+  <td><%= link_to 'Edit', edit_case_path(case_file), class: 'btn btn-default btn-sm' unless case_file.closed? %></td>
 </tr>

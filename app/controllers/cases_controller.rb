@@ -32,7 +32,12 @@ class CasesController < ApplicationController
   end
 
   def edit
-    @case_file.build_worker unless @case_file.worker
+    if @case_file.closed?
+      flash[:error] = "Case already closed! Contact Admin to reopen case for edit."
+      redirect_to case_path(@case_file)
+    else      
+      @case_file.build_worker unless @case_file.worker
+    end
   end
 
   def update
