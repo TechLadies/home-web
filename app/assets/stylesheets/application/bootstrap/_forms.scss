@@ -1,5 +1,9 @@
 .simple_form {
 
+  textarea.form-control {
+    height: auto;
+  }
+
   fieldset {
     padding: 30px;
     border-bottom: 1px solid #e5e5e5;
