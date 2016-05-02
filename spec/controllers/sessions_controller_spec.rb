@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
 
-  let!(:user) { create(:user) }
+  let(:user) { create(:user, :active) }
 
   describe "GET new" do
     before { get :new }
@@ -10,11 +10,23 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "POST create" do
+
     before { post :create, login_form: params }
 
-    context "with active user" do    
+    context "with active user" do
       let(:params) { { email: user.email, password: '123123123' } }
       it { expect(response).to redirect_to(my_account_path) }
+    end
+
+    context "with inactive user" do
+      let(:user) { create(:user, :inactive) }
+      let(:params) { { email: user.email, password: '123123123' } }
+      it { expect(response).to render_template(:new) }
+    end
+
+    context "with incorrect password" do
+      let(:params) { { email: user.email, password: 'incorrect-password' } }
+      it { expect(response).to render_template(:new) }
     end
 
   end

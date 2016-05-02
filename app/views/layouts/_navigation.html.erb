@@ -50,9 +50,8 @@
           <li class="dropdown <%= 'hidden' unless current_user.is_admin? %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Case Export', admin_cases_path %></li>
+              <li><%= link_to 'General Report', admin_cases_path %></li>
               <li><%= link_to 'Days Off Report', days_off_admin_reports_path %></li>
-              <li><%= link_to 'General Report', general_admin_reports_path %></li>
             </ul>
           </li>
         </ul>
