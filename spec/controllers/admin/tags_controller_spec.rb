@@ -33,7 +33,6 @@ RSpec.describe Admin::TagsController, type: :controller do
 
   end
 
-#rework 
   describe "GET edit" do
     before { get :edit, id: tag }
     it { expect(response).to render_template(:edit) }

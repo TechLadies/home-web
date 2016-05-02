@@ -48,6 +48,10 @@ class CaseFile < ActiveRecord::Base
     involvements.employer.first
   end
 
+  def agency
+    involvements.agency.first
+  end
+
   def others
     involvements.others
   end

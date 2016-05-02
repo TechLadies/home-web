@@ -17,9 +17,10 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Industry</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Industry</th>
+            <th>Email</th>
             <th>Pending Cases</th>
             <th>Closed Cases</th>
           </tr>
@@ -29,9 +30,10 @@
           <%- @organizations.each do |organization| %>
             <tr>
               <td><%= link_to organization.name, organization %></td>
+              <td><%= organization.industry.titleize %></td>
               <td><%= organization.phone %></td>
               <td><%= organization.address %></td>
-              <td><%= organization.industry.titleize %></td>
+              <td><%= organization.email %></td>
               <td><%= organization.case_files.pending.count %></td>
               <td><%= organization.case_files.closed.count %></td>
             </tr>

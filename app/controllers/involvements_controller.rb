@@ -5,6 +5,7 @@ class InvolvementsController < ApplicationController
 
   def index
     @results = @involvable_class.where('LOWER(name) LIKE ?', "%#{params[:q].downcase}%")
+    @results = @results.where(industry: params[:i]) if params[:i]
   end
 
   def new

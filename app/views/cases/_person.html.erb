@@ -4,20 +4,30 @@
     <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs pull-right', style: 'color: #FFFFFF' , data: { confirm: "Are you sure?" } if @case_file.pending? %>
   </h3>
 
-  <dl class='dl-horizontal'>
+  <table class="table table-noline">
+    <tbody>
 
-    <dt>Date of birth</dt>
-    <dd><%= person.date_of_birth.to_formatted_s(:rfc822) unless person.date_of_birth == nil %></dd>
+      <tr>
+        <th>Date of Birth</thth>
+        <td><%= person.date_of_birth.to_formatted_s(:rfc822) unless person.date_of_birth == nil %></td>
+      </tr>
 
-    <dt>Gender</dt>
-    <dd><%= person.gender.titleize %></dd>
+      <tr>
+        <th>Gender</th>
+        <td><%= person.gender.titleize %></td>
+      </tr>
 
-    <dt>Email</dt>
-    <dd><%= person.email %></dd>
+      <tr>
+        <th>Email</th>
+        <td><%= person.email %></td>
+      </tr>
 
-    <dt>Contact</dt>
-    <dd><%= person.phone %></dd>
+      <tr>
+        <th>Contact</th>
+        <td><%= person.phone %></td>
+      </tr>
 
-  </dl>
+    </tbody>
+  </table>
 
 </div>

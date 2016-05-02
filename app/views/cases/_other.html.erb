@@ -1,5 +1,11 @@
 <tr>
-  <td><%= link_to other.involvable.name, person_path(other.involvable) %></td>
+  <td><%= link_to other.involvable.name, 
+	  if other.involvable_type == 'Person'
+		  person_path(other.involvable) 
+		else
+		  organization_path(other.involvable) 			
+		end
+	%></td>
   <td><%= other.involvable.try(:phone) %></td>
   <td><%= other.involvable.try(:email) %></td>
   <td><%= link_to 'Remove', case_involvement_path(other.case_file, other), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' if @case_file.pending? %></td>

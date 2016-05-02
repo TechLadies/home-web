@@ -4,7 +4,7 @@ $('#modal .modal-footer').hide();
 
 $('#involvement_involvable_id').select2({
   ajax: {
-    url: "<%= case_involvements_path(@case_file, t: @involvement.involvable_type) %>",
+    url: "<%= case_involvements_path(@case_file, t: @involvement.involvable_type, i: params[:agency] ? 'Agency' : nil) %>",
     dataType: 'json',
     delay: 250,
     cache: true
