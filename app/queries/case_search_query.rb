@@ -17,7 +17,7 @@ class CaseSearchQuery
 
   def perform
     if valid?
-      @case_files = CaseFile.where(reported_at: start_date..end_date)
+      @case_files = CaseFile.closed.where(reported_at: start_date..end_date)
       @case_files = @case_files.where(case_type: case_type) if case_type.present?
     else
       @case_files = CaseFile.none

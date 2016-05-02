@@ -1,6 +1,6 @@
 .ui-datepicker {
 
-  padding: 10px;
+  // padding: 10px;
   background-color: #310834;
   border-radius: 5px;
 
@@ -12,6 +12,10 @@
   }
 
   thead th { text-align: center; }
+
+  .ui-datepicker-header { margin: 15px 10px 5px; }
+
+  .ui-datepicker-calendar {  margin: 10px; }
 
   .ui-datepicker-calendar, .ui-datepicker-title, .ui-datepicker-header {
     background-color: transparent;

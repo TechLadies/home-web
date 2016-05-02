@@ -11,7 +11,12 @@ class CloseCaseFileService
   end
 
   def run
-    @case_file.close! if valid?
+    if valid?
+      @case_file.transaction do
+        @case_file.update_attribute(:closed_at, Time.zone.now)
+        @case_file.close!
+      end
+    end
   end
 
   private

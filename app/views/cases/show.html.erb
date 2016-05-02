@@ -23,7 +23,19 @@
         </li>
 
         <li>
-          <span>Assigned To</span>
+          <span>Reported at</span>
+          <strong><%= @case_file.reported_at.to_date.to_formatted_s(:long) %></strong>
+        </li>
+
+        <%- if @case_file.closed_at %>
+          <li>
+            <span>Closed at</span>
+            <strong><%= @case_file.closed_at.to_date.to_formatted_s(:long) %></strong>
+          </li>
+        <%- end %>
+
+        <li>
+          <span>Assigned to</span>
           <strong><%= @case_file.user.name %></strong>
           <%= link_to 'Reassign', reassign_admin_case_path(@case_file), remote: true, class: 'btn btn-primary btn-sm' if current_user.is_admin? && @case_file.pending? %>
         </li>

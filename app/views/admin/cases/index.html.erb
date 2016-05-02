@@ -34,6 +34,7 @@
             <th>Case Type</th>
             <th>Status</th>
             <th>Reported at</th>
+            <th>Closed at</th>
           </tr>
         </thead>
 
@@ -45,13 +46,14 @@
               <td><%= case_file.case_type%></td>
               <td><%= case_file.status.titleize %></td>
               <td><%= case_file.reported_at.to_date.to_s(:long) %></td>
+              <td><%= case_file.closed_at.to_date.to_s(:long) %></td>
             </tr>
           <% end %>
         </tbody>
 
         <tfoot>
           <tr>
-            <td colspan='5'>
+            <td colspan='6'>
               <%- if @case_files.empty? %>
                 <p>No Cases Found.</p>
               <%- else %>
