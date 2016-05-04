@@ -68,9 +68,9 @@ class CaseFile < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << [:case_type, :status, :name, :issues]
+      csv << [:case_id, :case_assigned_to, :client, :employer, :agency, :case_type, :case_status, :case_reported_at, :issues]
       all.each do |casefile|
-        csv << [casefile.case_type, casefile.status, casefile.user.name,casefile.issues.collect { |i| i.tag.name }.to_sentence]
+        csv << [casefile.id, casefile.user.name, casefile&.client&.involvable&.name, casefile&.employer&.involvable&.name,  casefile&.agency&.involvable&.name, casefile.case_type, casefile.status, casefile.reported_at&.to_date, casefile.issues.collect { |i| i.tag.name }.to_sentence]
       end
     end
   end

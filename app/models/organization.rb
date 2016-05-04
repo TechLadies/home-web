@@ -5,6 +5,6 @@ class Organization < ActiveRecord::Base
 
   validates :name, presence: true
 
-  INDUSTRY = ['Agency', 'Marine', 'Services', 'Manufacturing', 'Conservancy', 'Landscape Works', 'Others']
+  INDUSTRY = ['Agency', 'Marine', 'Services', 'Manufacturing', 'Conservancy', 'Landscape Works', 'Government', 'Others']
 
 end

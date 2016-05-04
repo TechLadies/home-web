@@ -22,7 +22,7 @@
         </thead>
 
         <tbody>
-          <% @versions.group_by { |v| v.created_at.to_date }.each do |date, versions| %>
+          <% @versions.order('created_at DESC').group_by { |v| v.created_at.to_date }.each do |date, versions| %>
 
             <tr>
               <th><strong><%= date.to_s(:long) %></strong></th>

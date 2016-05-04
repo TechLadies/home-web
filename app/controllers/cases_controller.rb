@@ -17,8 +17,8 @@ class CasesController < ApplicationController
   def new
     @case_file = current_user.case_files.build
     @case_file.issues.build
-    @case_file.people.build
     @case_file.build_worker
+    @case_file.involvements.build
   end
 
   def create
@@ -67,7 +67,7 @@ class CasesController < ApplicationController
 
   def case_params
     params[:case_file][:worker_attributes][:type] = "#{params[:case_file][:case_type].gsub('-', '')}Worker" if params[:case_file][:case_type]
-    params.require(:case_file).permit(:case_type, :reported_at, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id], worker_attributes: [:type, :nationality, :passport_number, :start_of_employment, :fin_number, :pass_type, :previous_employers_details, :days_off, :loan_value, :remaining_loan_value, :salary_details, :basic_salary, :industry, :accomodation_type, :origin_agent_fee, :local_agent_fee, :weekly_working_hours, :sunday_working_hours, :case_file_id])
+    params.require(:case_file).permit(:case_type, :reported_at, :person_ids, issues_attributes: [:id, :description, :_destroy, :tag_id], worker_attributes: [:type, :nationality, :passport_number, :start_of_employment, :fin_number, :pass_type, :previous_employers_details, :days_off, :loan_value, :remaining_loan_value, :salary_details, :basic_salary, :industry, :accomodation_type, :origin_agent_fee, :local_agent_fee, :weekly_working_hours, :sunday_working_hours, :case_file_id, :date_of_arrival, :date_of_interview, :interview_conducted_by, :arrived_at, :transfer_required, :repatriation_required, :translate_to, :english_proficiency, :sleeping_area])
   end
 
 end

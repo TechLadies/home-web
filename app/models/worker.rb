@@ -4,4 +4,6 @@ class Worker < ActiveRecord::Base
   
   validates :nationality, presence: true
 
+  enum english_proficiency: [:poor, :basic, :intermediate, :advanced]
+
 end

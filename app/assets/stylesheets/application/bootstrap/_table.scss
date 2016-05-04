@@ -32,6 +32,26 @@
 
     th {
       text-transform: uppercase;
+      border: none;
+    }
+
+    td { 
+      padding: 8px 10px; 
+      border: none;
+    }
+
+  }
+
+}
+
+.table.table-biodata {
+
+  tbody {
+
+    th {
+      text-transform: uppercase;
+      border: none;
+      width: 300px;
     }
 
     td { 

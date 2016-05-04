@@ -217,14 +217,12 @@
 
         <!-- BIODATA -->
           <div role="tabpanel" class="tab-pane active table-responsive" id="biodata">
-            <ul class='list-group'>
-            Bio Data
-            </ul>
+            <%= render partial: 'biodata' %>
           </div>
         <!-- BIODATA -->
 
         <!-- ISSUES -->
-          <div role="tabpanel" class="tab-pane active table-responsive" id="issues">
+          <div role="tabpanel" class="tab-pane table-responsive" id="issues">
             <ul class='list-group'>
               <%- @issues.each do |i| %>
                 <li class='list-group-item'>
@@ -241,8 +239,8 @@
           <table id='follow-ups' class="table table-default">
             <thead>
               <th>Date</th>
+              <th>Updated By</th>
               <th>Description</th>
-              <th>Created By</th>
             </thead>
             <tbody>
               <%= render partial: 'follow_up', collection: @case_file.follow_ups.order(created_at: :desc) %>
