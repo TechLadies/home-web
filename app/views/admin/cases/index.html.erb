@@ -11,7 +11,8 @@
         <div class='row'>
           <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
           <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
-          <%= form.input :case_type, collection: CaseFile::TYPE, include_blank: 'All Cases', wrapper_html: { class: 'col-md-4' } %>
+          <%= form.input :case_type, collection: CaseFile::TYPE, include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
+          <%= form.input :nationality, include_blank: 'All', wrapper_html: { class: 'col-md-2' } %>
           <div class="col-md-2">
             <br />
             <%= form.submit 'Search', class: 'btn btn-primary btn-block btn-lg' %>

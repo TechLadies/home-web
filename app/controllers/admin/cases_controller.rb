@@ -38,7 +38,7 @@ class Admin::CasesController < ApplicationController
   private
 
   def query_params
-    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date, :case_type) : Hash.new
+    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date, :case_type, :nationality) : Hash.new
   end
 
   def case_params
