@@ -177,7 +177,13 @@
       <!-- *Tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-          <a href="#issues" aria-controls="pending" role="tab" data-toggle="tab">
+          <a href="#biodata" aria-controls="biodata" role="tab" data-toggle="tab">
+            <span>Client Biodata</span>
+          </a>
+        </li>
+
+        <li role="presentation">
+          <a href="#issues" aria-controls="issues" role="tab" data-toggle="tab">
             <span>Issues</span>
             <span class="badge"><%= @issues.count %></span>            
           </a>
@@ -208,6 +214,14 @@
 
       <!-- *Tab Content -->
       <div class="tab-content">
+
+        <!-- BIODATA -->
+          <div role="tabpanel" class="tab-pane active table-responsive" id="biodata">
+            <ul class='list-group'>
+            Bio Data
+            </ul>
+          </div>
+        <!-- BIODATA -->
 
         <!-- ISSUES -->
           <div role="tabpanel" class="tab-pane active table-responsive" id="issues">

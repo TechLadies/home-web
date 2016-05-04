@@ -5,7 +5,7 @@ class Admin::CasesController < ApplicationController
 
   def index
     @query = CaseSearchQuery.new(query_params)
-    @case_files = @query.perform
+    @case_files = @query.perform.order('reported_at DESC')
     respond_to do |format|
       format.html
       format.csv { send_data @case_files.to_csv }
@@ -38,7 +38,7 @@ class Admin::CasesController < ApplicationController
   private
 
   def query_params
-    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date, :case_type, :nationality) : Hash.new
+    params.has_key?(:query) ? params.require(:query).permit(:start_date, :end_date, :case_type, :nationality, :status) : Hash.new
   end
 
   def case_params

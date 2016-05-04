@@ -11,7 +11,12 @@ class OpenCaseFileService
   end
 
   def run
-    @case_file.open! if valid?
+    if valid?
+      @case_file.transaction do
+        @case_file.update!(closed_at: nil)
+        @case_file.open!
+      end
+    end
   end
 
   private

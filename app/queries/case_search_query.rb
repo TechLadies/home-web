@@ -4,7 +4,7 @@ class CaseSearchQuery
   include ActiveModel::Validations
   include ActiveModel::AttributeMethods
 
-  attr_accessor :start_date, :end_date, :case_type, :nationality
+  attr_accessor :start_date, :end_date, :case_type, :nationality, :status
 
   validate :start_date_is_a_date
   validate :end_date_is_a_date
@@ -17,8 +17,9 @@ class CaseSearchQuery
 
   def perform
     if valid?
-      @case_files = CaseFile.closed.where(reported_at: start_date..end_date)
+      @case_files = CaseFile.where(reported_at: start_date..end_date)
       @case_files = @case_files.where(case_type: case_type) if case_type.present?
+      @case_files = @case_files.where(status: status) if status.present?
       @case_files = @case_files.joins(:worker).where(workers: { nationality: nationality }) if nationality.present?
     else
       @case_files = CaseFile.none

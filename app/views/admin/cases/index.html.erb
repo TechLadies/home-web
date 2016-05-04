@@ -12,8 +12,11 @@
           <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
           <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
           <%= form.input :case_type, collection: CaseFile::TYPE, include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
-          <%= form.input :nationality, include_blank: 'All', wrapper_html: { class: 'col-md-2' } %>
-          <div class="col-md-2">
+          <%= form.input :status, label: 'Case Status', collection: [:pending, :closed], include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
+        </div>
+        <div class='row'>
+          <%= form.input :nationality, label: 'Client Nationality', include_blank: 'All', wrapper_html: { class: 'col-md-2' } %>
+          <div class="col-md-2 pull-right">
             <br />
             <%= form.submit 'Search', class: 'btn btn-primary btn-block btn-lg' %>
           </div>
@@ -25,6 +28,11 @@
 
 <div class='container'>
   <div class='panel panel-default'>
+
+    <div class="panel-heading">
+      <h2><span class="badge"><%= @case_files.count %></span>Cases Found</h2>
+    </div>
+
     <div class='panel-body table-responsive'>
       <table class='table table-default'>
 
@@ -47,7 +55,7 @@
               <td><%= case_file.case_type%></td>
               <td><%= case_file.status.titleize %></td>
               <td><%= case_file.reported_at.to_date.to_s(:long) %></td>
-              <td><%= case_file.closed_at.to_date.to_s(:long) %></td>
+              <td><%= case_file.closed_at.to_date.to_s(:long) if case_file.closed_at? %></td>
             </tr>
           <% end %>
         </tbody>
