@@ -22,10 +22,12 @@
           <strong><%= @case_file.status %></strong>
         </li>
 
-        <li>
-          <span>Reported at</span>
-          <strong><%= @case_file.reported_at.to_date.to_formatted_s(:long) %></strong>
-        </li>
+        <%- if @case_file.reported_at %>
+          <li>
+            <span>Reported at</span>
+            <strong><%= @case_file.reported_at.to_date.to_formatted_s(:long) %></strong>
+          </li>
+        <%- end %>
 
         <%- if @case_file.closed_at %>
           <li>
