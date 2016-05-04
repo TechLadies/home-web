@@ -2,12 +2,12 @@ FactoryGirl.define do
 
   factory :non_domestic_worker do
 
-    basic_salary { rand(1..10) }
     nationality 'Indonesian'
+    case_file
 
     trait :invalid do
-      basic_salary nil
       nationality ''
+      case_file nil      
     end
 
   end

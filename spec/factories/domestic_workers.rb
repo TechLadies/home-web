@@ -2,12 +2,12 @@ FactoryGirl.define do
 
   factory :domestic_worker do
 
-    salary_details '$500 per month'
     nationality 'Indonesian'
+    case_file
 
     trait :invalid do
-      salary_details ''
       nationality ''
+      case_file nil
     end
 
   end
