@@ -13,3 +13,11 @@
   <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
 
 <%- end %>
+
+  <hr />
+
+<% if @involvement.involvable_type == 'Person' %>
+	<%= link_to 'Add New Person', new_person_path, class: 'btn btn-block btn-success', :target => "_blank" %>
+<%- else %>
+	<%= link_to 'Add New Organization', new_organization_path, class: 'btn btn-block btn-success', :target => "_blank" %>
+<%- end %>

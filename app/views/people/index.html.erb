@@ -16,9 +16,9 @@
 
         <thead>
           <tr>
-            <th class='col-md-2'>Name</th>
+            <th>Name</th>
             <th>Phone</th>
-            <th class='col-md-2'>Address</th>
+            <th>Address</th>
             <th>Email</th>
             <th>DOB</th>
             <th>Gender</th>
@@ -30,9 +30,9 @@
         <tbody>
           <%- @people.each do |person| %>
             <tr>
-              <td><%= link_to person.name, person %> </td>
+              <td class='col-md-2'><%= link_to person.name, person %> </td>
               <td><%= person.phone %></td>
-              <td><%= person.address %></td>
+              <td class='col-md-2'><%= person.address %></td>
               <td><%= person.email %> </td>
               <td><%= person.date_of_birth.to_formatted_s(:rfc822) unless person.date_of_birth == nil %></td>
               <td><%= person.gender.titleize %></td>

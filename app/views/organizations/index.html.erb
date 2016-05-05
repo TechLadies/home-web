@@ -16,10 +16,10 @@
 
         <thead>
           <tr>
-            <th class='col-md-2'>Name</th>
+            <th>Name</th>
             <th>Industry</th>
             <th>Phone</th>
-            <th class='col-md-2'>Address</th>
+            <th>Address</th>
             <th>Email</th>
             <th>Pending Cases</th>
             <th>Closed Cases</th>
@@ -29,10 +29,10 @@
         <tbody>
           <%- @organizations.each do |organization| %>
             <tr>
-              <td><%= link_to organization.name, organization %></td>
+              <td class='col-md-2'><%= link_to organization.name, organization %></td>
               <td><%= organization.industry.titleize %></td>
               <td><%= organization.phone %></td>
-              <td><%= organization.address %></td>
+              <td class='col-md-2'><%= organization.address %></td>
               <td><%= organization.email %></td>
               <td><%= organization.case_files.pending.count %></td>
               <td><%= organization.case_files.closed.count %></td>
