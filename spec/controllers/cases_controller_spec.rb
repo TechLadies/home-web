@@ -5,17 +5,17 @@ RSpec.describe CasesController, type: :controller do
   let(:user) { build(:user) }
   before { login_user user }
 
-  let(:case_file) { create(:case_file) }
+  let(:case_file) { create(:case_file, worker: create(:domestic_worker)) }
 
   describe 'GET index' do
     before { get :index }
-	  it { expect(:case_files).not_to be_empty }
-	end
+    it { expect(:case_files).not_to be_empty }
+  end
 
   describe 'GET archive' do
     before { get :archive }
-	  it { expect(:case_files).not_to be_empty }
-	end
+    it { expect(:case_files).not_to be_empty }
+  end
 
   describe "GET show" do
     before { get :show, id: case_file }
@@ -69,8 +69,8 @@ RSpec.describe CasesController, type: :controller do
 
 # to test if initial is pending, has client, has employer
     it 'successfully change from :pending to :closed' do
-    	expect(case_file).to transition_from(:pending).to(:closed).on_event(:close!)
-			expect(case_file).to be_closed
+      expect(case_file).to transition_from(:pending).to(:closed).on_event(:close!)
+      expect(case_file).to be_closed
 			# expect(response).to redirect_to(case_path(case_file))
     end
 

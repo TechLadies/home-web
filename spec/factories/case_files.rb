@@ -13,7 +13,7 @@ FactoryGirl.define do
       case_type ''
       status ''
     end
-        
+
   end
 
 end
