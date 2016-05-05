@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     end
 
     resources :reports, only: [] do
-      get :days_off, :general, on: :collection
+      get :days_off, on: :collection
     end
 
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
