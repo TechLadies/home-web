@@ -103,7 +103,7 @@
 
 	    <tr>
 	      <th>Sleeping Area</th>
-	      <td><%= @case_file.worker&.sleeping_area unless @case_file.worker&.sleeping_area&.empty? %></td>
+	      <td><%= @case_file.worker&.sleeping_area.reject(&:blank?).map { |i| DomesticWorker::SLEEPING_AREAS[i] }.to_sentence %></td>
 	    </tr>
 
 	  </tbody>
