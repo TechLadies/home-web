@@ -7,7 +7,7 @@
     <%= ff.input :interview_conducted_by %>
     <%= ff.input :transfer_required, as: :boolean, checked_value: true, unchecked_value: false %>
     <%= ff.input :repatriation_required %>
-    <%= ff.input :translate_to, label: 'Preferred Language (if required)' %>
+    <%= ff.input :translate_to, label: 'Preferred Language (only if translation is required)' %>
     <%= ff.input :english_proficiency, as: :radio_buttons, collection: [['Poor', :poor], ['Basic', :basic], ['Intermediate', :intermediate], ['Advanced', :advanced]] %>
     <%= ff.input :loan_value, label: 'Loan Value (in SGD)' %>
     <%= ff.input :remaining_loan_value, label: 'Remaining Loan Value (in SGD)' %>

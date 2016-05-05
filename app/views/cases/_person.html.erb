@@ -1,8 +1,13 @@
 <div class='well well-default'>
 
-  <h3><%= link_to person.name, person_path(person) %>
-    <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs pull-right', style: 'color: #FFFFFF' , data: { confirm: "Are you sure?" } if @case_file.pending? %>
-  </h3>
+  <div class='row'>
+    <div class='col-md-10'>
+      <h3><%= link_to person.name, person_path(person) %></h3>
+    </div>
+    <div class='col-md-1 pull-right'>
+      <%= link_to 'Remove', case_involvement_path(involvement.case_file, involvement), method: :delete, class: 'btn btn-danger btn-xs pull-right', style: 'color: #FFFFFF' , data: { confirm: "Are you sure?" } if @case_file.pending? %>
+    </div>
+  </div>
 
   <table class="table table-noline">
     <tbody>

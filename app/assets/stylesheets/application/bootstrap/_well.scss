@@ -18,6 +18,10 @@
     background-color: rgba(#310834, 0.1);
     border-top: 3px solid rgba(#310834, 0.2);
 
+    .row {
+      border-bottom: 1px solid rgba(#310834, 0.2);
+    }
+
     h3 {
 
       text-transform: uppercase;
@@ -25,7 +29,6 @@
       font-weight: 600;
       margin-top: 0;
       padding: 0 0 15px;
-      border-bottom: 1px solid rgba(#310834, 0.2);
 
       a { color: #310834; }
 
