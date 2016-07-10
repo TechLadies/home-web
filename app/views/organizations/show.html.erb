@@ -13,34 +13,34 @@
         <%- if @organization.industry %>
           <li>
             <span>Industry</span>
-            <strong><%= @organization.industry %></strong>
+            <strong><%= @organization.industry %>&nbsp;</strong>
           </li>
         <%- end %>
 
         <%- if @organization.phone %>
           <li>
             <span>Phone</span>
-            <strong><%= @organization.phone %></strong>
+            <strong><%= @organization.phone %>&nbsp;</strong>
           </li>
         <%- end %>
 
         <%- if @organization.address %>
           <li>
             <span>Address</span>
-            <strong><%= @organization.address %></strong>
+            <strong><%= @organization.address %>&nbsp;</strong>
           </li>
         <%- end %>
 
         <%- if @organization.email %>
           <li>
             <span>Email</span>
-            <strong><%= @organization.email %></strong>
+            <strong><%= @organization.email %>&nbsp;</strong>
           </li>
         <%- end %>
 
       </ul>
     </div>
-  </div>  
+  </div>
 </div>
 
 <!-- Show Organization Case History -->
@@ -68,7 +68,7 @@
       </ul>
 
       <div class="tab-content">
-    <!-- Cases Pending (start) -->        
+    <!-- Cases Pending (start) -->
         <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
           <table class='table table-default'>
             <thead>

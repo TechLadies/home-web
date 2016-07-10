@@ -21,28 +21,28 @@
         <%- if @person.gender %>
           <li>
             <span>Gender</span>
-            <strong><%= @person.gender %></strong>
+            <strong><%= @person.gender %>&nbsp;</strong>
           </li>
         <%- end %>
 
         <%- if @person.phone %>
           <li>
             <span>Phone</span>
-            <strong><%= @person.phone %></strong>
+            <strong><%= @person.phone %>&nbsp;</strong>
           </li>
         <%- end %>
 
         <%- if @person.address %>
           <li>
             <span>Address</span>
-            <strong><%= @person.address %></strong>
+            <strong><%= @person.address %>&nbsp;</strong>
           </li>
         <%- end %>
 
         <%- if @person.email %>
           <li>
             <span>Email</span>
-            <strong><%= @person.email %></strong>
+            <strong><%= @person.email %>&nbsp;</strong>
           </li>
         <%- end %>
 
@@ -98,7 +98,7 @@
       </ul>
 
       <div class="tab-content">
-    <!-- Cases Pending (start) -->        
+    <!-- Cases Pending (start) -->
         <div role="tabpanel" class="tab-pane active table-responsive" id="pending">
           <table class='table table-default'>
             <thead>
