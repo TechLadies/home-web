@@ -53,7 +53,7 @@
 <% if @case_file.domestic? %>
 
   <!-- BEGIN MAIN CLIENT/EMPLOYER -->
-  <div class="container">  
+  <div class="container">
     <div class="panel panel-default">
 
       <div class="panel-heading">
@@ -120,7 +120,7 @@
 <% else %>
 
   <!-- BEGIN MAIN CLIENT/EMPLOYER -->
-  <div class="container">  
+  <div class="container">
     <div class="panel panel-default">
 
       <div class="panel-heading">
@@ -185,14 +185,14 @@
         <li role="presentation">
           <a href="#issues" aria-controls="issues" role="tab" data-toggle="tab">
             <span>Issues</span>
-            <span class="badge"><%= @issues.count %></span>            
+            <span class="badge"><%= @issues.count %></span>
           </a>
         </li>
 
         <li role="presentation">
           <a href="#followups" aria-controls="followups" role="tab" data-toggle="tab">
             <span>Follow Ups</span>
-            <span class="badge"><%= @case_file.follow_ups.count %></span>            
+            <span class="badge"><%= @case_file.follow_ups.count %></span>
           </a>
         </li>
 
@@ -287,10 +287,11 @@
             <%- @case_file.links.each do |i| %>
               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                  <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %> 
+                  <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
                   <div class="caption">
                     <p><%= i.filename %></p>
-                    <%= link_to 'Download', i.url, class: 'btn btn-default'%>
+                    <%= link_to 'Download', i.url, class: 'btn btn-default' %>
+                    <%= link_to 'Remove', case_link_path(@case_file, i), class: 'btn btn-danger pull-right', method: :delete %>
                   </div>
                 </div>
               </div>
@@ -302,7 +303,7 @@
           <%- if @case_file.pending? %>
             <%= form_for [@case_file, @case_file.links.build], url: case_links_path(@case_file) do |f| %>
               <div class='pull-right'>
-                <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)' %>
+                <%= f.filepicker_field :url, onchange: 'onPhotoUpload(event)', multiple: false %>
               </div>
               <%= f.hidden_field :filename, as: :hidden %>
               <%= f.hidden_field :mimetype, as: :hidden %>

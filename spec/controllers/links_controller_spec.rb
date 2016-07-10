@@ -24,8 +24,8 @@ RSpec.describe LinksController, type: :controller do
 
   describe "DELETE destroy" do
     it "deletes a link" do
-    	expect { delete :destroy, id: link , case_id: case_file }.
-    	to change(Link, :count).by(-1) 
+      expect { delete :destroy, id: link , case_id: case_file }.
+      to change(Link, :count).by(-1)
       expect(response).to redirect_to(case_path(case_file))
     end
   end

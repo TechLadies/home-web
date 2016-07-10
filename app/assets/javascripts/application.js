@@ -50,4 +50,7 @@ $(document).ready(function() {
 
   $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
 
+  var hash = $.trim(window.location.hash);
+  $('.nav-tabs a[href="' + hash + '"]').tab('show');
+
 });
