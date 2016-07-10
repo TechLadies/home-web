@@ -35,7 +35,7 @@ class CasesController < ApplicationController
     if @case_file.closed?
       flash[:error] = "Case already closed! Contact Admin to reopen case for edit."
       redirect_to case_path(@case_file)
-    else      
+    else
       @case_file.build_worker unless @case_file.worker
     end
   end
@@ -47,16 +47,6 @@ class CasesController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def close
-    @service = CloseCaseFileService.new(@case_file)
-    if @service.run
-      flash[:notice] = "Case Closed!"
-    else
-      flash[:error] = @service.errors.full_messages.to_sentence
-    end
-    redirect_to case_path(@case_file)
   end
 
   private

@@ -4,18 +4,21 @@ class CloseCaseFileService
   include ActiveModel::Validations
   include ActiveModel::AttributeMethods
 
-  validate :case_must_be_pending, :case_must_have_client_and_employer_and_agency
+  attr_accessor :resolution
 
-  def initialize(case_file)
+  validate :case_must_be_pending, :case_must_have_client_and_employer_and_agency
+  validates :resolution, presence: true
+
+  def initialize(case_file, params = {})
     @case_file = case_file
+    self.resolution = params[:resolution]
   end
 
   def run
-    if valid?
-      @case_file.transaction do
-        @case_file.update!(closed_at: Time.zone.now)
-        @case_file.close!
-      end
+    return false unless valid?
+    @case_file.transaction do
+      @case_file.update!(closed_at: Time.zone.now, resolution: resolution)
+      @case_file.close!
     end
   end
 
@@ -28,7 +31,7 @@ class CloseCaseFileService
   def case_must_have_client_and_employer_and_agency
     errors.add(:case_file, 'must have a client') unless @case_file.client
     errors.add(:case_file, 'must have an employer') unless @case_file.employer
-    if @case_file.case_type == 'Domestic' 
+    if @case_file.case_type == 'Domestic'
       errors.add(:case_file, 'must have an agency') unless @case_file.agency
     end
   end

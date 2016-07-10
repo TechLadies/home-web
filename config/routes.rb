@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     get :archive, on: :collection
 
-    put :close, on: :member
+    resource :closure, only: [:new, :create]
 
     resources :involvements, only: [:index, :new, :create, :destroy]
     resources :follow_ups, only: [:new, :create]

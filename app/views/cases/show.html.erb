@@ -3,7 +3,7 @@
   <div class="container">
     <h1>Case #<%= @case_file.id %></h1>
     <%= link_to 'Edit Case', edit_case_path(@case_file), class: 'btn btn-default' if @case_file.pending? %>
-    <%= link_to 'Close Case', close_case_path(@case_file), method: :put, class: 'btn btn-danger', data: { confirm: "Are you sure?" } if @case_file.pending? %>
+    <%= link_to 'Close Case', new_case_closure_path(@case_file), remote: true, class: 'btn btn-danger' if @case_file.pending? %>
     <%= link_to 'Reopen Case', reopen_admin_case_path(@case_file), method: :put, class: 'btn btn-danger', data: { confirm: "Are you sure?" } if current_user.is_admin? && @case_file.closed? %>
   </div>
 
@@ -171,6 +171,7 @@
 <% end %>
 
 <div class='container'>
+
   <div class="panel panel-default">
     <div class='panel-body'>
 
@@ -319,5 +320,16 @@
 
     </div>
   </div>
+
+  <%- if @case_file.closed? %>
+    <div class="panel panel-default">
+      <div class='panel-body'>
+        <h4>Resolution Notes (<%= @case_file.closed_at.to_s(:short) %>)</h4>
+        <hr />
+        <p><%= @case_file.resolution %></p>
+      </div>
+    </div>
+  <%- end %>
+
 </div>
 

@@ -7,8 +7,8 @@ RSpec.describe TagsController, type: :controller do
 
   describe 'GET index' do
     before { xhr :get, :index }
-	  it { expect(:tags).not_to be_empty }
-	  it { expect(response).to render_template(:index) }
-	end
+    it { expect(:tags).not_to be_empty }
+    it { expect(response).to render_template(:index) }
+  end
 
 end

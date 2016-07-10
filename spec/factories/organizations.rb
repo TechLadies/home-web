@@ -5,7 +5,7 @@ FactoryGirl.define do
     name 'ABC Company'
 
     trait :invalid do
-			name ''
+      name ''
     end
 
   end

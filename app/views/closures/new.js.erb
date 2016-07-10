@@ -1,0 +1,7 @@
+$('#flash-messages').replaceWith("<%= j render(partial: '/layouts/flash_messages') %>");
+
+$('#modal .modal-title').html('Close Case');
+$('#modal .modal-body').html("<%= j render(partial: 'new') %>");
+$('#modal .modal-footer').hide();
+
+$('#modal').modal('show');

@@ -1,0 +1,7 @@
+<%= simple_form_for @service, as: :service, url: case_closure_path(@case_file), method: :post, remote: true do |f| %>
+
+  <%= f.input :resolution, as: :text, input_html: { rows: 20 } %>
+
+  <%= f.submit 'Close the Case', class: 'btn btn-primary btn-block' %>
+
+<%- end %>

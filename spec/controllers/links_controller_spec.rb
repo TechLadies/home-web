@@ -13,7 +13,7 @@ RSpec.describe LinksController, type: :controller do
     context "when valid" do
       before { xhr :post, :create, case_id: case_file, link: attributes_for(:link) }
       it { expect(assigns(:link)).to be_valid }
-      it { expect(response).to redirect_to(case_path(case_file)) }
+      it { expect(response).to redirect_to(case_path(case_file, anchor: 'documents')) }
      end
 
     context "when invalid" do
@@ -26,7 +26,7 @@ RSpec.describe LinksController, type: :controller do
     it "deletes a link" do
       expect { delete :destroy, id: link , case_id: case_file }.
       to change(Link, :count).by(-1)
-      expect(response).to redirect_to(case_path(case_file))
+      expect(response).to redirect_to(case_path(case_file, anchor: 'documents'))
     end
   end
 end

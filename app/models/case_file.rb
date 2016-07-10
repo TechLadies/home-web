@@ -23,6 +23,7 @@ class CaseFile < ActiveRecord::Base
   include AASM
 
   aasm column: :status do
+
     state :pending, initial: true
     state :closed
 

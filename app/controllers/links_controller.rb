@@ -10,7 +10,7 @@ class LinksController < ApplicationController
   def destroy
     @link = @case_file.links.find(params[:id])
     @link.destroy
-    redirect_to case_path(@case_file)
+    redirect_to case_path(@case_file, anchor: 'documents')
   end
 
   private

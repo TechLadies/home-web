@@ -1,0 +1,4 @@
+window.location.replace("<%= case_path(@case_file) %>");
+
+$('#flash-messages').replaceWith("<%= j render(partial: '/layouts/flash_messages') %>");
+$('#modal').modal('hide');

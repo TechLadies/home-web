@@ -35,7 +35,7 @@ RSpec.describe CasesController, type: :controller do
       it { expect(assigns(:case_file)).to be_valid }
       it { expect(response).to redirect_to(case_path(assigns(:case_file))) }
      end
- 
+
     context "when invalid" do
       before { post :create, case_file: attributes_for(:case_file, :invalid) }
       it { expect(assigns(:case_file)).not_to be_valid }
@@ -62,24 +62,6 @@ RSpec.describe CasesController, type: :controller do
       it { expect(assigns(:case_file)).not_to be_valid }
       it { expect(response).to render_template(:edit) }
     end
-
-  end
-
-  describe 'PUT close' do
-
-# to test if initial is pending, has client, has employer
-    it 'successfully change from :pending to :closed' do
-      expect(case_file).to transition_from(:pending).to(:closed).on_event(:close!)
-      expect(case_file).to be_closed
-			# expect(response).to redirect_to(case_path(case_file))
-    end
-
-# to test if unsuccessful .close
-   #  it 'unsuccessfully change from :pending to :closed' do
-   #  	expect(case_file).not_to transition_from(:pending).to(:closed).on_event(:close!)
-			# expect(case_file).to be_pending
-			# expect(response).to redirect_to(case_path(case_file))
-   #  end
 
   end
 
