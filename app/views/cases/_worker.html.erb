@@ -1,25 +1,21 @@
-<div class="row nested-fields">
+<legend><strong>Client Biodata</strong></legend>
 
-  <legend><strong>Client Biodata</strong></legend>
+<div class="row">
+  <%= ff.input :nationality, wrapper_html: { class: "col-md-6" } %>
+  <%= ff.input :fin_number, label: 'FIN Number', wrapper_html: { class: "col-md-6" } %>
+</div>
 
-  <div class="row">
-    <%= ff.input :nationality, wrapper_html: { class: "col-md-6" } %>
-    <%= ff.input :fin_number, label: 'FIN Number', wrapper_html: { class: "col-md-6" } %>
-  </div>
+<div class="row">
+  <%= ff.input :passport_number, wrapper_html: { class: "col-md-6" } %>
+  <%= ff.input :pass_type, wrapper_html: { class: "col-md-6" } %>
+</div>
 
-  <div class="row">
-    <%= ff.input :passport_number, wrapper_html: { class: "col-md-6" } %>
-    <%= ff.input :pass_type, wrapper_html: { class: "col-md-6" } %>
-  </div>
+<div class="row">
+  <%= ff.input :date_of_arrival, label: 'Date of Arrival to Singapore', as: :string, input_html: { class: 'datepicker' }, wrapper_html: { class: "col-md-3" } %>
+  <%= ff.input :start_of_employment, as: :string, input_html: { class: 'datepicker' }, wrapper_html: { class: "col-md-3" } %>
+  <%= ff.input :days_off, label: 'Days off per month', wrapper_html: { class: "col-md-3" } %>
+</div>
 
-  <div class="row">
-    <%= ff.input :date_of_arrival, label: 'Date of Arrival to Singapore', as: :string, input_html: { class: 'datepicker' }, wrapper_html: { class: "col-md-3" } %>
-    <%= ff.input :start_of_employment, as: :string, input_html: { class: 'datepicker' }, wrapper_html: { class: "col-md-3" } %>
-    <%= ff.input :days_off, label: 'Days off per month', wrapper_html: { class: "col-md-3" } %>
-  </div>
-
-  <div class="row">
-    <%= ff.input :previous_employers_details, label: "Previous Employers' Details", wrapper_html: { class: "col-md-6" } %>
-  </div>
-
+<div class="row">
+  <%= ff.input :previous_employers_details, label: "Previous Employers' Details", wrapper_html: { class: "col-md-6" } %>
 </div>

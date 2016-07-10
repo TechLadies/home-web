@@ -1,19 +1,16 @@
-<div class="row nested-fields">
 
-  <div class="col-md-6">
+<div class="col-md-6">
 
-    <%= ff.input :arrived_at, label: 'Date of Arrival to HOME', as: :string, input_html: { class: 'datepicker' } %>
-    <%= ff.input :date_of_interview, as: :string, input_html: { class: 'datepicker' } %>
-    <%= ff.input :interview_conducted_by %>
-    <%= ff.input :transfer_required, as: :boolean, checked_value: true, unchecked_value: false %>
-    <%= ff.input :repatriation_required %>
-    <%= ff.input :translate_to, label: 'Preferred Language (only if translation is required)' %>
-    <%= ff.input :english_proficiency, as: :radio_buttons, collection: [['Poor', :poor], ['Basic', :basic], ['Intermediate', :intermediate], ['Advanced', :advanced]] %>
-    <%= ff.input :loan_value, label: 'Loan Value (in SGD)' %>
-    <%= ff.input :remaining_loan_value, label: 'Remaining Loan Value (in SGD)' %>
-    <%= ff.input :salary_details %>
-    <%= ff.input :sleeping_area, as: :check_boxes, collection: DomesticWorker::SLEEPING_AREAS.collect { |k, v| [v, k] } , multiple: true %>
-
-  </div>
+  <%= ff.input :arrived_at, label: 'Date of Arrival to HOME', as: :string, input_html: { class: 'datepicker' } %>
+  <%= ff.input :date_of_interview, as: :string, input_html: { class: 'datepicker' } %>
+  <%= ff.input :interview_conducted_by %>
+  <%= ff.input :transfer_required, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= ff.input :repatriation_required %>
+  <%= ff.input :translate_to, label: 'Preferred Language (only if translation is required)' %>
+  <%= ff.input :english_proficiency, as: :radio_buttons, collection: [['Poor', :poor], ['Basic', :basic], ['Intermediate', :intermediate], ['Advanced', :advanced]] %>
+  <%= ff.input :loan_value, label: 'Loan Value (in SGD)' %>
+  <%= ff.input :remaining_loan_value, label: 'Remaining Loan Value (in SGD)' %>
+  <%= ff.input :salary_details %>
+  <%= ff.input :sleeping_area, as: :check_boxes, collection: DomesticWorker::SLEEPING_AREAS.collect { |k, v| [v, k] } , multiple: true %>
 
 </div>
