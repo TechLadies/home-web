@@ -3,9 +3,13 @@
   <%= f.input :case_id, as: :hidden %>
   <%= f.input :involvable_type, as: :hidden %>
   <%= f.input :role, as: :hidden %>
-  
-  <%= f.input :involvable_id, label_only: true do %>
-    <%= f.select :involvable_id, [], { include_blank: true } %>
+
+  <%= f.input :involvable_id, label_only: true, label: 'Person or organization' do %>
+    <%= f.select :involvable_id, @involvement.involvable ? [[@involvement.involvable.name, @involvement.involvable.id]] : [], { include_blank: false } %>
+  <%- end %>
+
+  <%- if @involvement.others? %>
+    <%= f.input :role_label, placeholder: 'FDW, witness, friend, neighbor, etc' %>
   <%- end %>
 
   <hr />
@@ -17,7 +21,7 @@
   <hr />
 
 <% if @involvement.involvable_type == 'Person' %>
-	<%= link_to 'Add New Person', new_person_path, class: 'btn btn-block btn-success', :target => "_blank" %>
+  <%= link_to 'Add New Person', new_person_path, class: 'btn btn-block btn-success', :target => "_blank" %>
 <%- else %>
-	<%= link_to 'Add New Organization', new_organization_path, class: 'btn btn-block btn-success', :target => "_blank" %>
+  <%= link_to 'Add New Organization', new_organization_path, class: 'btn btn-block btn-success', :target => "_blank" %>
 <%- end %>

@@ -35,7 +35,7 @@ class InvolvementsController < ApplicationController
   end
 
   def involvement_params
-    params.require(:involvement).permit(:role, :case_id, :involvable_id, :involvable_type)
+    params.require(:involvement).permit(:role, :role_label, :case_id, :involvable_id, :involvable_type)
   end
 
   def prepare_involvable_class

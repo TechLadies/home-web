@@ -53,10 +53,6 @@ class CaseFile < ActiveRecord::Base
     involvements.agency.first
   end
 
-  def others
-    involvements.others
-  end
-
   def domestic?
     case_type == 'Domestic'
   end

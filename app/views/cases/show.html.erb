@@ -74,7 +74,7 @@
         <li role="presentation">
           <a href="#related" aria-controls="related" role="tab" data-toggle="tab">
             <span>People/Organizations</span>
-            <span class="badge"><%= @case_file.others.count %></span>
+            <span class="badge"><%= @case_file.involvements.others.count %></span>
           </a>
         </li>
 
@@ -134,12 +134,13 @@
           <table id='others-info' class="table table-default">
             <thead>
               <th>Name</th>
+              <th>Role</th>
               <th>Contact number</th>
               <th>Email</th>
               <th></th>
             </thead>
             <tbody>
-              <%= render partial: 'other', collection: @case_file.others %>
+              <%= render partial: 'other', collection: @case_file.involvements.others %>
             </tbody>
           </table>
 

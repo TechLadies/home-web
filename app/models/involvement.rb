@@ -8,4 +8,6 @@ class Involvement < ActiveRecord::Base
   validates :case_file, :involvable, presence: true
   validates :involvable_id, uniqueness: { scope: [:involvable_type, :case_id] }
 
+  validates :role_label, presence: true, if: :others?
+
 end
