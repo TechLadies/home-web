@@ -6,8 +6,8 @@ FactoryGirl.define do
     gender 'Male'
 
     trait :invalid do
-	    name ''
-	    gender ''
+      name ''
+      gender ''
     end
 
   end
