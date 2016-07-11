@@ -48,7 +48,10 @@ $(document).ready(function() {
 
   apply_select_2();
 
-  $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+  $('.datepicker').datepicker({
+    dateFormat: 'dd/mm/yy',
+    changeYear: true
+  });
 
   var hash = $.trim(window.location.hash);
   $('.nav-tabs a[href="' + hash + '"]').tab('show');
