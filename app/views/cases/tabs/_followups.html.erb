@@ -1,0 +1,21 @@
+<table id='follow-ups' class="table table-default">
+  <thead>
+    <th>Date</th>
+    <th>Updated By</th>
+    <th>Description</th>
+  </thead>
+  <tbody>
+    <%- presenter.follow_ups.each do |follow_up| %>
+      <tr>
+        <td class='col-md-2'><%= follow_up.created_at.to_date.to_formatted_s(:long) %></td>
+        <td class='col-md-2'><%= follow_up.user.name %></td>
+        <td class='col-md-8'><%= follow_up.description %></td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>
+<hr/>
+
+<%- if presenter.case_file.pending? %>
+  <%= link_to "Add Follow Up", new_case_follow_up_path(presenter.case_file), class: 'btn btn-success pull-right', remote: true %>
+<%- end %>

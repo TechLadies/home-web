@@ -54,6 +54,10 @@ $(document).ready(function() {
   });
 
   var hash = $.trim(window.location.hash);
-  $('.nav-tabs a[href="' + hash + '"]').tab('show');
+  if (hash) {
+    $('.nav-tabs a[href="' + hash + '"]').tab('show');
+  } else {
+    $('.nav-tabs a:first').tab('show');
+  }
 
 });

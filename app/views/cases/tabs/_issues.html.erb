@@ -1,0 +1,8 @@
+<ul class='list-group'>
+  <%- presenter.issues.each do |i| %>
+    <li class='list-group-item'>
+      <strong><%= i.tag.name %></strong>
+      <p><%= i.description %></p>
+    </li>
+  <%- end %>
+</ul>

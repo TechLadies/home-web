@@ -11,7 +11,7 @@ class CasesController < ApplicationController
   end
 
   def show
-    @issues = @case_file.issues.order('id ASC')
+    @presenter = CaseFilePresenter.new(@case_file)
   end
 
   def new
