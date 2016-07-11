@@ -11,7 +11,7 @@ class CloseCaseFileService
 
   def initialize(case_file, params = {})
     @case_file = case_file
-    self.resolution = params[:resolution]
+    self.resolution = params[:resolution] || @case_file.resolution
   end
 
   def run
