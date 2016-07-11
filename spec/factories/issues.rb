@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :issue do
 
     case_file
-	tag
+    tag
 
     trait :invalid do
       case_file nil

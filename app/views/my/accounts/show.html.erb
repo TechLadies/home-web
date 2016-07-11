@@ -64,6 +64,7 @@
                 <tr>
                   <th>Case Number</th>
                   <th>Case Type</th>
+                  <th>Issues</th>
                   <th>Client</th>
                   <th>Employer</th>
                 </tr>
@@ -74,6 +75,7 @@
                   <tr>
                     <td><%= link_to c.id, case_path(c) %></td>
                     <td><%= c.case_type %></td>
+                    <td><%= c.issues.collect { |i| i.tag.name }.to_sentence %> </td>
                     <td>
                       <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
                     <td>
@@ -98,6 +100,7 @@
                 <tr>
                   <th>Case Number</th>
                   <th>Case Type</th>
+                  <th>Issues</th>
                   <th>Client</th>
                   <th>Employer</th>
                 </tr>
@@ -108,6 +111,7 @@
                   <tr>
                     <td><%= link_to c.id, case_path(c) %></td>
                     <td><%= c.case_type %></td>
+                    <td><%= c.issues.collect { |i| i.tag.name }.to_sentence %> </td>
                     <td>
                       <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
                     <td>
