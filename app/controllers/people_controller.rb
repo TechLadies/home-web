@@ -1,9 +1,10 @@
 class PeopleController < ApplicationController
 
+  before_action :prepare_query, only: [:index]
   before_action :prepare_person, only: [:show, :edit, :update]
 
   def index
-    @people = Person.all.order(created_at: :desc)
+    @people ||= Person.all.order(created_at: :desc)
     respond_to do |format|
       format.html
       format.json { render json: @people }
@@ -26,11 +27,11 @@ class PeopleController < ApplicationController
     else
       render :new
     end
-  end 
-    
+  end
+
   def edit
   end
-    
+
   def update
     if @person.update_attributes(person_params)
       redirect_to @person
@@ -40,6 +41,19 @@ class PeopleController < ApplicationController
   end
 
   private
+
+  def prepare_query
+    if params[:search]
+      @query = PeopleSearchQuery.new(query_params)
+      @people = @query.perform.order(created_at: :desc)
+    else
+      @query = PeopleSearchQuery.new
+    end
+  end
+
+  def query_params
+    params.require(:search).permit(:query)
+  end
 
   def person_params
     params.require(:person).permit(:name, :date_of_birth, :phone, :email, :address, :gender)

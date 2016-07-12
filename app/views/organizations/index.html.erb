@@ -6,6 +6,22 @@
 
 <div class='container'>
   <div class='panel panel-default'>
+    <div class='panel-body'>
+      <%= simple_form_for @query, as: :search, url: organizations_path , method: :get do |form| %>
+        <div class='row'>
+          <%= form.input :query, as: :string, wrapper_html: { class: 'col-md-10' }, placeholder: 'Name' %>
+          <div class="col-md-2 pull-left">
+            <br />
+            <%= form.submit 'Search', class: 'btn btn-primary btn-block btn-lg' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='panel panel-default'>
 
     <div class='panel-heading'>
       <h2>All Organizations</h2>

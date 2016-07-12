@@ -4,7 +4,7 @@ class Admin::CasesController < ApplicationController
   before_action :prepare_casefile, only: [:reassign, :update_assignment, :reopen]
 
   def index
-    @query = CaseSearchQuery.new(query_params)
+    @query = GeneralReportQuery.new(query_params)
     @case_files = @query.perform.order('reported_at DESC')
     respond_to do |format|
       format.html

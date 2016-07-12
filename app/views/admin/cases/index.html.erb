@@ -9,13 +9,11 @@
     <div class='panel-body'>
       <%= simple_form_for @query, as: :query, url: admin_cases_path , method: :get do |form| %>
         <div class='row'>
-          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
-          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-3' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-2' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-2' }, input_html: { class: 'datepicker' } %>
           <%= form.input :case_type, collection: CaseFile::TYPE, include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
           <%= form.input :status, label: 'Case Status', collection: [['Pending', :pending], ['Closed', :closed]], include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
-        </div>
-        <div class='row'>
-          <%= form.input :nationality, label: 'Client Nationality', wrapper_html: { class: 'col-md-3' } %>
+          <%= form.input :nationality, label: 'Client Nationality', wrapper_html: { class: 'col-md-2' } %>
           <div class="col-md-2 pull-right">
             <br />
             <%= form.submit 'Search', class: 'btn btn-primary btn-block btn-lg' %>
