@@ -12,4 +12,5 @@ $('#form_involvement_attributes_involvable_id').select2({
   width: '100%'
 });
 
+$('#flash-messages').replaceWith("<%= j render(partial: '/layouts/flash_messages') %>");
 $('#modal').modal('show');

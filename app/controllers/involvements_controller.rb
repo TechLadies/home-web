@@ -17,7 +17,7 @@ class InvolvementsController < ApplicationController
     if @form.save
       flash.now[:notice] = 'Added to case'
     else
-      flash[:error] = @form.errors.full_messages.to_sentence
+      flash.now[:error] = @form.errors.full_messages.to_sentence
       render :new
     end
   end

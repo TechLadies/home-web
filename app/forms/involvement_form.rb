@@ -14,16 +14,16 @@ class InvolvementForm < BaseForm
   def save
     if valid?
       case_file.transaction do
-        involvement.save!
          unless involvement.involvable_id
           involvement.involvable = involvable
           involvable.save!
         end
+        involvement.save!
       end
     end
     errors.empty?
   rescue ActiveRecord::RecordInvalid => e
-    errors.add(:base, 'Error')
+    errors.add(:base, e.message)
     errors.empty?
   end
 
