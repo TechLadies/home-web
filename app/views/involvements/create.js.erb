@@ -1,11 +1,11 @@
-<%- if @involvement.client? %>
-  $('#client-info').html('<%= j render partial: "cases/person", object: @involvement.involvable, locals: { involvement: @involvement } %>');
-<%- elsif @involvement.employer? %>
-  $('#employer-info').html('<%= j render partial: "cases/#{@involvement.involvable.class.to_s.downcase}", object: @involvement.involvable, locals: { involvement: @involvement } %>');
-<%- elsif @involvement.agency? %>
-  $('#agency-info').html('<%= j render partial: "cases/organization", object: @involvement.involvable, locals: { involvement: @involvement } %>');
+<%- if @form.involvement.client? %>
+  $('#client-info').html('<%= j render partial: "person", object: @form.involvement.involvable, locals: { involvement: @form.involvement } %>');
+<%- elsif @form.involvement.employer? %>
+  $('#employer-info').html('<%= j render partial: "#{@form.involvement.involvable.class.to_s.underscore}", object: @form.involvement.involvable, locals: { involvement: @form.involvement } %>');
+<%- elsif @form.involvement.agency? %>
+  $('#agency-info').html('<%= j render partial: "organization", object: @form.involvement.involvable, locals: { involvement: @form.involvement } %>');
 <%- else %>
-  $('#others-info tbody').html('<%= j render partial: "cases/other", collection: @involvement.case_file.involvements.others %>');
+  $('#others-info tbody').html('<%= j render partial: "other", collection: @form.involvement.case_file.involvements.others %>');
 <%- end %>
 
 $('#modal').modal('hide');

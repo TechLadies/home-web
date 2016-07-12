@@ -48,9 +48,12 @@ $(document).ready(function() {
 
   apply_select_2();
 
-  $('.datepicker').datepicker({
-    dateFormat: 'dd/mm/yy',
-    changeYear: true
+  $('body').on('focus', '.datepicker', function() {
+    $(this).datepicker({
+      dateFormat: 'dd/mm/yy',
+      changeYear: true,
+      yearRange: '-100:+0'
+    });
   });
 
   var hash = $.trim(window.location.hash);

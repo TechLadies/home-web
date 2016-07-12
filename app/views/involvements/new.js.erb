@@ -1,10 +1,10 @@
-$('#modal .modal-title').html('Add <%= @involvement.involvable_type %> to Case');
+$('#modal .modal-title').html('Add <%= @form.involvement.involvable_type %> to Case');
 $('#modal .modal-body').html("<%= j render(partial: 'new')%>");
 $('#modal .modal-footer').hide();
 
-$('#involvement_involvable_id').select2({
+$('#form_involvement_attributes_involvable_id').select2({
   ajax: {
-    url: "<%= case_involvements_path(@case_file, t: @involvement.involvable_type, i: params[:agency] ? 'Agency' : nil) %>",
+    url: "<%= case_involvements_path(@case_file, t: @form.involvement.involvable_type, i: params[:agency] ? 'Agency' : nil) %>",
     dataType: 'json',
     delay: 250,
     cache: true

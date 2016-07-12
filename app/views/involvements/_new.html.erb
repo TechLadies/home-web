@@ -1,27 +1,62 @@
-<%= simple_form_for [@case_file, @involvement], as: :involvement, url: case_involvements_path(@case_file), remote: true do |f| %>
+<%= simple_form_for @form, as: :form, url: case_involvements_path(@case_file), remote: true do |f| %>
 
-  <%= f.input :case_id, as: :hidden %>
-  <%= f.input :involvable_type, as: :hidden %>
-  <%= f.input :role, as: :hidden %>
+  <%= f.simple_fields_for :involvement do |involvement_fields| %>
+    <%= f.simple_fields_for :involvable do |involvable_fields| %>
 
-  <%= f.input :involvable_id, label_only: true, label: 'Person or organization' do %>
-    <%= f.select :involvable_id, @involvement.involvable ? [[@involvement.involvable.name, @involvement.involvable.id]] : [], { include_blank: false } %>
-  <%- end %>
+      <%= involvement_fields.input :case_id, as: :hidden %>
+      <%= involvement_fields.input :involvable_type, as: :hidden %>
+      <%= involvement_fields.input :role, as: :hidden %>
 
-  <%- if @involvement.others? %>
-    <%= f.input :role_label, placeholder: 'FDW, witness, friend, neighbor, etc' %>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#existing" aria-controls="existing" role="tab" data-toggle="tab">
+            <span>Existing <%= @form.involvement.involvable_type %></span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#new" aria-controls="new" role="tab" data-toggle="tab">
+            <span>New <%= @form.involvement.involvable_type %></span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active table-responsive" id="existing">
+          <%= involvement_fields.input :involvable_id, label_only: true, label: 'Person or organization' do %>
+            <%= involvement_fields.select :involvable_id, @form.involvement.involvable ? [[@form.involvement.involvable.name, @form.involvement.involvable.id]] : [], { include_blank: false } %>
+          <%- end %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane table-responsive" id="new">
+
+          <%- if @form.involvement.involvable_type == "Person" %>
+            <%= involvable_fields.input :name, wrapper_html: { class: 'col-md-12' } %>
+            <%= involvable_fields.input :gender, collection: [:Male, :Female], wrapper_html: { class: 'col-md-6' } %>
+            <%= involvable_fields.input :date_of_birth, as: :string, input_html: { class: 'datepicker' }, wrapper_html: { class: 'col-md-6' } %>
+          <%- else %>
+            <%= involvable_fields.input :name, wrapper_html: { class: 'col-md-12' } %>
+            <%= involvable_fields.input :industry, collection: Organization::INDUSTRY , wrapper_html: { class: 'col-md-6' } %>
+          <%- end %>
+
+          <%= involvable_fields.input :phone, wrapper_html: { class: 'col-md-6' } %>
+          <%= involvable_fields.input :email, wrapper_html: { class: 'col-md-6' } %>
+          <%= involvable_fields.input :address, wrapper_html: { class: 'col-md-12' } %>
+
+        </div>
+
+      </div>
+
+      <%- if @form.involvement.others? %>
+        <hr />
+        <%= involvement_fields.input :role_label, placeholder: 'FDW, witness, friend, neighbor, etc' %>
+      <%- end %>
+
+    <%- end %>
   <%- end %>
 
   <hr />
 
   <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
 
-<%- end %>
-
-  <hr />
-
-<% if @involvement.involvable_type == 'Person' %>
-  <%= link_to 'Add New Person', new_person_path, class: 'btn btn-block btn-success', :target => "_blank" %>
-<%- else %>
-  <%= link_to 'Add New Organization', new_organization_path, class: 'btn btn-block btn-success', :target => "_blank" %>
 <%- end %>

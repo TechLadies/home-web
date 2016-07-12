@@ -9,14 +9,15 @@ class InvolvementsController < ApplicationController
   end
 
   def new
-    @involvement = @case_file.involvements.build(involvement_params)
+    @form = InvolvementForm.new(@case_file, involvement_attributes: involvement_params)
   end
 
   def create
-    @involvement = @case_file.involvements.build(involvement_params)
-    if @involvement.save
+    @form = InvolvementForm.new(@case_file, form_params)
+    if @form.save
       flash.now[:notice] = 'Added to case'
     else
+      flash[:error] = @form.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -32,6 +33,20 @@ class InvolvementsController < ApplicationController
 
   def prepare_case_file
     @case_file = CaseFile.find(params[:case_id])
+  end
+
+  def involvable_params
+    if params.dig(:form, :involvement_attributes, :involvable_type) == 'Person'
+      [:name, :gender, :date_of_birth, :phone, :email, :address]
+    elsif params.dig(:form, :involvement_attributes, :involvable_type) == 'Organization'
+      [:name, :industry, :phone, :email, :address]
+    else
+      []
+    end
+  end
+
+  def form_params
+    params.require(:form).permit(involvement_attributes: [:role, :role_label, :case_id, :involvable_id, :involvable_type], involvable_attributes: involvable_params)
   end
 
   def involvement_params
