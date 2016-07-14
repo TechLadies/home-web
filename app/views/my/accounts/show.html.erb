@@ -109,19 +109,19 @@
               <tbody>
                 <% @account.case_files.where(status: :closed).order('id DESC').each do |c| %>
                   <tr>
-                    <td><%= link_to c.id, case_path(c) %></td>
-                    <td><%= c.case_type %></td>
-                    <td><%= c.issues.collect { |i| i.tag.name }.to_sentence %> </td>
-                    <td>
+                    <td class="col-md-1"><%= link_to c.id, case_path(c) %></td>
+                    <td class="col-md-2"><%= c.case_type %></td>
+                    <td class="col-md-4"><%= c.issues.collect { |i| i.tag.name }.to_sentence %> </td>
+                    <td class="col-md-2">
                       <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
-                    <td>
+                    <td class="col-md-2">
                       <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
                         <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
                       <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
                         <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
                       <%- end %>
                     </td>
-                    <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default' %></td>
+                    <td class="col-md-1"><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default' %></td>
                   </tr>
                 <% end %>
               </tbody>

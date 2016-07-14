@@ -1,7 +1,7 @@
 <tr class="case">
-  <td><%= link_to case_file, case_path(case_file) %> </td>
-  <td><%= case_file.case_type %> </td>
-  <td><%= case_file.issues.collect { |i| i.tag.name }.to_sentence %> </td>
-  <td><%= case_file.user.name %></td>
-  <td><%= link_to 'Edit', edit_case_path(case_file), class: 'btn btn-default btn-sm' unless case_file.closed? %></td>
+  <td class="col-md-3"><%= link_to case_file, case_path(case_file) %> </td>
+  <td class="col-md-2"><%= case_file.case_type %> </td>
+  <td class="col-md-4"><%= case_file.issues.collect { |i| i.tag.name }.to_sentence %> </td>
+  <td class="col-md-2"><%= case_file.user.name %></td>
+  <td class="col-md-1"><%= link_to 'Edit', edit_case_path(case_file), class: 'btn btn-default btn-sm' unless case_file.closed? %></td>
 </tr>
