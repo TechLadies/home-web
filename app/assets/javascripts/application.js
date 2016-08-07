@@ -78,4 +78,25 @@ $(document).ready(function() {
     setCaseTypeForm();
   });
 
+  if ($('#case_file_worker_attributes_nationality').val() == 'Others') {
+    $("#nationality_selector").val($('#case_file_worker_attributes_nationality').val());
+    $('#case_file_worker_attributes_nationality').val('');
+  } else if ($('#case_file_worker_attributes_nationality').val() == '') {
+    $("#nationality_selector").val('Others');
+  } else {
+    $("#nationality_selector").val($('#case_file_worker_attributes_nationality').val());
+    $('#case_file_worker_attributes_nationality').hide();
+  }
+
+  $('#nationality_selector').change(function(e) {
+    value = $('#nationality_selector').val();
+    if (value == 'Others') {
+      $('#case_file_worker_attributes_nationality').val('');
+      $('#case_file_worker_attributes_nationality').show();
+    } else {
+      $('#case_file_worker_attributes_nationality').val(value);
+      $('#case_file_worker_attributes_nationality').hide();
+    }
+  });
+
 });
