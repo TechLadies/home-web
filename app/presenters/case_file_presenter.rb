@@ -85,7 +85,7 @@ class CaseFilePresenter
   end
 
   def repatriation_required?
-    case_file.worker&.repatriation_required? ? 'Yes' : 'No'
+    case_file.worker&.repatriation_required.blank? ? 'No' : "Repatriation to #{case_file.worker&.repatriation_required}"
   end
 
   def english_proficiency
