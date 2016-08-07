@@ -1,7 +1,28 @@
-<%= simple_form_for @service, as: :service, url: case_closure_path(@case_file), method: :post, remote: true do |f| %>
+<%- if @service.can_close? %>
 
-  <%= f.input :resolution, as: :text, input_html: { rows: 20 } %>
+  <%= simple_form_for @service, as: :service, url: case_closure_path(@case_file), method: :post, remote: true do |f| %>
 
-  <%= f.submit 'Close the Case', class: 'btn btn-primary btn-block' %>
+    <%= f.input :resolution, as: :text, input_html: { rows: 20 } %>
+
+    <%= f.submit 'Close the Case', class: 'btn btn-primary btn-block' %>
+
+  <%- end %>
+
+<%- else %>
+
+  <h4 class='blank-message'>You need to assign the case to its relevant parties before closing the case.</h4>
+
+  <ul class='list-group'>
+    <%- @service.conditions_to_meet do |condition, met| %>
+      <li class="list-group-item">
+        <p><%= condition %></p>
+        <%- if met %>
+          <span class="label label-success">OK</span>
+        <%- else %>
+          <span class="label label-warning">Not OK</span>
+        <%- end %>
+      </li>
+    <%- end %>
+  </ul>
 
 <%- end %>

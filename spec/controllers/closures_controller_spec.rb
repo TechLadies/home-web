@@ -28,8 +28,9 @@ RSpec.describe ClosuresController, type: :controller do
      end
 
     context "when invalid" do
-      before { xhr :post, :create, case_id: case_file, service: { resolution: nil } }
+      before { xhr :post, :create, case_id: case_file, service: { resolution: '' } }
       it { expect(assigns(:service).errors).not_to be_empty }
+      it { expect(assigns(:service).resolution).to be_blank }
       it { expect(response).to render_template(:new) }
       it { expect(case_file.reload).to be_pending }
     end

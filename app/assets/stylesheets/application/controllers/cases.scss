@@ -7,4 +7,21 @@
     opacity: 0.1;
   }
 
+  &.modal-open {
+
+    .blank-message {
+      text-align: center;
+      padding: 15px 30px 30px
+    }
+
+    .list-group-item > p { margin-bottom: 0; }
+
+    .list-group-item > .label {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+    }
+
+  }
+
 }

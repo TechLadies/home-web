@@ -14,6 +14,20 @@ class CloseCaseFileService
     self.resolution = params[:resolution] || @case_file.resolution
   end
 
+  def can_close?
+    temp = self.dup
+    temp.resolution = 'temporary'
+    temp.valid?
+  end
+
+  def conditions_to_meet
+    yield 'Client information is set', @case_file.client
+    yield 'Employer information is set', @case_file.employer
+    if @case_file.case_type == 'Domestic'
+      yield 'Agency information is set', @case_file.agency
+    end
+  end
+
   def run
     return false unless valid?
     @case_file.transaction do
