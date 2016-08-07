@@ -69,30 +69,26 @@
             <table class='table table-default'>
               <thead>
                 <tr>
-                  <th>Case Number<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th>Reported At<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th class="col-md-3">Case Number<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                   <th>Case Type<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                  <th>Issues<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                  <th>Client<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                  <th>Employer<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th class="col-md-3">Issues<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th></th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @account.case_files.where(status: :pending).order('id DESC').each do |c| %>
-                  <tr>
-                    <td><%= link_to c.id, case_path(c) %></td>
-                    <td><%= c.case_type %></td>
-                    <td><%= c.issues.collect { |i| i.tag.name }.to_sentence %> </td>
-                    <td>
-                      <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
-                    <td>
-                      <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
-                        <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
-                      <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
-                        <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
+                  <tr class="case">
+                    <td><%= c.reported_at.to_date.to_s(:long) %> </td>
+                    <td class="col-md-3"><%= link_to c, case_path(c) %> </td>
+                    <td><%= c.case_type %> </td>
+                    <td class="col-md-3">
+                      <%- c.issues.collect do |i| %>
+                        <p>- <%= i.tag.name %></p>
                       <%- end %>
                     </td>
-                    <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default' %></td>
+                    <td><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default btn-sm' %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -105,30 +101,26 @@
             <table class='table table-default'>
               <thead>
                 <tr>
-                  <th>Case Number<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th>Reported At<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th class="col-md-3">Case Number<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                   <th>Case Type<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                  <th>Issues<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                  <th>Client<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                  <th>Employer<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th class="col-md-3">Issues<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                  <th>Closed At<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @account.case_files.where(status: :closed).order('id DESC').each do |c| %>
-                  <tr>
-                    <td class="col-md-1"><%= link_to c.id, case_path(c) %></td>
-                    <td class="col-md-2"><%= c.case_type %></td>
-                    <td class="col-md-4"><%= c.issues.collect { |i| i.tag.name }.to_sentence %> </td>
-                    <td class="col-md-2">
-                      <%= Person.find_by(id: Involvement.where(role: 0, case_id: c.id).first.try(:involvable_id)).try(:name) %></td>
-                    <td class="col-md-2">
-                      <%- if c.involvements.where(role:1).first.try(:involvable_type) == "People" %>
-                        <%= Person.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
-                      <%- else c.involvements.where(role:1).first.try(:involvable_type) == "Organization" %>
-                        <%= Organization.find_by(id: Involvement.where(role: 1, case_id: c.id).first.try(:involvable_id)).try(:name) %>
+                  <tr class="case">
+                    <td><%= c.reported_at.to_date.to_s(:long) %> </td>
+                    <td class="col-md-3"><%= link_to c, case_path(c) %> </td>
+                    <td><%= c.case_type %> </td>
+                    <td class="col-md-3">
+                      <%- c.issues.collect do |i| %>
+                        <p>- <%= i.tag.name %></p>
                       <%- end %>
                     </td>
-                    <td class="col-md-1"><%= link_to 'Edit', edit_case_path(c), class: 'btn btn-default' %></td>
+                    <td><%= c.closed_at.to_date.to_s(:long) %></td>
                   </tr>
                 <% end %>
               </tbody>

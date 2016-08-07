@@ -1,3 +1,9 @@
 .glyphicon {
   margin-left: 5px;
+  cursor: pointer;
+  color: #e8b53c;
+}
+
+.table thead th.sorted .glyphicon {
+  color: #e8673c;
 }

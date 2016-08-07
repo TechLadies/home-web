@@ -1,3 +1,11 @@
+
+<script src="assets/jquery.tablesort.js"></script>
+<script>
+  $(document).on('ready page:load', function() {
+    $('table').tablesort();
+  });
+</script>
+
 <div class='page-header'>
   <div class="container">
     <h1>General Report</h1>
@@ -9,8 +17,8 @@
     <div class='panel-body'>
       <%= simple_form_for @query, as: :query, url: admin_cases_path , method: :get do |form| %>
         <div class='row'>
-          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-2' }, input_html: { class: 'datepicker' } %>
-          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-2' }, input_html: { class: 'datepicker' } %>
+          <%= form.input :start_date, as: :string, wrapper_html: { class: 'col-md-2' }, input_html: { class: 'datepicker' }, label: 'Reported At Start Date' %>
+          <%= form.input :end_date, as: :string, wrapper_html: { class: 'col-md-2' }, input_html: { class: 'datepicker' }, label: 'Reported At End Date' %>
           <%= form.input :case_type, collection: CaseFile::TYPE, include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
           <%= form.input :status, label: 'Case Status', collection: [['Pending', :pending], ['Closed', :closed]], include_blank: 'All Cases', wrapper_html: { class: 'col-md-2' } %>
           <%= form.input :nationality, label: 'Client Nationality', wrapper_html: { class: 'col-md-2' } %>
@@ -36,23 +44,29 @@
 
         <thead>
           <tr>
-            <th>Case</th>
-            <th>Assigned to</th>
-            <th>Case Type</th>
-            <th>Status</th>
-            <th>Reported at</th>
-            <th>Closed at</th>
+            <th>Reported at<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th class="col-md-2">Case Number<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th>Case Type<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th class="col-md-3">Issues<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th>Assigned to<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th>Status<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th>Closed at<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
           </tr>
         </thead>
 
         <tbody>
           <%- @case_files.each do |case_file| %>
             <tr>
-              <td><%= link_to case_file, case_path(case_file) %></td>
-              <td><%= case_file.user.name %></td>
-              <td><%= case_file.case_type%></td>
-              <td><%= case_file.status.titleize %></td>
               <td><%= case_file.reported_at.to_date.to_s(:long) %></td>
+              <td class="col-md-2"><%= link_to case_file, case_path(case_file) %></td>
+              <td><%= case_file.case_type%></td>
+              <td class="col-md-3">
+                <%- case_file.issues.collect do |i| %>
+                  <p>- <%= i.tag.name %></p>
+                <%- end %>
+              </td>
+              <td><%= case_file.user.name %></td>
+              <td><%= case_file.status.titleize %></td>
               <td><%= case_file&.closed_at&.to_date&.to_s(:long) %></td>
             </tr>
           <% end %>
@@ -60,7 +74,7 @@
 
         <tfoot>
           <tr>
-            <td colspan='6'>
+            <td colspan='12'>
               <%- if @case_files.empty? %>
                 <p>No Cases Found.</p>
               <%- else %>
