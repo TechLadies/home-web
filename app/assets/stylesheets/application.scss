@@ -11,6 +11,8 @@
  * file per style scope.
  */
 
+@import "application/bootstrap/variables";
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "select2";

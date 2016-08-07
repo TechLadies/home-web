@@ -36,6 +36,15 @@ onPhotoUpload = function(event) {
   $('#new_link').submit();
 }
 
+setCaseTypeForm = function() {
+  if ($('#case_file_case_type_domestic').is(':checked')) {
+    $(".nav-tabs a[href='#domestic'").tab('show');
+  }
+  if ($('#case_file_case_type_non-domestic').is(':checked')) {
+    $(".nav-tabs a[href='#non-domestic'").tab('show');
+  }
+}
+
 $(document).ready(function() {
 
   $('[data-toggle="popover"]').popover();
@@ -62,5 +71,11 @@ $(document).ready(function() {
   } else {
     $('.nav-tabs a:first').tab('show');
   }
+
+  setCaseTypeForm();
+
+  $('#case_file_case_type_non-domestic, #case_file_case_type_domestic').change(function() {
+    setCaseTypeForm();
+  });
 
 });

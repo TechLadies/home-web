@@ -8,7 +8,7 @@
 
   span {
     text-transform: uppercase;
-    color: #aaa;
+    color: $gray-light;
   }
 
   thead th { text-align: center; }
@@ -47,7 +47,7 @@
   }
 
   .ui-datepicker-calendar {
-    
+
     a.ui-state-default {
       background-color: rgba(white, 0.1);
       border-radius: 40px;

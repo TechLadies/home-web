@@ -11,35 +11,35 @@
 
     <%= render 'worker', ff: ff %>
 
-      <!-- *Tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a href="#domestic" aria-controls="domestic" role="tab" data-toggle="tab">
-            <span>For Domestic Workers</span>
-          </a>
-        </li>
+    <!-- *Tabs -->
+    <ul class="nav nav-tabs hidden" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#domestic" aria-controls="domestic" role="tab" data-toggle="tab">
+          <span>For Domestic Workers</span>
+        </a>
+      </li>
 
-        <li role="presentation">
-          <a href="#non-domestic" aria-controls="non-domestic" role="tab" data-toggle="tab">
-            <span>For Non-Domestic Workers</span>
-          </a>
-        </li>
-      </ul>
-      <!-- Tabs* -->
+      <li role="presentation">
+        <a href="#non-domestic" aria-controls="non-domestic" role="tab" data-toggle="tab">
+          <span>For Non-Domestic Workers</span>
+        </a>
+      </li>
+    </ul>
+    <!-- Tabs* -->
 
-      <!-- *Tab Content -->
-      <div class="tab-content">
-        <!-- Domestic -->
-          <div role="tabpanel" class="tab-pane active table-responsive" id="domestic">
-            <%= render 'worker_domestic', ff: ff unless @case_file.non_domestic? %>
-          </div>
-
-        <!-- Non-Domestic -->
-          <div role="tabpanel" class="tab-pane table-responsive" id="non-domestic">
-            <%= render 'worker_non_domestic', ff: ff unless @case_file.domestic? %>
-          </div>
+    <!-- *Tab Content -->
+    <div class="tab-content">
+      <!-- Domestic -->
+      <div role="tabpanel" class="tab-pane active table-responsive" id="domestic">
+        <%= render 'worker_domestic', ff: ff %>
       </div>
-      <!-- Tab Content* -->
+
+      <!-- Non-Domestic -->
+      <div role="tabpanel" class="tab-pane table-responsive" id="non-domestic">
+        <%= render 'worker_non_domestic', ff: ff %>
+      </div>
+    </div>
+    <!-- Tab Content* -->
 
   <% end %>
 

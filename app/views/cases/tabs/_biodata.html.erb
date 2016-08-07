@@ -1,155 +1,162 @@
-<table class="table table-biodata">
-  <tbody class='col-md-12'>
+<div class='form-layout'>
 
-    <tr>
-      <th>Nationality</th>
-      <td><%= presenter.case_file.worker&.nationality %></td>
-    </tr>
+  <div class='row'>
+    <div class='col-md-6'>
+      <label>Nationality</label>
+      <span><%= presenter.nationality %></span>
+    </div>
+    <div class='col-md-6'>
+      <label>FIN Number</label>
+      <span><%= presenter.fin_number %></span>
+    </div>
+  </div>
 
-    <tr>
-      <th>FIN Number</th>
-      <td><%= presenter.case_file.worker&.fin_number %></td>
-    </tr>
+  <div class='row'>
+    <div class='col-md-6'>
+      <label>Passport Number</label>
+      <span><%= presenter.passport_number %></span>
+    </div>
+    <div class='col-md-6'>
+      <label>Pass Type</label>
+      <span><%= presenter.pass_type %></span>
+    </div>
+  </div>
 
-    <tr>
-      <th>Passport Number</th>
-      <td><%= presenter.case_file.worker&.passport_number %></td>
-    </tr>
+  <div class='row'>
+    <div class='col-md-4'>
+      <label>Date of Arrival to Singapore</label>
+      <span><%= presenter.date_of_arrival %></span>
+    </div>
+    <div class='col-md-4'>
+      <label>Start of Employment</label>
+      <span><%= presenter.start_of_employment %></span>
+    </div>
+    <div class='col-md-4'>
+      <label>Days off per month</label>
+      <span><%= presenter.days_off %></span>
+    </div>
+  </div>
 
-    <tr>
-      <th>Pass Type</th>
-      <td><%= presenter.case_file.worker&.pass_type %></td>
-    </tr>
+  <div class='row'>
+    <div class='col-md-12'>
+      <label>Previous Employers Details</label>
+      <span><%= presenter.previous_employers_details %></span>
+    </div>
+  </div>
 
-    <tr>
-      <th>Date of Arrival to Singapore</th>
-      <td><%= presenter.case_file.worker&.date_of_arrival&.to_date&.to_formatted_s(:long) %></td>
-    </tr>
-
-    <tr>
-      <th>Start of Employment</th>
-      <td><%= presenter.case_file.worker&.start_of_employment&.to_date&.to_formatted_s(:long) %></td>
-    </tr>
-
-    <tr>
-      <th>Days off per month</th>
-      <td><%= presenter.case_file.worker&.days_off %></td>
-    </tr>
-
-    <tr>
-      <th>Previous Employers Details</th>
-      <td><%= presenter.case_file.worker&.previous_employers_details %></td>
-    </tr>
-
-  </tbody>
-</table>
-
-<hr/>
+</div>
 
 <%- if presenter.case_file.domestic? %>
 
-  <table class="table table-biodata">
-    <tbody class='col-md-12'>
+  <div class='form-layout'>
 
-      <tr>
-        <th>Date of Arrival to HOME</th>
-        <td><%= presenter.case_file.worker&.arrived_at&.to_date&.to_formatted_s(:long) %></td>
-      </tr>
+    <legend>Information for Domestic Workers</legend>
 
-      <tr>
-        <th>Interview Conducted By</th>
-        <td><%= presenter.case_file.worker&.interview_conducted_by %></td>
-      </tr>
+    <div class='row'>
+      <div class='col-md-4'>
+        <label>Date of Arrival to HOME</label>
+        <span><%= presenter.date_of_arrival %></span>
+      </div>
+      <div class='col-md-4'>
+        <label>Interview Conducted By</label>
+        <span><%= presenter.interview_conducted_by %></span>
+      </div>
+      <div class='col-md-4'>
+        <label>Date of Interview</label>
+        <span><%= presenter.date_of_interview %></span>
+      </div>
+    </div>
 
-      <tr>
-        <th>Date of Interview</th>
-        <td><%= presenter.case_file.worker&.date_of_interview&.to_date&.to_formatted_s(:long) %></td>
-      </tr>
+    <div class='row'>
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-12'>
+            <label>Preferred Language</label>
+            <span><%= presenter.preferred_language %></span>
+          </div>
+          <div class='col-md-6'>
+            <label>Transfer Required</label>
+            <span><%= presenter.transfer_required? %></span>
+          </div>
+          <div class='col-md-6'>
+            <label>Repatriation Required</label>
+            <span><%= presenter.repatriation_required? %></span>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4'>
+        <label>English Proficiency</label>
+        <span><%= presenter.english_proficiency %></span>
+      </div>
+    </div>
 
-      <tr>
-        <th>Transfer Requested</th>
-        <td><%= presenter.case_file.worker&.transfer_required? ? 'Yes' : 'No' %></td>
-      </tr>
+    <div class='row'>
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <label>Loan Value (in SGD)</label>
+            <span><%= presenter.loan_value %></span>
+          </div>
+          <div class='col-md-6'>
+            <label>Remaining Loan Value (in SGD)</label>
+            <span><%= presenter.remaining_loan_value %></span>
+          </div>
+          <div class='col-md-12'>
+            <label>Salary Details</label>
+            <span><%= presenter.salary_details %></span>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4'>
+        <label>Sleeping Area</label>
+        <span><%= presenter.sleeping_area %></span>
+      </div>
+    </div>
 
-      <tr>
-        <th>Repatriation Requested</th>
-        <td><%= presenter.case_file.worker&.repatriation_required %></td>
-      </tr>
-
-      <tr>
-        <th>Preferred Language</th>
-        <td><%= presenter.case_file.worker&.translate_to %></td>
-      </tr>
-
-      <tr>
-        <th>English Proficiency</th>
-        <td><%= presenter.case_file.worker&.english_proficiency&.titleize %></td>
-      </tr>
-
-      <tr>
-        <th>Loan Value (in SGD)</th>
-        <td><%= presenter.case_file.worker&.loan_value %></td>
-      </tr>
-
-      <tr>
-        <th>Remaining Loan Value (in SGD)</th>
-        <td><%= presenter.case_file.worker&.remaining_loan_value %></td>
-      </tr>
-
-      <tr>
-        <th>Salary Details</th>
-        <td><%= presenter.case_file.worker&.salary_details %></td>
-      </tr>
-
-      <tr>
-        <th>Sleeping Area</th>
-        <td><%= presenter.case_file.worker&.sleeping_area&.reject(&:blank?)&.map { |i| DomesticWorker::SLEEPING_AREAS[i] }&.to_sentence %></td>
-      </tr>
-
-    </tbody>
-  </table>
+  </div>
 
 <%- else %>
 
-  <table class="table table-biodata">
-    <tbody class='col-md-12'>
+  <div class='form-layout'>
 
-      <tr>
-        <th>Basic Salary (per month in SGD) </th>
-        <td><%= presenter.case_file.worker&.basic_salary %></td>
-      </tr>
+    <legend>Information for Non-Domestic Workers</legend>
 
-      <tr>
-        <th>Industry</th>
-        <td><%= presenter.case_file.worker&.industry %></td>
-      </tr>
+    <div class='row'>
+      <div class='col-md-6'>
+        <label>Basic Salary (per month in SGD)</label>
+        <span><%= presenter.basic_salary %></span>
+      </div>
+      <div class='col-md-6'>
+        <label>Industry</label>
+        <span><%= presenter.industry %></span>
+      </div>
+    </div>
 
-      <tr>
-        <th>Accomodation Type</th>
-        <td><%= presenter.case_file.worker&.accomodation_type %></td>
-      </tr>
+    <label>Accomodation Type</label>
+    <span><%= presenter.accomodation_type %></span>
 
-      <tr>
-        <th>Origin Agent Fee (in SGD)</th>
-        <td><%= presenter.case_file.worker&.origin_agent_fee %></td>
-      </tr>
+    <div class='row'>
+      <div class='col-md-6'>
+        <label>Origin Agent Fee (in SGD)</label>
+        <span><%= presenter.origin_agent_fee %></span>
+      </div>
+      <div class='col-md-6'>
+        <label>Local Agent Fee (in SGD)</label>
+        <span><%= presenter.local_agent_fee %></span>
+      </div>
+    </div>
 
-      <tr>
-        <th>Local Agent Fee (in SGD)</th>
-        <td><%= presenter.case_file.worker&.local_agent_fee %></td>
-      </tr>
+    <div class='row'>
+      <div class='col-md-6'>
+        <label>Weekly Working Hours</label>
+        <span><%= presenter.weekly_working_hours %></span>
+      </div>
+      <div class='col-md-6'>
+        <label>Sunday Working Hours</label>
+        <span><%= presenter.sunday_working_hours %></span>
+      </div>
+    </div>
 
-      <tr>
-        <th>Weekly Working Hours</th>
-        <td><%= presenter.case_file.worker&.weekly_working_hours %></td>
-      </tr>
-
-      <tr>
-        <th>Sunday Working Hours</th>
-        <td><%= presenter.case_file.worker&.sunday_working_hours %></td>
-      </tr>
-
-    </tbody>
-  </table>
+  </div>
 
 <%- end %>

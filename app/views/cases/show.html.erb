@@ -64,7 +64,7 @@
 
       <div class="tab-content">
         <%- @presenter.tabs do |key, title, badge| %>
-          <div role="tabpanel" class="tab-pane active table-responsive" id="<%= key %>">
+          <div role="tabpanel" class="tab-pane" id="<%= key %>">
             <%= render partial: "cases/tabs/#{key}", locals: { presenter: @presenter } %>
           </div>
         <%- end %>

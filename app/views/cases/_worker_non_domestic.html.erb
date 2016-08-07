@@ -1,11 +1,18 @@
-<div class="col-md-6">
+<legend>Information for Non-Domestic Workers</legend>
 
-  <%= ff.input :basic_salary, label: 'Basic Salary (per month in SGD)' %>
-  <%= ff.input :industry %>
-  <%= ff.input :accomodation_type %>
-  <%= ff.input :origin_agent_fee, label: 'Origin Agent Fee (in SGD)' %>
-  <%= ff.input :local_agent_fee, label: 'Local Agent Fee (in SGD)' %>
-  <%= ff.input :weekly_working_hours %>
-  <%= ff.input :sunday_working_hours %>
+<div class="row">
+  <%= ff.input :basic_salary, label: 'Basic Salary (per month in SGD)', wrapper_html: { class: "col-md-6" } %>
+  <%= ff.input :industry, wrapper_html: { class: "col-md-6" } %>
+</div>
 
+<%= ff.input :accomodation_type %>
+
+<div class="row">
+  <%= ff.input :origin_agent_fee, label: 'Origin Agent Fee (in SGD)', wrapper_html: { class: "col-md-6" } %>
+  <%= ff.input :local_agent_fee, label: 'Local Agent Fee (in SGD)', wrapper_html: { class: "col-md-6" } %>
+</div>
+
+<div class="row">
+  <%= ff.input :weekly_working_hours, wrapper_html: { class: "col-md-6" } %>
+  <%= ff.input :sunday_working_hours, wrapper_html: { class: "col-md-6" } %>
 </div>

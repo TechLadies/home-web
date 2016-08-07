@@ -22,12 +22,12 @@
   li.active > a {
 
     border: 0;
-    border-bottom: 2px solid #e8b53c;
+    border-bottom: 4px solid rgba(#310834, 0.5);
 
     &:hover {
       background-color: transparent;
       border: 0;
-      border-bottom: 2px solid #e8b53c;
+      border-bottom: 4px solid rgba(#310834, 0.5);
     }
 
   }

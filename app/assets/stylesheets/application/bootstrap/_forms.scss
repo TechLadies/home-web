@@ -1,13 +1,10 @@
 .simple_form {
 
-  textarea.form-control {
-    height: auto;
-  }
+  hr { margin: 50px 0; }
 
-  fieldset {
-    padding: 30px;
-    border-bottom: 1px solid #e5e5e5;
-  }
+  textarea.form-control { height: auto; }
+
+  fieldset { padding: 15px; }
 
   legend {
     font-size: 14px;
@@ -16,21 +13,24 @@
   }
 
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .control-label {
 
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
-    color: #aaa;
+    color: $gray-light;
 
   }
 
   br + .btn-lg { margin-top: 5px; }
 
-  .form-control { height: 40px; }
+  .form-control {
+    height: 50px;
+    font-size: 18px;
+  }
 
   .form-control.string, .form-control.password, .form-control.decimal, .form-control.integer {
 
@@ -41,8 +41,8 @@
     background-color: transparent;
 
     padding: 0;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 18px;
+    line-height: 20px;
 
   }
 
@@ -51,5 +51,10 @@
   }
 
   .radio-inline { margin-top: 0; }
+
+  .radio_buttons_inline.control-label {
+    display: block;
+    margin-bottom: 20px;
+  }
 
 }

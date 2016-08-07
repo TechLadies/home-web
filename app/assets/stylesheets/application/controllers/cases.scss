@@ -2,6 +2,9 @@
 
   .select-people { width: 300px; }
 
-  .thumbnail .default { margin: 22px auto; }
+  .thumbnail .default {
+    margin: 22px auto;
+    opacity: 0.1;
+  }
 
 }

@@ -1,52 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve">
-<g id="Layer_1">
-</g>
-<g id="Layer_2">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px"
+	 height="64px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<g id="_x30_3_x5F_accounts_x5F_storage">
 	<g>
-		<circle fill="#37BDE9" cx="64" cy="64" r="64"/>
 		<g>
-			<defs>
-				<circle id="SVGID_39_" cx="64" cy="64" r="64"/>
-			</defs>
-			<clipPath id="SVGID_2_">
-				<use xlink:href="#SVGID_39_"  overflow="visible"/>
-			</clipPath>
-			<polygon opacity="0.4" clip-path="url(#SVGID_2_)" fill="#0090C4" points="93.572,29.677 128,64 128,128 54.36,128 
-				33.341,106.906 			"/>
-		</g>
-		<path fill="#F1F1F1" d="M84.024,20H36.017C33.579,20,32,22.11,32,24.549v78.903c0,2.439,1.579,4.549,4.017,4.549h55.967
-			c2.438,0,4.017-2.11,4.017-4.549V32.143L84.024,20z"/>
-		<g>
-			<defs>
-				<path id="SVGID_41_" d="M84.044,20H36.018C33.579,20,32,22.11,32,24.549v78.903c0,2.439,1.579,4.549,4.018,4.549h55.989
-					c2.439,0,4.018-2.11,4.018-4.549V32.143L84.044,20z"/>
-			</defs>
-			<clipPath id="SVGID_4_">
-				<use xlink:href="#SVGID_41_"  overflow="visible"/>
-			</clipPath>
-			<g clip-path="url(#SVGID_4_)">
-				<polygon fill="#DDE1F1" points="50.948,67.621 65.539,82.042 42.971,83.087 49.777,90 42.971,91.087 49.277,97.555 
-					42.971,99.087 53.027,109.305 97.684,109.305 97.684,75.707 97.075,54.055 81.059,37.758 70.97,44.918 62.684,35.107 				"/>
+			
+				<rect x="1" y="37" style="fill:none;stroke:#363F40;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;" width="62" height="26"/>
+			<polyline style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" points="55,17 57,17 63,37 			"/>
+			<polyline style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" points="1,37 7,17 9,17 			"/>
+			<g>
+				<g>
+					<polyline style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" points="14,14 14,5 24,5 30,1 50,1 50,14 
+											"/>
+				</g>
+				<g>
+					<polyline style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" points="12,21 12,17 52,17 52,21 					"/>
+				</g>
+				<g>
+					<polyline style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" points="10,27 10,24 54,24 54,27 					"/>
+				</g>
+				<g>
+					<polyline style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" points="8,34 8,30 56,30 56,34 					"/>
+				</g>
 			</g>
+			<g>
+				<path style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" d="M46,46v3v2c0,1.656-1.343,3-3,3H21
+					c-1.656,0-3-1.343-3-3v-5H46z"/>
+			</g>
+			<line style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" x1="13" y1="50" x2="11" y2="50"/>
+			<line style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" x1="53" y1="50" x2="51" y2="50"/>
+			<line style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" x1="23" y1="50" x2="41" y2="50"/>
+			<line style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" x1="37" y1="7" x2="47" y2="7"/>
+			<line style="fill:none;stroke:#363F40;stroke-width:2;stroke-miterlimit:10;" x1="17" y1="11" x2="47" y2="11"/>
 		</g>
-		<path fill="#B1DEF0" d="M88.186,32.138l7.839,0.005L84.044,20v7.96C84.044,30.398,85.769,32.138,88.186,32.138z"/>
-		<g>
-			<path fill="#0088C5" d="M62.684,35.107c-10.148,0-18.375,8.227-18.375,18.375c0,10.148,8.227,18.375,18.375,18.375
-				c10.148,0,18.375-8.227,18.375-18.375H62.684V35.107z"/>
-		</g>
-		<g>
-			<path fill="#E84D47" d="M66.809,30.982v18.375h18.375C85.184,39.209,76.958,30.982,66.809,30.982z"/>
-		</g>
-		<path fill="#324D81" d="M84,83.5H44c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5h40c0.828,0,1.5,0.672,1.5,1.5
-			S84.828,83.5,84,83.5z"/>
-		<path fill="#324D81" d="M84,91.5H44c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5h40c0.828,0,1.5,0.672,1.5,1.5
-			S84.828,91.5,84,91.5z"/>
-		<path fill="#324D81" d="M84,99.5H44c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5h40c0.828,0,1.5,0.672,1.5,1.5
-			S84.828,99.5,84,99.5z"/>
 	</g>
+</g>
+<g id="Layer_1">
 </g>
 </svg>
