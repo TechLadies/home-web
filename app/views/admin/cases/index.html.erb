@@ -1,3 +1,4 @@
+
 <script src="assets/jquery.tablesort.js"></script>
 <script>
   $(document).on('ready page:load', function() {
@@ -44,7 +45,7 @@
         <thead>
           <tr>
             <th>Reported at<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-            <th>Case<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th class="col-md-2">Case Number<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
             <th>Case Type<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
             <th class="col-md-3">Issues<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
             <th>Assigned to<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
@@ -57,7 +58,7 @@
           <%- @case_files.each do |case_file| %>
             <tr>
               <td><%= case_file.reported_at.to_date.to_s(:long) %></td>
-              <td><%= link_to case_file, case_path(case_file) %></td>
+              <td class="col-md-2"><%= link_to case_file, case_path(case_file) %></td>
               <td><%= case_file.case_type%></td>
               <td class="col-md-3">
                 <%- case_file.issues.collect do |i| %>
