@@ -78,24 +78,24 @@ $(document).ready(function() {
     setCaseTypeForm();
   });
 
-  if ($('#case_file_worker_attributes_nationality').val() == 'Others') {
-    $("#nationality_selector").val($('#case_file_worker_attributes_nationality').val());
-    $('#case_file_worker_attributes_nationality').val('');
-  } else if ($('#case_file_worker_attributes_nationality').val() == '') {
-    $("#nationality_selector").val('Others');
-  } else {
+  predefined_countries = ['Philippines', 'Indonesia', 'Myanmar', 'Cambodia', 'India', 'Bangladesh', 'Sri Lanka', 'China'];
+
+  if (jQuery.inArray($('#case_file_worker_attributes_nationality').val(), predefined_countries) != -1) {
     $("#nationality_selector").val($('#case_file_worker_attributes_nationality').val());
     $('#case_file_worker_attributes_nationality').hide();
+  } else {
+    $("#nationality_selector").val('Others');
+    $('#case_file_worker_attributes_nationality').show();
   }
 
-  $('#nationality_selector').change(function(e) {
+  $('#nationality_selector').change(function() {
     value = $('#nationality_selector').val();
-    if (value == 'Others') {
-      $('#case_file_worker_attributes_nationality').val('');
-      $('#case_file_worker_attributes_nationality').show();
-    } else {
+    if (jQuery.inArray(value, predefined_countries) != -1) {
       $('#case_file_worker_attributes_nationality').val(value);
       $('#case_file_worker_attributes_nationality').hide();
+    } else {
+      $('#case_file_worker_attributes_nationality').val('');
+      $('#case_file_worker_attributes_nationality').show();
     }
   });
 

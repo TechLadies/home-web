@@ -18,7 +18,7 @@ class CasesController < ApplicationController
   def new
     @case_file = current_user.case_files.build(case_type: 'Domestic')
     @case_file.issues.build
-    @case_file.build_worker(nationality: 'Others')
+    @case_file.build_worker
     @case_file.involvements.build
   end
 
