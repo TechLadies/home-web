@@ -2,7 +2,13 @@
   <%- presenter.case_file.links.each do |i| %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
+        <%- if i.mimetype.start_with?('image') %>
+          <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename %>
+        <%- elsif i.mimetype.start_with?('application/vnd.openxmlformats-officedocument') || ['application/pdf'].include?(i.mimetype) %>
+          <%= filepicker_image_tag i.url, w: 350, h: 250, fit: 'crop', alt: i.filename, format: 'png' %>
+        <%- else %>
+          <%= image_tag 'report.svg', size: '200x200', class: 'default' %>
+        <%- end %>
         <div class="caption">
           <p><%= i.filename %></p>
           <%= link_to 'Download', i.url, class: 'btn btn-default' %>
