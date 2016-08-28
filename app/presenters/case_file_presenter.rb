@@ -38,6 +38,10 @@ class CaseFilePresenter
     case_file.worker&.fin_number
   end
 
+  def wp_number
+    case_file.worker&.wp_number
+  end
+
   def passport_number
     case_file.worker&.passport_number
   end

@@ -2,14 +2,15 @@
 
 <div class="row">
   <div class='col-md-6'>
-    <%= ff.input :nationality do %>
+    <%= ff.input :nationality, required: true do %>
       <div class='row'>
         <div class='col-xs-5'><%= select_tag :nationality_selector, options_for_select(['Philippines', 'Indonesia', 'Myanmar', 'Cambodia', 'India', 'Bangladesh', 'Sri Lanka', 'China', 'Others']), class: 'form-control' %></div>
         <div class='col-xs-7'><%= ff.input :nationality, wrapper: false, error: false, label: false, placeholder: 'For e.g Philippines' %></div>
       </div>
     <%- end %>
   </div>
-  <%= ff.input :fin_number, label: 'FIN Number', wrapper_html: { class: "col-md-6" } %>
+  <%= ff.input :fin_number, label: 'FIN Number', wrapper_html: { class: "col-md-3" } %>
+  <%= ff.input :wp_number, label: 'WP Number', wrapper_html: { class: "col-md-3" } %>
 </div>
 
 <div class="row">
