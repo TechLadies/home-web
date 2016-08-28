@@ -11,8 +11,8 @@
   <div class='col-md-8'>
     <div class="row">
       <%= ff.input :translate_to, label: 'Preferred Language (only if translation is required)', wrapper_html: { class: "col-md-12" } %>
-      <%= ff.input :transfer_required, as: :boolean, checked_value: true, unchecked_value: false, wrapper_html: { class: "col-md-6" } %>
-      <%= ff.input :repatriation_required, placeholder: 'For e.g. Indonesia', wrapper_html: { class: "col-md-6" } %>
+      <%= ff.input :transfer_required, label: 'Transfer Requested', as: :boolean, checked_value: true, unchecked_value: false, wrapper_html: { class: "col-md-6" } %>
+      <%= ff.input :repatriation_required, label: 'Repatriation Requested', placeholder: 'For e.g. Indonesia', wrapper_html: { class: "col-md-6" } %>
     </div>
   </div>
   <div class='col-md-4'>
