@@ -1,6 +1,16 @@
+<script src="assets/jquery.tablesort.js"></script>
+<script>
+  $(document).on('ready page:load', function() {
+    $('table').tablesort();
+  });
+</script>
+
 <div class='page-header'>
   <div class='container'>
-    <h1>Organizations</h1>
+    <h1 class='pull-left'>Organizations</h1>
+    <div class='pull-right'>
+      <%= link_to 'New Organization', new_organization_path, class: 'btn btn-primary' %>
+    </div>
   </div>
 </div>
 
@@ -32,11 +42,11 @@
 
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Industry</th>
+            <th>Name<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th>Industry<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Email</th>
+            <th>Email<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
             <th>Pending Cases</th>
             <th>Closed Cases</th>
           </tr>
