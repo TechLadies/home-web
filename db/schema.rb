@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828093705) do
+ActiveRecord::Schema.define(version: 20160912081719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20160828093705) do
     t.integer  "loan_value"
     t.integer  "remaining_loan_value"
     t.text     "salary_details"
-    t.decimal  "basic_salary"
+    t.decimal  "basic_salary_per_month"
     t.string   "industry"
     t.string   "accomodation_type"
     t.decimal  "origin_agent_fee"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20160828093705) do
     t.integer  "english_proficiency"
     t.integer  "sleeping_area",              default: [],              array: true
     t.string   "wp_number"
+    t.decimal  "basic_salary_per_day"
   end
 
   add_foreign_key "links", "case_files"

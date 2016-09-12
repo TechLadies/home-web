@@ -126,11 +126,15 @@
     <legend>Information for Non-Domestic Workers</legend>
 
     <div class='row'>
-      <div class='col-md-6'>
+      <div class='col-md-4'>
         <label>Basic Salary (per month in SGD)</label>
-        <span><%= presenter.basic_salary %></span>
+        <span><%= presenter.basic_salary_per_month %></span>
       </div>
-      <div class='col-md-6'>
+      <div class='col-md-4'>
+        <label>Basic Salary (per day in SGD)</label>
+        <span><%= presenter.basic_salary_per_day %></span>
+      </div>
+      <div class='col-md-4'>
         <label>Industry</label>
         <span><%= presenter.industry %></span>
       </div>

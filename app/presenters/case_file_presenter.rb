@@ -112,10 +112,14 @@ class CaseFilePresenter
     case_file.worker&.sleeping_area&.reject(&:blank?)&.map { |i| DomesticWorker::SLEEPING_AREAS[i] }&.to_sentence
   end
 
-  # domestic workers
+  # non-domestic workers
 
-  def basic_salary
-    number_to_currency case_file.worker&.basic_salary
+  def basic_salary_per_month
+    number_to_currency case_file.worker&.basic_salary_per_month
+  end
+
+  def basic_salary_per_day
+    number_to_currency case_file.worker&.basic_salary_per_day
   end
 
   def industry
