@@ -1,7 +1,8 @@
 ruby '2.3.0'
 source 'https://rubygems.org'
 
-
+# This gem collects error and performance data from your Rails applications and sends it to AppSignal
+gem 'appsignal'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
