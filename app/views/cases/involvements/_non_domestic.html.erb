@@ -3,11 +3,14 @@
 
     <div class="panel-heading">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h2>Client</h2>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h2>Employer</h2>
+        </div>
+        <div class="col-md-4">
+          <h2>Agency</h2>
         </div>
       </div>
     </div>
@@ -16,7 +19,7 @@
       <div class="row">
 
         <!-- RELATED PEOPLE: CLIENT -->
-        <div id='client-info' class="col-md-6">
+        <div id='client-info' class="col-md-4">
           <%- if presenter.case_file.client.nil? %>
             <div class='well well-empty text-center'>
               <p>No client information</p>
@@ -28,7 +31,7 @@
         </div>
 
         <!-- RELATED PEOPLE/ORG: EMPLOYER) -->
-        <div id='employer-info' class="col-md-6">
+        <div id='employer-info' class="col-md-4">
           <%- if presenter.case_file.employer.nil? %>
             <div class='well well-empty text-center'>
               <p>No employer information</p>
@@ -37,6 +40,18 @@
             </div>
           <%- else %>
             <%= render partial: "involvements/#{presenter.case_file.employer.involvable.class.to_s.underscore}", object: presenter.case_file.employer.involvable, locals: { involvement: presenter.case_file.employer } %>
+          <%- end %>
+        </div>
+
+        <!-- RELATED PEOPLE/ORG: AGENCY) -->
+        <div id='agency-info' class="col-md-4">
+          <%- if presenter.case_file.agency.nil? %>
+            <div class='well well-empty text-center'>
+              <p>No agency information (optional)</p>
+              <%= link_to 'Add Agency', new_case_involvement_path(presenter.case_file, involvement: { role: :agency, involvable_type: 'Organization' }, agency: true), remote: true, class: 'btn btn-success' if presenter.case_file.pending? %>
+            </div>
+          <%- else %>
+            <%= render partial: 'involvements/organization', object: presenter.case_file.agency.involvable, locals: { involvement: presenter.case_file.agency } %>
           <%- end %>
         </div>
 
