@@ -48,8 +48,7 @@
           <%- if presenter.case_file.agency.nil? %>
             <div class='well well-empty text-center'>
               <p>No agency information</p>
-<!-- can we get industry: maid agencies only? -->
-              <%= link_to 'Add Agency', new_case_involvement_path(presenter.case_file, involvement: { role: :agency, involvable_type: 'Organization' }, agency: true), remote: true, class: 'btn btn-success'  if presenter.case_file.domestic? && presenter.case_file.pending? %>
+              <%= link_to 'Add Agency', new_case_involvement_path(presenter.case_file, involvement: { role: :agency, involvable_type: 'Organization' }, agency: true), remote: true, class: 'btn btn-success' if presenter.case_file.pending? %>
             </div>
           <%- else %>
             <%= render partial: 'involvements/organization', object: presenter.case_file.agency.involvable, locals: { involvement: presenter.case_file.agency } %>
