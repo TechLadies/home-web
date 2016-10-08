@@ -3,7 +3,7 @@
 <div class="row">
   <%= ff.input :basic_salary_per_month, label: 'Basic Salary (per month in SGD)', wrapper_html: { class: "col-md-4" } %>
   <%= ff.input :basic_salary_per_day, label: 'Basic Salary (per day in SGD)', wrapper_html: { class: "col-md-4" } %>
-  <%= ff.input :industry, wrapper_html: { class: "col-md-4" } %>
+  <%= ff.input :industry, collection: Organization::INDUSTRY, wrapper_html: { class: "col-md-4" } %>
 </div>
 
 <%= ff.input :accomodation_type %>
