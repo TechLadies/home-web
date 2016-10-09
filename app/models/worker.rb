@@ -2,10 +2,10 @@ class Worker < ActiveRecord::Base
 
   belongs_to :case_file
 
+  validates :case_file, presence: true
   validate :nationality_cannot_be_others
 
   enum english_proficiency: [:poor, :basic, :intermediate, :advanced]
-
 
   private
 

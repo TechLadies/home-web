@@ -1,0 +1,31 @@
+.queries.show {
+
+  .list-group-item {
+
+    position: relative;
+    padding: 0;
+
+    > a {
+      padding: 15px;
+      display: block;
+    }
+
+    strong {
+      color: $gray-dark;
+      font-size: 21px;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+
+    p, ul { color: $gray-light; }
+
+    span {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: $gray-light;
+    }
+
+  }
+
+}

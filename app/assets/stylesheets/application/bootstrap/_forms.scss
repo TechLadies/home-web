@@ -12,9 +12,7 @@
     padding: 15px 0;
   }
 
-  .form-group {
-    margin-bottom: 30px;
-  }
+  .form-group { margin-bottom: 30px; }
 
   .control-label {
 
@@ -55,6 +53,29 @@
   .radio_buttons_inline.control-label {
     display: block;
     margin-bottom: 20px;
+  }
+
+}
+
+.simple_form.navbar-form {
+
+  border-top: 1px solid #eee;
+  padding: 5px 0;
+
+  .form-control {
+    height: 40px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .btn {
+    vertical-align: top;
+    margin-top: 10px;
   }
 
 }

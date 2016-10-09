@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  resource :query
+
   resources :cases, only: [:index, :show, :new, :create, :edit, :update] do
 
     get :archive, on: :collection

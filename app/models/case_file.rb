@@ -1,5 +1,8 @@
 class CaseFile < ActiveRecord::Base
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   has_paper_trail
 
   belongs_to :user
@@ -74,3 +77,5 @@ class CaseFile < ActiveRecord::Base
   end
 
 end
+
+CaseFile.import force: true

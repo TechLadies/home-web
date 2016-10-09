@@ -25,5 +25,13 @@ module HomeWeb
     config.active_record.raise_in_transactional_callbacks = true
 
     config.filepicker_rails.api_key = ENV['FILEPICKER_API_KEY']
+
+    config.generators do |g|
+      g.factory_girl false
+      g.helper false
+      g.assets false
+      g.view_specs false
+    end
+
   end
 end

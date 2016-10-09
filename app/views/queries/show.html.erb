@@ -1,0 +1,25 @@
+<div class='container'>
+
+  <br />
+
+  <div class='panel panel-default'>
+
+    <div class='panel-heading'>
+      <h2>Search Results</h2>
+    </div>
+
+    <ul class='list-group'>
+      <%- @results.each do |result| %>
+        <li class='list-group-item'>
+          <%= render partial: result.class.to_s.underscore, object: result %>
+        </li>
+      <%- end %>
+    </ul>
+
+    <div class='panel-footer'>
+      <span><%= pluralize @results.count, 'result' %> found</span>
+    </div>
+
+  </div>
+
+</div>

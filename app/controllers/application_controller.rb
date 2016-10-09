@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :set_paper_trail_whodunnit
-  before_action :require_login
+  before_filter :set_paper_trail_whodunnit, :require_login
   after_action :logout_deactivated_users
 
   protected

@@ -1,6 +1,8 @@
 ruby '2.3.0'
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', require: 'dotenv/rails-now', group: [:development, :test]
+
 # This gem collects error and performance data from your Rails applications and sends it to AppSignal
 gem 'appsignal'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -11,7 +13,7 @@ gem 'pg'
 gem 'puma'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -40,6 +42,8 @@ gem 'paper_trail'
 
 gem 'filepicker-rails'
 
+gem 'bonsai-elasticsearch-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -52,7 +56,6 @@ gem 'filepicker-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails'
