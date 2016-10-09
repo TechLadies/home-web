@@ -5,7 +5,8 @@ RSpec.describe CasesController, type: :controller do
   let(:user) { build(:user) }
   before { login_user user }
 
-  let(:case_file) { create(:case_file, worker: create(:domestic_worker)) }
+  let(:case_file) { worker.case_file }
+  let(:worker) { create(:domestic_worker) }
 
   describe 'GET index' do
     before { get :index }

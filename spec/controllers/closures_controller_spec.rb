@@ -5,7 +5,8 @@ RSpec.describe ClosuresController, type: :controller do
   let(:user) { build(:user) }
   before { login_user user }
 
-  let(:case_file) { create(:case_file, worker: create(:domestic_worker)) }
+  let(:case_file) { worker.case_file }
+  let(:worker) { create(:domestic_worker) }
 
   let!(:client) { create(:involvement, :with_client, case_file: case_file) }
   let!(:agency) { create(:involvement, :with_agency, case_file: case_file) }
